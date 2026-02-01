@@ -36,19 +36,25 @@
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Crear documentos JSON desde formularios</a>
               <a href="practica-8.html">Práctica 8 — Lectura y visualización de JSON</a>
-              <a href="practica-9.html">Práctica 9</a>
-              <a href="practica-10.html">Práctica 10</a>
-              <a href="practica-11.html">Práctica 11</a>
-              <a href="practica-12.html">Práctica 12</a>
+              <a href="practica-9.html">Práctica 9 — Modelado Documental Avanzado y Estructuras Complejas en JSON</a>
+              <a href="practica-10.html">Práctica 10 — Operaciones CRUD Completas en MongoDB</a>
+              <a href="practica-11.html">Práctica 11 — Consultas Avanzadas con Operadores en MongoDB</a>
+              <a href="practica-12.html">Práctica 12 — Proyecciones, Ordenamientos y Paginación</a>
             </div>
           </details>
           <details class="nav-section">
             <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
             <div class="nav-links">
-              <a href="practica-13.html">Práctica 13</a>
-              <a href="practica-14.html">Práctica 14</a>
-              <a href="practica-15.html">Práctica 15</a>
-              <a href="practica-16.html">Práctica 16</a>
+              <a href="practica-13.html">Práctica 13 — Actualizaciones Avanzadas y Manipulación de Arreglos</a>
+              <a href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
+              <a href="practica-15.html">Práctica 15 — Introducción al Framework de Agregación</a>
+              <a href="practica-16.html">Práctica 16 — Pipeline de Agregación Avanzado</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad ABP · Aprendizaje Basado en Proyectos</summary>
+            <div class="nav-links">
+              <a href="practica-abp.html">Proyectos ABP</a>
             </div>
           </details>
         </nav>
@@ -68,6 +74,8 @@
           </p>
           <p>Trabajarás sobre la colección <strong>usuarios</strong> creada en prácticas anteriores usando MongoDB mediante Studio 3T.</p>
 
+          <h2 class="section-title">🧭 Contexto conceptual</h2>
+          <p>Actualizar datos es más común que crear desde cero. Esta práctica te enseña a modificar campos específicos sin destruir la integridad del documento.</p>
           <h2 class="section-title">🎯 Aprendizajes esperados</h2>
           <p>Al finalizar la práctica, serás capaz de:</p>
           <ul class="checklist">
@@ -160,6 +168,85 @@
 
           <h2 class="section-title">✅ Cierre</h2>
           <p>Al finalizar esta práctica sabes modificar datos existentes sin romper la estructura JSON.</p>
+          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
+          <p>Los ejercicios con updateOne y $set obligan a entender actualizaciones parciales y el riesgo de reemplazar documentos completos.</p>
+
+          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <ul class="checklist">
+            <li>E-commerce: catálogo, carrito y historial de compras.</li>
+            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
+            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
+            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
+            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+          </ul>
+
+          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
+          <p>En SQL se usan UPDATE con SET; en MongoDB se usan operadores que modifican solo partes del documento.</p>
+
+          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
+          <ul class="checklist">
+            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
+            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
+            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
+            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
+            <li>Usa paginación o límites en lecturas de alto volumen.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
+          <p>MongoDB aplica los modificadores, reescribe el documento si es necesario y actualiza índices asociados a los campos cambiados.</p>
+
+          <h2 class="section-title">❗ Errores Comunes</h2>
+          <ul class="checklist">
+            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
+            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
+            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
+            <li>No documentar la estructura JSON y sus cambios.</li>
+            <li>Confundir colección con documento o arreglo con objeto.</li>
+          </ul>
+
+          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
+          <ul class="checklist">
+            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
+            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
+            <li>Usar índices en campos consultados con frecuencia.</li>
+            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
+            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
+          <ul class="checklist">
+            <li>¿Qué diferencia hay entre $set y reemplazar todo el documento?</li>
+            <li>¿Qué riesgos existen si no usas filtros precisos?</li>
+            <li>¿Cómo afecta la actualización a los índices?</li>
+            <li>¿Qué datos nunca deberían actualizarse?</li>
+          </ul>
+
+          <h2 class="section-title">🧭 Retos Aplicados</h2>
+          <ul class="checklist">
+            <li>Actualiza múltiples campos en una sola operación y justifica el filtro.</li>
+            <li>Registra el antes y después con evidencia clara.</li>
+            <li>Usa updateMany con cuidado y explica la diferencia.</li>
+          </ul>
+
+          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
+          <ul class="checklist">
+            <li>Implementa una actualización condicional basada en rango de edades.</li>
+            <li>Propón una estrategia de versionado de documentos.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Rúbrica detallada</h2>
+          <table class="table-like" aria-label="Rúbrica detallada">
+            <thead>
+              <tr><th>Nivel</th><th>Descripción</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
+              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
+              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
+              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+            </tbody>
+          </table>
+
           <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
           <p>En la siguiente práctica se avanza al siguiente paso: Práctica 5 — Consultas avanzadas y filtros en MongoDB (find, operadores y ordenamiento). Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
 

@@ -36,19 +36,25 @@
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Crear documentos JSON desde formularios</a>
               <a href="practica-8.html">Práctica 8 — Lectura y visualización de JSON</a>
-              <a href="practica-9.html">Práctica 9</a>
-              <a href="practica-10.html">Práctica 10</a>
-              <a href="practica-11.html">Práctica 11</a>
-              <a href="practica-12.html">Práctica 12</a>
+              <a href="practica-9.html">Práctica 9 — Modelado Documental Avanzado y Estructuras Complejas en JSON</a>
+              <a href="practica-10.html">Práctica 10 — Operaciones CRUD Completas en MongoDB</a>
+              <a href="practica-11.html">Práctica 11 — Consultas Avanzadas con Operadores en MongoDB</a>
+              <a href="practica-12.html">Práctica 12 — Proyecciones, Ordenamientos y Paginación</a>
             </div>
           </details>
           <details class="nav-section">
             <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
             <div class="nav-links">
-              <a href="practica-13.html">Práctica 13</a>
-              <a href="practica-14.html">Práctica 14</a>
-              <a href="practica-15.html">Práctica 15</a>
-              <a href="practica-16.html">Práctica 16</a>
+              <a href="practica-13.html">Práctica 13 — Actualizaciones Avanzadas y Manipulación de Arreglos</a>
+              <a href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
+              <a href="practica-15.html">Práctica 15 — Introducción al Framework de Agregación</a>
+              <a href="practica-16.html">Práctica 16 — Pipeline de Agregación Avanzado</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad ABP · Aprendizaje Basado en Proyectos</summary>
+            <div class="nav-links">
+              <a href="practica-abp.html">Proyectos ABP</a>
             </div>
           </details>
         </nav>
@@ -67,6 +73,8 @@
             requiere criterio y precisión, especialmente cuando se trabaja con identificadores únicos como <strong>_id</strong>.
           </p>
 
+          <h2 class="section-title">🧭 Contexto conceptual</h2>
+          <p>Consultar y eliminar datos es crítico porque impacta decisiones y continuidad del sistema. Aquí se aprende a filtrar con precisión y a eliminar de forma segura.</p>
           <h2 class="section-title">🎯 Aprendizajes esperados</h2>
           <p>Al finalizar la práctica, serás capaz de:</p>
           <ul class="checklist">
@@ -152,6 +160,85 @@ db.usuarios.find().pretty();</code></pre>
             <li>Comprendes la importancia del _id.</li>
             <li>Estás listo para actualizar datos (update) en la siguiente práctica.</li>
           </ul>
+          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
+          <p>Los ejercicios de find y delete permiten entender el costo de borrar datos y la necesidad de filtros exactos, especialmente con _id.</p>
+
+          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <ul class="checklist">
+            <li>E-commerce: catálogo, carrito y historial de compras.</li>
+            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
+            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
+            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
+            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+          </ul>
+
+          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
+          <p>En SQL, los filtros se construyen con WHERE; en MongoDB los filtros son documentos JSON que deben ser igual de precisos.</p>
+
+          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
+          <ul class="checklist">
+            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
+            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
+            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
+            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
+            <li>Usa paginación o límites en lecturas de alto volumen.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
+          <p>MongoDB evalúa el filtro, usa índices si existen y luego marca el documento para eliminación. La operación queda registrada en el journal.</p>
+
+          <h2 class="section-title">❗ Errores Comunes</h2>
+          <ul class="checklist">
+            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
+            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
+            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
+            <li>No documentar la estructura JSON y sus cambios.</li>
+            <li>Confundir colección con documento o arreglo con objeto.</li>
+          </ul>
+
+          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
+          <ul class="checklist">
+            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
+            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
+            <li>Usar índices en campos consultados con frecuencia.</li>
+            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
+            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
+          <ul class="checklist">
+            <li>¿Por qué borrar por nombre es más riesgoso que por _id?</li>
+            <li>¿Cómo verificarías que una eliminación fue correcta?</li>
+            <li>¿Qué impacto tendría borrar documentos en cascada?</li>
+            <li>¿Qué harías si eliminas datos por error?</li>
+          </ul>
+
+          <h2 class="section-title">🧭 Retos Aplicados</h2>
+          <ul class="checklist">
+            <li>Realiza una eliminación con filtro compuesto y explica por qué no afecta otros documentos.</li>
+            <li>Consulta por rango de edades y compara resultados antes y después de borrar.</li>
+            <li>Usa _id real y documenta el proceso completo.</li>
+          </ul>
+
+          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
+          <ul class="checklist">
+            <li>Diseña una política de eliminación segura (soft delete) y justifica su uso.</li>
+            <li>Explica cómo auditarías eliminaciones en un sistema real.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Rúbrica detallada</h2>
+          <table class="table-like" aria-label="Rúbrica detallada">
+            <thead>
+              <tr><th>Nivel</th><th>Descripción</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
+              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
+              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
+              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+            </tbody>
+          </table>
+
           <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
           <p>En la siguiente práctica se avanza al siguiente paso: Práctica 4 — Actualización de documentos JSON usando comandos (updateOne y $set). Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
 

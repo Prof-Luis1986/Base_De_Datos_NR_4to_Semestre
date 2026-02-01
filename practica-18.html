@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 14 · Consultas sobre Arreglos y Documentos Anidados</title>
+    <title>Práctica 18 · Proyecto Integrador Final NoSQL</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="layout">
       <aside class="sidebar">
-        <h1 class="brand">📘 Bases de Datos<br />No Relacionales
-        </h1>
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
         <div class="nav-title">Menú</div>
-                                        <nav class="nav" aria-label="Navegación principal">
+        <nav class="nav" aria-label="Navegación principal">
           <a href="index.html">Inicio</a>
           <details class="nav-section">
             <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
@@ -47,11 +46,11 @@
             <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
             <div class="nav-links">
               <a href="practica-13.html">Práctica 13 — Actualizaciones Avanzadas y Manipulación de Arreglos</a>
-              <a class="active" href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
+              <a href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
               <a href="practica-15.html">Práctica 15 — Introducción al Framework de Agregación</a>
               <a href="practica-16.html">Práctica 16 — Pipeline de Agregación Avanzado</a>
               <a href="practica-17.html">Práctica 17 — Índices y Optimización Conceptual</a>
-              <a href="practica-18.html">Práctica 18 — Proyecto Integrador Final NoSQL</a>
+              <a class="active" href="practica-18.html">Práctica 18 — Proyecto Integrador Final NoSQL</a>
             </div>
           </details>
           <details class="nav-section">
@@ -65,65 +64,70 @@
 
       <main class="content">
         <section class="card">
-          <div class="unit-label">Unidad III · Operaciones y Manipulación de Datos en MongoDB</div>
-          <div class="badge">🟦 Práctica 14</div>
-          <h2 class="page-title">Consultas sobre Arreglos y Documentos Anidados</h2>
+          <div class="unit-label">Cierre de Unidad</div>
+          <div class="badge">🟦 Práctica 18</div>
+          <h2 class="page-title">Proyecto Integrador Final NoSQL</h2>
           <p class="page-subtitle">Modalidad: Laboratorio · Duración: 2 sesiones</p>
 
           <h2 class="section-title">🎯 Propósito</h2>
-          <p>Aprender a consultar información dentro de arreglos y objetos anidados.</p>
+          <p>Integrar todo lo aprendido en una base funcional y estructurada.</p>
 
           <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>Consultar dentro de arreglos y documentos anidados es una habilidad clave para explotar el potencial documental de MongoDB.</p>
-          <h2 class="section-title">🧠 Competencias</h2>
+          <p>El proyecto integrador consolida todas las habilidades del curso en un sistema completo. Aquí se demuestra criterio técnico y capacidad de diseño real.</p>
+          <h2 class="section-title">📌 Requisitos</h2>
           <ul class="checklist">
-            <li>Consulta datos dentro de arreglos.</li>
-            <li>Filtra por propiedades internas.</li>
-            <li>Utiliza operadores especiales para arreglos.</li>
+            <li>Diseño de colecciones.</li>
+            <li>Documentos JSON complejos.</li>
+            <li>CRUD completo.</li>
+            <li>Operadores avanzados.</li>
+            <li>Actualización con arreglos.</li>
+            <li>Agregación.</li>
+            <li>Índice.</li>
+            <li>Documento explicativo.</li>
+            <li>Presentación final.</li>
           </ul>
 
-          <h2 class="section-title">📚 Parte 1 — Consultar dentro de arreglos</h2>
-          <p>Mostrar usuarios que tengan en su historial la película “Matrix”:</p>
-          <div class="code-block">
-            <pre><code>db.usuarios.find({
-  "historial.titulo": "Matrix"
-})</code></pre>
-          </div>
-
-          <h2 class="section-title">📚 Parte 2 — Operador $elemMatch</h2>
-          <p>Buscar usuarios cuyo historial tenga película con minutos mayores a 100:</p>
-          <div class="code-block">
-            <pre><code>db.usuarios.find({
-  historial: {
-    $elemMatch: { minutos_vistos: { $gt: 100 } }
-  }
-})</code></pre>
-          </div>
-
-          <h2 class="section-title">📚 Parte 3 — Consultas en documentos anidados</h2>
-          <p>Buscar usuarios que vivan en CDMX:</p>
-          <div class="code-block">
-            <pre><code>db.usuarios.find({
-  "direccion.ciudad": "CDMX"
-})</code></pre>
-          </div>
-
-          <h2 class="section-title">🧠 Parte 4 — Análisis</h2>
-          <p>Responder:</p>
-          <ul class="checklist">
-            <li>¿Qué diferencia hay entre buscar directamente y usar $elemMatch?</li>
-            <li>¿Por qué las consultas anidadas son importantes?</li>
-            <li>¿En qué tipo de aplicaciones esto es indispensable?</li>
-          </ul>
-
-          <h2 class="section-title">📦 Entregables</h2>
-          <ul class="checklist">
-            <li>Capturas.</li>
-            <li>Código.</li>
-            <li>Reflexión técnica.</li>
-          </ul>
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>Los ejercicios con $elemMatch y campos anidados enseñan a filtrar datos en estructuras reales con precisión.</p>
+          <h2 class="section-title">📊 Evaluación Final</h2>
+          <table class="table-like" aria-label="Criterios de evaluación final">
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Diseño documental</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>CRUD completo</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>Consultas avanzadas</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Manipulación de arreglos</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Agregación</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Índices</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Presentación</td>
+                <td>10</td>
+              </tr>
+            </tbody>
+          </table>
+                  <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
+          <p>Integrar CRUD, agregaciones e índices evidencia dominio práctico y capacidad de justificar decisiones de arquitectura.</p>
 
           <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
           <ul class="checklist">
@@ -135,7 +139,7 @@
           </ul>
 
           <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En SQL necesitarías JOINs para consultar estructuras relacionadas; en MongoDB puedes filtrar dentro del mismo documento.</p>
+          <p>En un modelo relacional habría múltiples tablas y JOINs; en NoSQL se prioriza lectura eficiente con documentos y colecciones bien diseñadas.</p>
 
           <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
           <ul class="checklist">
@@ -147,7 +151,7 @@
           </ul>
 
           <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>MongoDB recorre arreglos y evalúa condiciones; $elemMatch asegura que se cumplan múltiples condiciones en el mismo elemento.</p>
+          <p>MongoDB ejecuta consultas y actualizaciones sobre documentos BSON y se apoya en índices; el diseño del esquema impacta la eficiencia global.</p>
 
           <h2 class="section-title">❗ Errores Comunes</h2>
           <ul class="checklist">
@@ -169,23 +173,23 @@
 
           <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
           <ul class="checklist">
-            <li>¿Qué problema resuelve $elemMatch?</li>
-            <li>¿Qué diferencia hay entre filtros en objeto vs arreglo?</li>
-            <li>¿Cómo afecta la consulta a rendimiento en arreglos grandes?</li>
-            <li>¿Qué casos reales requieren este tipo de consultas?</li>
+            <li>¿Qué decisión de diseño fue la más crítica y por qué?</li>
+            <li>¿Qué parte del sistema es más costosa de mantener?</li>
+            <li>¿Cómo justificarías el uso de NoSQL ante un cliente?</li>
+            <li>¿Qué métrica usarías para evaluar el éxito del proyecto?</li>
           </ul>
 
           <h2 class="section-title">🧭 Retos Aplicados</h2>
           <ul class="checklist">
-            <li>Crea una consulta con múltiples condiciones dentro de historial.</li>
-            <li>Compara resultados entre consulta directa y $elemMatch.</li>
-            <li>Busca usuarios por rango de edad dentro de perfiles.</li>
+            <li>Define reglas de negocio claras y valida sus datos.</li>
+            <li>Incluye un caso de consulta compleja y su explicación.</li>
+            <li>Entrega documentación técnica del esquema final.</li>
           </ul>
 
           <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
           <ul class="checklist">
-            <li>Diseña un filtro de historial con ventana de fechas y justifícalo.</li>
-            <li>Propón índices para consultas anidadas frecuentes.</li>
+            <li>Simula datos masivos y discute su impacto en rendimiento.</li>
+            <li>Propón una mejora futura del sistema y sus riesgos.</li>
           </ul>
 
           <h2 class="section-title">📊 Rúbrica detallada</h2>
@@ -201,10 +205,7 @@
             </tbody>
           </table>
 
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 15. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
-
-        </section>
+</section>
       </main>
     </div>
   </body>

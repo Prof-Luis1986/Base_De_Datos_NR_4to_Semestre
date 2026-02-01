@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 10</title>
+    <title>Práctica 10 · Operaciones CRUD Completas en MongoDB</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -37,19 +37,25 @@
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Crear documentos JSON desde formularios</a>
               <a href="practica-8.html">Práctica 8 — Lectura y visualización de JSON</a>
-              <a href="practica-9.html">Práctica 9</a>
-              <a class="active" href="practica-10.html">Práctica 10</a>
-              <a href="practica-11.html">Práctica 11</a>
-              <a href="practica-12.html">Práctica 12</a>
+              <a href="practica-9.html">Práctica 9 — Modelado Documental Avanzado y Estructuras Complejas en JSON</a>
+              <a class="active" href="practica-10.html">Práctica 10 — Operaciones CRUD Completas en MongoDB</a>
+              <a href="practica-11.html">Práctica 11 — Consultas Avanzadas con Operadores en MongoDB</a>
+              <a href="practica-12.html">Práctica 12 — Proyecciones, Ordenamientos y Paginación</a>
             </div>
           </details>
           <details class="nav-section">
             <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
             <div class="nav-links">
-              <a href="practica-13.html">Práctica 13</a>
-              <a href="practica-14.html">Práctica 14</a>
-              <a href="practica-15.html">Práctica 15</a>
-              <a href="practica-16.html">Práctica 16</a>
+              <a href="practica-13.html">Práctica 13 — Actualizaciones Avanzadas y Manipulación de Arreglos</a>
+              <a href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
+              <a href="practica-15.html">Práctica 15 — Introducción al Framework de Agregación</a>
+              <a href="practica-16.html">Práctica 16 — Pipeline de Agregación Avanzado</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad ABP · Aprendizaje Basado en Proyectos</summary>
+            <div class="nav-links">
+              <a href="practica-abp.html">Proyectos ABP</a>
             </div>
           </details>
         </nav>
@@ -59,22 +65,179 @@
         <section class="card">
           <div class="unit-label">Unidad II · Modelado Documental y Estructura de Datos con JSON</div>
           <div class="badge">🟦 Práctica 10</div>
-          <h2 class="page-title">Práctica 10</h2>
-          <p class="page-subtitle">Página lista para completar con la guía, actividades, practicario y evidencias.</p>
+          <h2 class="page-title">Operaciones CRUD Completas en MongoDB</h2>
+          <p class="page-subtitle">Modalidad: Laboratorio · Duración estimada: 2 sesiones</p>
 
-          <div class="callout">
-            Puedes pegar aquí el contenido oficial de la práctica 10 cuando lo tengas definido.
+          <h2 class="section-title">🎯 Propósito</h2>
+          <p>
+            Aplicar operaciones CRUD completas (Crear, Leer, Actualizar y Eliminar) en MongoDB utilizando estructuras
+            correctamente diseñadas.
+          </p>
+
+          <h2 class="section-title">🧭 Contexto conceptual</h2>
+          <p>El CRUD completo representa el ciclo real de vida de los datos. Esta práctica integra creación, lectura, actualización y eliminación con criterios profesionales.</p>
+          <h2 class="section-title">🧠 Competencia</h2>
+          <ul class="checklist">
+            <li>Ejecuta correctamente operaciones CRUD.</li>
+            <li>Utiliza filtros adecuados.</li>
+            <li>Evita errores comunes en eliminación y actualización.</li>
+          </ul>
+
+          <h2 class="section-title">📚 Parte 1 — Creación</h2>
+          <p>Crear colección <strong>productos_streaming</strong> e insertar mínimo 6 documentos usando <strong>insertMany()</strong>.</p>
+          <div class="code-block">
+            <pre><code>db.productos_streaming.insertMany([
+  { titulo: "Matrix", categoria: "Ciencia Ficcion", precio: 120, stock: 10 },
+  { titulo: "Titanic", categoria: "Romance", precio: 90, stock: 5 },
+  { titulo: "Avengers", categoria: "Accion", precio: 150, stock: 20 }
+])</code></pre>
           </div>
 
-          <h3 class="section-title">Sugerencia de estructura</h3>
-          <ul>
-            <li>Guía de trabajo</li>
-            <li>Actividades en salón</li>
-            <li>Actividades en laboratorio</li>
-            <li>Practicario</li>
-            <li>Producto digital</li>
-            <li>Google Sites (evidencias)</li>
+          <h2 class="section-title">📖 Parte 2 — Lectura</h2>
+          <p>Realizar consultas:</p>
+          <ul class="checklist">
+            <li>Mostrar todos.</li>
+            <li>Mostrar solo categoría “Accion”.</li>
+            <li>Mostrar productos con precio mayor a 100.</li>
+            <li>Proyección mostrando solo título y precio.</li>
           </ul>
+
+          <h2 class="section-title">✏ Parte 3 — Actualización</h2>
+          <ul class="checklist">
+            <li>Aumentar precio de un producto usando <strong>$set</strong>.</li>
+            <li>Incrementar stock usando <strong>$inc</strong>.</li>
+            <li>Actualizar múltiples documentos.</li>
+          </ul>
+
+          <h2 class="section-title">🗑 Parte 4 — Eliminación</h2>
+          <ul class="checklist">
+            <li>Eliminar un producto específico.</li>
+            <li>Eliminar productos con stock menor a 5.</li>
+            <li>Intentar un deleteMany sin filtro y analizar el riesgo (no ejecutarlo, solo escribirlo).</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Parte 5 — Reflexión Técnica</h2>
+          <p>Responder:</p>
+          <ul class="checklist">
+            <li>¿Cuál operación es más riesgosa?</li>
+            <li>¿Por qué MongoDB permite borrar múltiples documentos?</li>
+            <li>¿Qué buenas prácticas se deben seguir?</li>
+          </ul>
+
+          <h2 class="section-title">📦 Entregables</h2>
+          <ul class="checklist">
+            <li>Capturas de cada operación.</li>
+            <li>Código ejecutado.</li>
+            <li>Reflexión escrita.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Evaluación</h2>
+          <table class="table-like" aria-label="Criterios de evaluación">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CRUD completo funcional</td>
+                <td>40</td>
+              </tr>
+              <tr>
+                <td>Uso correcto de filtros</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>Buenas prácticas</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>Reflexión técnica</td>
+                <td>15</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
+          <p>Cada parte del CRUD te obliga a construir filtros y operaciones coherentes, evitando errores típicos en producción.</p>
+
+          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <ul class="checklist">
+            <li>E-commerce: catálogo, carrito y historial de compras.</li>
+            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
+            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
+            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
+            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+          </ul>
+
+          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
+          <p>En SQL el CRUD se traduce a INSERT, SELECT, UPDATE, DELETE; en MongoDB cada operación usa documentos y operadores específicos.</p>
+
+          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
+          <ul class="checklist">
+            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
+            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
+            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
+            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
+            <li>Usa paginación o límites en lecturas de alto volumen.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
+          <p>MongoDB registra operaciones en el journal y actualiza índices; las eliminaciones y actualizaciones afectan el rendimiento si no están filtradas.</p>
+
+          <h2 class="section-title">❗ Errores Comunes</h2>
+          <ul class="checklist">
+            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
+            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
+            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
+            <li>No documentar la estructura JSON y sus cambios.</li>
+            <li>Confundir colección con documento o arreglo con objeto.</li>
+          </ul>
+
+          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
+          <ul class="checklist">
+            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
+            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
+            <li>Usar índices en campos consultados con frecuencia.</li>
+            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
+            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
+          <ul class="checklist">
+            <li>¿Qué operación es más riesgosa y por qué?</li>
+            <li>¿Cómo decidirías cuándo usar updateOne vs updateMany?</li>
+            <li>¿Qué filtros previenen errores de eliminación?</li>
+            <li>¿Qué métricas evaluarías para medir la calidad del CRUD?</li>
+          </ul>
+
+          <h2 class="section-title">🧭 Retos Aplicados</h2>
+          <ul class="checklist">
+            <li>Asegura que los productos tengan categorías válidas y stock coherente.</li>
+            <li>Crea una consulta con proyección y ordenamiento combinado.</li>
+            <li>Implementa un updateMany con filtro seguro y justificado.</li>
+          </ul>
+
+          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
+          <ul class="checklist">
+            <li>Diseña reglas para evitar eliminación accidental y describe cómo aplicarlas.</li>
+            <li>Simula un flujo completo de compra usando CRUD.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Rúbrica detallada</h2>
+          <table class="table-like" aria-label="Rúbrica detallada">
+            <thead>
+              <tr><th>Nivel</th><th>Descripción</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
+              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
+              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
+              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+            </tbody>
+          </table>
+
           <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
           <p>En la siguiente práctica se avanza al siguiente paso: Práctica 11. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
 

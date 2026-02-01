@@ -36,19 +36,25 @@
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Crear documentos JSON desde formularios</a>
               <a href="practica-8.html">Práctica 8 — Lectura y visualización de JSON</a>
-              <a href="practica-9.html">Práctica 9</a>
-              <a href="practica-10.html">Práctica 10</a>
-              <a href="practica-11.html">Práctica 11</a>
-              <a href="practica-12.html">Práctica 12</a>
+              <a href="practica-9.html">Práctica 9 — Modelado Documental Avanzado y Estructuras Complejas en JSON</a>
+              <a href="practica-10.html">Práctica 10 — Operaciones CRUD Completas en MongoDB</a>
+              <a href="practica-11.html">Práctica 11 — Consultas Avanzadas con Operadores en MongoDB</a>
+              <a href="practica-12.html">Práctica 12 — Proyecciones, Ordenamientos y Paginación</a>
             </div>
           </details>
           <details class="nav-section">
             <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
             <div class="nav-links">
-              <a href="practica-13.html">Práctica 13</a>
-              <a href="practica-14.html">Práctica 14</a>
-              <a href="practica-15.html">Práctica 15</a>
-              <a href="practica-16.html">Práctica 16</a>
+              <a href="practica-13.html">Práctica 13 — Actualizaciones Avanzadas y Manipulación de Arreglos</a>
+              <a href="practica-14.html">Práctica 14 — Consultas sobre Arreglos y Documentos Anidados</a>
+              <a href="practica-15.html">Práctica 15 — Introducción al Framework de Agregación</a>
+              <a href="practica-16.html">Práctica 16 — Pipeline de Agregación Avanzado</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad ABP · Aprendizaje Basado en Proyectos</summary>
+            <div class="nav-links">
+              <a href="practica-abp.html">Proyectos ABP</a>
             </div>
           </details>
         </nav>
@@ -66,6 +72,8 @@
             Comprender la estructura de MongoDB, su sintaxis básica y el modelado documental antes de trabajar en entorno real.
           </p>
 
+          <h2 class="section-title">🧭 Contexto conceptual</h2>
+          <p>Antes de ejecutar consultas reales, necesitas entender la sintaxis y la lógica de MongoDB como un lenguaje de manipulación de documentos. Esta práctica simula un entorno real sin riesgos, para que el dominio de comandos sea consciente y exacto.</p>
           <h2 class="section-title">📚 Actividad 1 – Investigación de Sintaxis</h2>
           <p>Investigar y documentar:</p>
           <ul class="checklist">
@@ -144,6 +152,85 @@
               </tr>
             </tbody>
           </table>
+          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
+          <p>La investigación de comandos y la simulación en papel obligan a comprender efectos y consecuencias de cada operación. El objetivo es que justifiques por qué un comando es correcto, no solo que funcione.</p>
+
+          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <ul class="checklist">
+            <li>E-commerce: catálogo, carrito y historial de compras.</li>
+            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
+            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
+            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
+            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+          </ul>
+
+          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
+          <p>En SQL se trabaja con tablas y sentencias declarativas; en MongoDB se operan documentos y colecciones con comandos orientados a objetos JSON.</p>
+
+          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
+          <ul class="checklist">
+            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
+            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
+            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
+            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
+            <li>Usa paginación o límites en lecturas de alto volumen.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
+          <p>Cuando ejecutas insertOne o insertMany, MongoDB valida el BSON, genera _id, actualiza índices y registra la operación en el journal. Esto asegura consistencia y recuperación ante fallos.</p>
+
+          <h2 class="section-title">❗ Errores Comunes</h2>
+          <ul class="checklist">
+            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
+            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
+            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
+            <li>No documentar la estructura JSON y sus cambios.</li>
+            <li>Confundir colección con documento o arreglo con objeto.</li>
+          </ul>
+
+          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
+          <ul class="checklist">
+            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
+            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
+            <li>Usar índices en campos consultados con frecuencia.</li>
+            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
+            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
+          <ul class="checklist">
+            <li>¿Qué comando consideras más riesgoso y por qué?</li>
+            <li>¿Qué diferencia hay entre un error de sintaxis y un error lógico?</li>
+            <li>¿Cómo afecta el diseño de los documentos a la facilidad de consulta?</li>
+            <li>¿Qué evidencia demostraría que comprendiste cada comando?</li>
+          </ul>
+
+          <h2 class="section-title">🧭 Retos Aplicados</h2>
+          <ul class="checklist">
+            <li>Diseña un comando update con filtro compuesto y explica por qué es seguro.</li>
+            <li>Crea 2 consultas find con criterios de rango y explica su intención.</li>
+            <li>Agrega validaciones de tipo (edad numérica, fecha ISO).</li>
+          </ul>
+
+          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
+          <ul class="checklist">
+            <li>Simula un conjunto de datos con al menos 2 colecciones relacionadas y justifica embebido vs referencia.</li>
+            <li>Propón un índice para la colección más consultada y explica su impacto.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Rúbrica detallada</h2>
+          <table class="table-like" aria-label="Rúbrica detallada">
+            <thead>
+              <tr><th>Nivel</th><th>Descripción</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
+              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
+              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
+              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+            </tbody>
+          </table>
+
           <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
           <p>En la siguiente práctica se avanza al siguiente paso: Práctica 1 — Base de datos relacional vs base de datos no relacional. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
 
