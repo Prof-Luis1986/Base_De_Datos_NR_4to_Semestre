@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 4 · Actualización de documentos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="practica-1.html">Práctica 1</a>
+          <a href="practica-2.html">Práctica 2</a>
+          <a href="practica-3.html">Práctica 3</a>
+          <a class="active" href="practica-4.html">Práctica 4</a>
+          <a href="practica-5.html">Práctica 5</a>
+          <a href="practica-6.html">Práctica 6</a>
+          <a href="practica-7.html">Práctica 7</a>
+          <a href="practica-8.html">Práctica 8</a>
+          <a href="practica-9.html">Práctica 9</a>
+          <a href="practica-10.html">Práctica 10</a>
+          <a href="practica-11.html">Práctica 11</a>
+          <a href="practica-12.html">Práctica 12</a>
+          <a href="practica-13.html">Práctica 13</a>
+          <a href="practica-14.html">Práctica 14</a>
+          <a href="practica-15.html">Práctica 15</a>
+          <a href="practica-16.html">Práctica 16</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟦 Práctica 4</div>
+          <h1 class="page-title">Actualización de documentos JSON usando comandos (updateOne y $set)</h1>
+
+          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <p>
+            En esta práctica aprenderás a modificar documentos JSON existentes dentro de una colección NoSQL
+            utilizando comandos de actualización. Actualizar datos es una operación delicada: un mal comando puede
+            alterar información importante. Por ello, es fundamental entender qué cambia, qué se conserva y por qué.
+          </p>
+          <p>Trabajarás sobre la colección <strong>usuarios</strong> creada en prácticas anteriores usando MongoDB mediante Studio 3T.</p>
+
+          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <p>Al finalizar la práctica, serás capaz de:</p>
+          <ul class="checklist">
+            <li>Comprender la diferencia entre insertar y actualizar datos.</li>
+            <li>Usar correctamente updateOne() y el operador $set.</li>
+            <li>Modificar campos específicos sin afectar el resto del documento.</li>
+            <li>Verificar cambios mediante consultas.</li>
+            <li>Explicar los riesgos de una actualización mal aplicada.</li>
+          </ul>
+
+          <h2 class="section-title">🪑 Actividades en salón</h2>
+          <p><strong>(Análisis conceptual – sin computadora)</strong></p>
+          <p>Analiza este documento JSON:</p>
+          <pre class="code-block"><code>{
+  "nombre": "María",
+  "apellido": "García",
+  "edad": 25
+}</code></pre>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Qué pasaría si María cambia de edad?</li>
+            <li>¿Se debe borrar el documento y volverlo a crear?</li>
+            <li>¿Qué campos NO deberían cambiar?</li>
+          </ul>
+          <p>Reflexiona: actualizar datos no significa reemplazar todo el documento.</p>
+          <div class="callout"><strong>📌 Producto del salón:</strong> Respuesta escrita razonada (mínimo 8 líneas).</div>
+
+          <h2 class="section-title">💻 Actividades en laboratorio</h2>
+          <p><strong>(MongoDB – comandos de actualización)</strong></p>
+
+          <h3 class="section-title">Parte A – Consulta previa</h3>
+          <pre class="code-block"><code>db.usuarios.find().pretty();</code></pre>
+          <p>Elige un documento a modificar (identifica su _id).</p>
+
+          <h3 class="section-title">Parte B – Actualización con $set</h3>
+          <pre class="code-block"><code>db.usuarios.updateOne(
+  { nombre: "María" },
+  { $set: { edad: 26 } }
+);
+
+ db.usuarios.find({ nombre: "María" }).pretty();</code></pre>
+
+          <h3 class="section-title">Parte C – Actualización por _id</h3>
+          <pre class="code-block"><code>db.usuarios.updateOne(
+  { _id: ObjectId("PEGA_AQUI_EL_ID_REAL") },
+  { $set: { apellido: "Gómez" } }
+);</code></pre>
+
+          <h2 class="section-title">🧪 Practicario</h2>
+
+          <h3 class="section-title">Parte A – Comprensión de comandos</h3>
+          <ul>
+            <li>¿Qué hace updateOne()?</li>
+            <li>¿Para qué sirve $set?</li>
+          </ul>
+
+          <h3 class="section-title">Parte B – Actualizaciones obligatorias</h3>
+          <ul>
+            <li>Actualiza la edad de dos usuarios distintos.</li>
+            <li>Actualiza el apellido de un usuario.</li>
+            <li>Verifica cada cambio con find().</li>
+          </ul>
+
+          <h3 class="section-title">Parte C – Análisis crítico</h3>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Qué pasaría si no usaras $set?</li>
+            <li>¿Por qué es más seguro actualizar por _id?</li>
+          </ul>
+
+          <h2 class="section-title">🎨 Producción de contenido digital</h2>
+          <ul>
+            <li>Video (2–3 min): demostración de actualización de documentos.</li>
+            <li>Infografía: “Actualizar documentos JSON con MongoDB”.</li>
+          </ul>
+
+          <h2 class="section-title">🌐 Google Sites</h2>
+          <p>Página: <strong>Práctica 4 – Actualización de documentos JSON</strong></p>
+          <p>Incluye:</p>
+          <ul>
+            <li>Capturas antes y después.</li>
+            <li>Comandos utilizados.</li>
+            <li>Explicación escrita.</li>
+            <li>Contenido digital.</li>
+            <li>Reflexión: ¿por qué actualizar datos requiere cuidado?</li>
+          </ul>
+
+          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
+          <p>Investiga: diferencia entre updateOne() y updateMany().</p>
+
+          <h2 class="section-title">✅ Cierre</h2>
+          <p>Al finalizar esta práctica sabes modificar datos existentes sin romper la estructura JSON.</p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

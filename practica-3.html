@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 3 · Consultas y eliminación</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="practica-1.html">Práctica 1</a>
+          <a href="practica-2.html">Práctica 2</a>
+          <a class="active" href="practica-3.html">Práctica 3</a>
+          <a href="practica-4.html">Práctica 4</a>
+          <a href="practica-5.html">Práctica 5</a>
+          <a href="practica-6.html">Práctica 6</a>
+          <a href="practica-7.html">Práctica 7</a>
+          <a href="practica-8.html">Práctica 8</a>
+          <a href="practica-9.html">Práctica 9</a>
+          <a href="practica-10.html">Práctica 10</a>
+          <a href="practica-11.html">Práctica 11</a>
+          <a href="practica-12.html">Práctica 12</a>
+          <a href="practica-13.html">Práctica 13</a>
+          <a href="practica-14.html">Práctica 14</a>
+          <a href="practica-15.html">Práctica 15</a>
+          <a href="practica-16.html">Práctica 16</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟦 Práctica 3</div>
+          <h1 class="page-title">Consulta y eliminación de documentos JSON usando comandos en MongoDB</h1>
+
+          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <p>
+            En esta práctica aprenderás a consultar y eliminar documentos JSON usando comandos de MongoDB.
+            Comprenderás cómo los filtros permiten localizar información específica y por qué eliminar datos
+            requiere criterio y precisión, especialmente cuando se trabaja con identificadores únicos como <strong>_id</strong>.
+          </p>
+
+          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <p>Al finalizar la práctica, serás capaz de:</p>
+          <ul class="checklist">
+            <li>Consultar documentos completos y filtrados.</li>
+            <li>Eliminar documentos usando condiciones.</li>
+            <li>Eliminar documentos usando _id.</li>
+            <li>Analizar el impacto de borrar información.</li>
+            <li>Explicar por qué _id es el identificador más seguro.</li>
+          </ul>
+
+          <h2 class="section-title">🪑 Actividades en salón</h2>
+          <p><strong>(Análisis conceptual)</strong></p>
+          <ul>
+            <li>¿Qué pasaría si borraras un registro incorrecto?</li>
+            <li>¿Es seguro borrar usando solo un nombre?</li>
+            <li>Analiza este filtro: { "nombre": "Juan" }</li>
+          </ul>
+
+          <h2 class="section-title">💻 Actividades en laboratorio</h2>
+          <p><strong>(MongoDB Studio 3T – comandos)</strong></p>
+
+          <h3 class="section-title">Parte A – Consultas</h3>
+          <pre class="code-block"><code>db.usuarios.find().pretty();
+
+db.usuarios.find({ nombre: "Juan" }).pretty();</code></pre>
+
+          <h3 class="section-title">Parte B – Eliminación por campo</h3>
+          <pre class="code-block"><code>db.usuarios.deleteOne({ nombre: "Juan" });
+
+db.usuarios.find().pretty();</code></pre>
+          <p>Intenta borrar de nuevo a “Juan” y observa el resultado.</p>
+
+          <h3 class="section-title">Parte C – Eliminación por _id</h3>
+          <pre class="code-block"><code>db.usuarios.find().pretty();
+
+// Copia un _id real
+ db.usuarios.deleteOne({ _id: ObjectId("PEGA_AQUI_EL_ID_REAL") });
+
+ db.usuarios.find().pretty();</code></pre>
+
+          <h2 class="section-title">🧪 Practicario</h2>
+
+          <h3 class="section-title">Parte A – Análisis crítico</h3>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Por qué borrar por nombre puede ser riesgoso?</li>
+            <li>¿Qué ventaja ofrece _id?</li>
+          </ul>
+
+          <h3 class="section-title">Parte B – Evidencia de comandos</h3>
+          <p>Documenta:</p>
+          <ul>
+            <li>Antes de borrar</li>
+            <li>Después de borrar</li>
+          </ul>
+          <p>Explica qué cambió en la colección.</p>
+
+          <h2 class="section-title">🎨 Producción de contenido digital</h2>
+          <p><strong>(Video 2–3 min)</strong></p>
+          <ul>
+            <li>Demostración de consultas y eliminación de documentos.</li>
+          </ul>
+
+          <h2 class="section-title">🌐 Registro en Google Sites</h2>
+          <p>Página:</p>
+          <div class="callout"><strong>Práctica 3 – Consultas y eliminación de datos en MongoDB</strong></div>
+          <p>Incluye:</p>
+          <ul>
+            <li>Capturas antes y después.</li>
+            <li>Comandos usados.</li>
+            <li>Video o infografía.</li>
+            <li>Reflexión: ¿por qué borrar datos es una operación delicada?</li>
+          </ul>
+
+          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
+          <p>Investiga: ¿qué diferencia hay entre deleteOne() y deleteMany()?</p>
+
+          <h2 class="section-title">✅ Cierre de la práctica</h2>
+          <p>Al finalizar esta práctica:</p>
+          <ul class="checklist">
+            <li>Sabes consultar datos con filtros.</li>
+            <li>Sabes eliminar documentos de forma segura.</li>
+            <li>Comprendes la importancia del _id.</li>
+            <li>Estás listo para actualizar datos (update) en la siguiente práctica.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

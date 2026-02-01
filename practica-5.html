@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 5 · Consultas avanzadas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="practica-1.html">Práctica 1</a>
+          <a href="practica-2.html">Práctica 2</a>
+          <a href="practica-3.html">Práctica 3</a>
+          <a href="practica-4.html">Práctica 4</a>
+          <a class="active" href="practica-5.html">Práctica 5</a>
+          <a href="practica-6.html">Práctica 6</a>
+          <a href="practica-7.html">Práctica 7</a>
+          <a href="practica-8.html">Práctica 8</a>
+          <a href="practica-9.html">Práctica 9</a>
+          <a href="practica-10.html">Práctica 10</a>
+          <a href="practica-11.html">Práctica 11</a>
+          <a href="practica-12.html">Práctica 12</a>
+          <a href="practica-13.html">Práctica 13</a>
+          <a href="practica-14.html">Práctica 14</a>
+          <a href="practica-15.html">Práctica 15</a>
+          <a href="practica-16.html">Práctica 16</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟦 Práctica 5</div>
+          <h1 class="page-title">Consultas avanzadas y filtros en MongoDB (find, operadores y ordenamiento)</h1>
+
+          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <p>
+            En esta práctica aprenderás a consultar información específica dentro de una base de datos NoSQL
+            usando filtros y operadores. Consultar bien los datos es tan importante como almacenarlos correctamente.
+          </p>
+
+          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <ul class="checklist">
+            <li>Filtrar documentos con condiciones.</li>
+            <li>Usar operadores como $gt, $lt.</li>
+            <li>Ordenar resultados.</li>
+            <li>Limitar resultados.</li>
+            <li>Analizar resultados de consultas.</li>
+          </ul>
+
+          <h2 class="section-title">🪑 Actividades en salón</h2>
+          <p>Analiza:</p>
+          <pre class="code-block"><code>{ "edad": { "$gt": 30 } }</code></pre>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Qué documentos regresaría?</li>
+            <li>¿Para qué sirve este filtro?</li>
+          </ul>
+
+          <h2 class="section-title">💻 Actividades en laboratorio</h2>
+          <p><strong>(MongoDB – consultas)</strong></p>
+
+          <h3 class="section-title">Parte A – Filtros simples</h3>
+          <pre class="code-block"><code>db.usuarios.find({ edad: 30 }).pretty();</code></pre>
+
+          <h3 class="section-title">Parte B – Operadores de comparación</h3>
+          <pre class="code-block"><code>db.usuarios.find({ edad: { $gt: 30 } }).pretty();
+
+db.usuarios.find({ edad: { $lt: 30 } }).pretty();</code></pre>
+
+          <h3 class="section-title">Parte C – Ordenamiento y límite</h3>
+          <pre class="code-block"><code>db.usuarios.find().sort({ edad: 1 }).pretty();
+
+db.usuarios.find().limit(2).pretty();</code></pre>
+
+          <h2 class="section-title">🧪 Practicario</h2>
+          <ul>
+            <li>Realiza al menos 2 consultas con filtros.</li>
+            <li>Realiza 1 consulta ordenada.</li>
+            <li>Realiza 1 consulta con límite.</li>
+            <li>Explica qué devuelve cada una.</li>
+          </ul>
+
+          <h2 class="section-title">🎨 Producción de contenido digital</h2>
+          <ul>
+            <li>Infografía: “Consultas NoSQL con MongoDB”.</li>
+            <li>Video: explicación de filtros y operadores.</li>
+          </ul>
+
+          <h2 class="section-title">🌐 Google Sites</h2>
+          <p>Página: <strong>Práctica 5 – Consultas avanzadas en MongoDB</strong></p>
+          <p>Sube:</p>
+          <ul>
+            <li>Capturas de consultas.</li>
+            <li>Explicación de cada filtro.</li>
+            <li>Contenido digital.</li>
+            <li>Reflexión: ¿por qué consultar bien los datos es clave en una app?</li>
+          </ul>
+
+          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
+          <p>Investiga: ¿qué hace el operador $eq?</p>
+
+          <h2 class="section-title">✅ Cierre</h2>
+          <p>Al finalizar esta práctica sabes extraer información útil de una base NoSQL.</p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

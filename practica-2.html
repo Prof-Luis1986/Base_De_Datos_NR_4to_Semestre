@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 2 · MongoDB comandos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="practica-1.html">Práctica 1</a>
+          <a class="active" href="practica-2.html">Práctica 2</a>
+          <a href="practica-3.html">Práctica 3</a>
+          <a href="practica-4.html">Práctica 4</a>
+          <a href="practica-5.html">Práctica 5</a>
+          <a href="practica-6.html">Práctica 6</a>
+          <a href="practica-7.html">Práctica 7</a>
+          <a href="practica-8.html">Práctica 8</a>
+          <a href="practica-9.html">Práctica 9</a>
+          <a href="practica-10.html">Práctica 10</a>
+          <a href="practica-11.html">Práctica 11</a>
+          <a href="practica-12.html">Práctica 12</a>
+          <a href="practica-13.html">Práctica 13</a>
+          <a href="practica-14.html">Práctica 14</a>
+          <a href="practica-15.html">Práctica 15</a>
+          <a href="practica-16.html">Práctica 16</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟦 Práctica 2</div>
+          <h1 class="page-title">Captura de datos y creación de documentos JSON usando comandos en MongoDB</h1>
+
+          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <p>
+            En esta práctica aprenderás a capturar información y transformarla en documentos JSON, utilizando comandos
+            de MongoDB ejecutados desde MongoDB Studio 3T.
+          </p>
+          <p>
+            El objetivo es que comprendas cómo se crea una base de datos no relacional desde cero, cómo se insertan
+            documentos JSON mediante comandos y cómo estos documentos forman parte de una colección. Antes de usar
+            herramientas visuales o servicios en la nube, es indispensable entender qué hace cada comando y qué
+            efecto tiene sobre los datos.
+          </p>
+
+          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <p>Al finalizar la práctica, serás capaz de:</p>
+          <ul class="checklist">
+            <li>Crear una base de datos y una colección mediante comandos.</li>
+            <li>Insertar múltiples documentos JSON usando insertMany().</li>
+            <li>Consultar documentos con find().</li>
+            <li>Comprender cómo MongoDB almacena documentos JSON.</li>
+            <li>Relacionar comandos con cambios reales en la base de datos.</li>
+          </ul>
+
+          <h2 class="section-title">🪑 Actividades en salón</h2>
+          <p><strong>(Captura y análisis – sin computadora)</strong></p>
+
+          <h3 class="section-title">1. Captura de información</h3>
+          <p>Se plantea el siguiente contexto: registro básico de usuarios de un sistema.</p>
+          <p>En tu cuaderno, captura la información de al menos 5 personas:</p>
+          <ul>
+            <li>Nombre</li>
+            <li>Apellido</li>
+            <li>Edad</li>
+          </ul>
+          <p>No pienses aún en MongoDB ni en comandos. Solo recopila los datos de forma clara.</p>
+
+          <h3 class="section-title">2. Conversión de datos a estructura JSON</h3>
+          <p>Con los datos capturados, responde:</p>
+          <ul>
+            <li>¿Qué datos se repiten?</li>
+            <li>¿Qué campos serán las claves?</li>
+            <li>¿Qué tipo de dato tiene cada valor?</li>
+          </ul>
+          <p>Con base en esto, escribe un JSON base en tu cuaderno.</p>
+          <p>Ejemplo de referencia:</p>
+          <pre class="code-block"><code>{
+  "nombre": "",
+  "apellido": "",
+  "edad": 0
+}</code></pre>
+
+          <div class="callout">
+            <strong>📌 Producto del salón:</strong> Datos capturados + JSON base definido.
+          </div>
+
+          <h2 class="section-title">💻 Actividades en laboratorio</h2>
+          <p><strong>(MongoDB Studio 3T – comandos)</strong></p>
+
+          <h3 class="section-title">Parte A – Creación de base y colección</h3>
+          <p>Abre Studio 3T y crea una nueva ventana de consulta. Ejecuta los siguientes comandos:</p>
+          <pre class="code-block"><code>use registro_nombres;
+
+// Crea la colección
+ db.createCollection("usuarios");</code></pre>
+          <p>Verifica visualmente que la base y la colección existan.</p>
+
+          <h3 class="section-title">Parte B – Inserción de documentos JSON</h3>
+          <p>Inserta los documentos usando insertMany():</p>
+          <pre class="code-block"><code>db.usuarios.insertMany([
+  { nombre: "Juan", apellido: "Pérez", edad: 30 },
+  { nombre: "María", apellido: "García", edad: 25 },
+  { nombre: "Carlos", apellido: "López", edad: 40 }
+]);</code></pre>
+          <p>Consulta los documentos:</p>
+          <pre class="code-block"><code>db.usuarios.find().pretty();</code></pre>
+
+          <h2 class="section-title">🧪 Practicario</h2>
+
+          <h3 class="section-title">Parte A – Comprensión de comandos</h3>
+          <p>Explica con tus palabras qué hace cada comando:</p>
+          <ul>
+            <li>use</li>
+            <li>createCollection</li>
+            <li>insertMany</li>
+            <li>find().pretty()</li>
+          </ul>
+
+          <h3 class="section-title">Parte B – Inserción ampliada</h3>
+          <ul>
+            <li>Inserta al menos 5 documentos adicionales, usando los datos capturados en el salón.</li>
+            <li>Ejecuta nuevamente: db.usuarios.find().pretty();</li>
+          </ul>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Cuántos documentos hay ahora?</li>
+            <li>¿Todos tienen la misma estructura?</li>
+          </ul>
+
+          <h3 class="section-title">Parte C – Análisis de estructura</h3>
+          <p>Identifica:</p>
+          <ul>
+            <li>¿Qué campos se repiten?</li>
+            <li>¿Qué campo identifica de forma única a cada documento?</li>
+          </ul>
+          <p>Explica por qué MongoDB genera automáticamente el campo <strong>_id</strong>.</p>
+
+          <h2 class="section-title">🎨 Producción de contenido digital</h2>
+          <p><strong>(Elige UNA opción)</strong></p>
+          <ul>
+            <li>Video (2–3 min): explica cómo creaste la base, la colección y los documentos usando comandos.</li>
+            <li>Infografía: “Inserción de documentos JSON con MongoDB”.</li>
+            <li>Podcast: reflexiona sobre la diferencia entre insertar datos manualmente y mediante comandos.</li>
+          </ul>
+
+          <h2 class="section-title">🌐 Registro en Google Sites</h2>
+          <p>Página:</p>
+          <div class="callout"><strong>Práctica 2 – Creación de documentos JSON con MongoDB</strong></div>
+          <p>Incluye:</p>
+          <ul>
+            <li>Capturas de Studio 3T.</li>
+            <li>Script completo ejecutado.</li>
+            <li>Explicación de cada comando.</li>
+            <li>Producto digital.</li>
+            <li>Reflexión personal: ¿qué aprendí al crear datos usando comandos?</li>
+          </ul>
+
+          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
+          <p>Investiga: ¿qué ventaja tiene insertMany() frente a insertOne()? Documenta la respuesta en tu Google Sites.</p>
+
+          <h2 class="section-title">✅ Cierre de la práctica</h2>
+          <p>Al finalizar esta práctica:</p>
+          <ul class="checklist">
+            <li>Sabes crear datos desde cero con comandos.</li>
+            <li>Comprendes que cada documento es un JSON.</li>
+            <li>Estás listo para consultar y eliminar datos.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

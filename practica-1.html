@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 1 · Relacional vs No Relacional</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a class="active" href="practica-1.html">Práctica 1</a>
+          <a href="practica-2.html">Práctica 2</a>
+          <a href="practica-3.html">Práctica 3</a>
+          <a href="practica-4.html">Práctica 4</a>
+          <a href="practica-5.html">Práctica 5</a>
+          <a href="practica-6.html">Práctica 6</a>
+          <a href="practica-7.html">Práctica 7</a>
+          <a href="practica-8.html">Práctica 8</a>
+          <a href="practica-9.html">Práctica 9</a>
+          <a href="practica-10.html">Práctica 10</a>
+          <a href="practica-11.html">Práctica 11</a>
+          <a href="practica-12.html">Práctica 12</a>
+          <a href="practica-13.html">Práctica 13</a>
+          <a href="practica-14.html">Práctica 14</a>
+          <a href="practica-15.html">Práctica 15</a>
+          <a href="practica-16.html">Práctica 16</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟦 Práctica 1</div>
+          <h1 class="page-title">Base de datos relacional vs base de datos no relacional</h1>
+
+          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <p>
+            En esta práctica analizarás dos formas distintas de organizar información: las bases de datos relacionales
+            y las no relacionales. El objetivo no es memorizar definiciones, sino comprender cuándo conviene usar cada una
+            y por qué las aplicaciones modernas utilizan cada vez más bases de datos NoSQL basadas en documentos JSON.
+          </p>
+          <p>
+            Esta práctica es fundamental, ya que todo lo que verás después (JSON, Firebase, Firestore) parte de esta comparación.
+          </p>
+
+          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <p>Al finalizar la práctica, serás capaz de:</p>
+          <ul class="checklist">
+            <li>Explicar qué es una base de datos relacional.</li>
+            <li>Explicar qué es una base de datos no relacional.</li>
+            <li>Identificar diferencias reales entre tablas y documentos.</li>
+            <li>Comprender por qué Firestore utiliza estructuras tipo JSON.</li>
+            <li>Justificar el uso de NoSQL en aplicaciones modernas.</li>
+          </ul>
+
+          <h2 class="section-title">🪑 Actividades en salón</h2>
+          <p><strong>(Trabajo conceptual – sin computadora)</strong></p>
+
+          <h3 class="section-title">1. Análisis de una base de datos relacional</h3>
+          <p>Observa el siguiente ejemplo de una tabla:</p>
+          <table class="table-like" aria-label="Tabla relacional de ejemplo">
+            <thead>
+              <tr>
+                <th>id_alumno</th>
+                <th>nombre</th>
+                <th>grupo</th>
+                <th>edad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Ana</td>
+                <td>3A</td>
+                <td>17</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Luis</td>
+                <td>3B</td>
+                <td>18</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Reflexiona y responde en tu cuaderno:</p>
+          <ul>
+            <li>¿Por qué todos los registros deben tener las mismas columnas?</li>
+            <li>¿Qué ocurre si un alumno tiene más de un número telefónico?</li>
+            <li>¿Qué pasa si mañana se necesita guardar redes sociales?</li>
+            <li>¿La estructura permite crecer fácilmente?</li>
+          </ul>
+
+          <h3 class="section-title">2. Análisis de una base de datos no relacional</h3>
+          <p>Ahora observa el siguiente ejemplo de datos en formato JSON:</p>
+          <pre class="code-block"><code>{
+  "nombre": "Ana",
+  "grupo": "3A",
+  "edad": 17,
+  "telefonos": ["5512345678", "5587654321"],
+  "redes": {
+    "instagram": "@ana_3a"
+  }
+}</code></pre>
+          <p>Reflexiona:</p>
+          <ul>
+            <li>¿Todos los documentos necesitan tener los mismos campos?</li>
+            <li>¿Qué ventaja tiene que “telefonos” sea una lista?</li>
+            <li>¿Es obligatorio que todos tengan redes sociales?</li>
+            <li>¿Qué tan flexible es esta estructura?</li>
+          </ul>
+
+          <h3 class="section-title">3. Comparación guiada</h3>
+          <p>Elabora en tu cuaderno una tabla comparativa como la siguiente y complétala:</p>
+          <table class="table-like" aria-label="Tabla comparativa relacional vs no relacional">
+            <thead>
+              <tr>
+                <th>Base relacional</th>
+                <th>Base no relacional</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Usa tablas</td>
+                <td>Usa documentos</td>
+              </tr>
+              <tr>
+                <td>Columnas fijas</td>
+                <td>Estructura flexible</td>
+              </tr>
+              <tr>
+                <td>Relaciones con llaves</td>
+                <td>Datos anidados</td>
+              </tr>
+              <tr>
+                <td>Cambios complejos</td>
+                <td>Cambios simples</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <strong>📌 Producto del salón:</strong> Tabla comparativa completa + conclusión escrita (mínimo 10 líneas).
+          </div>
+
+          <h2 class="section-title">💻 Actividades en laboratorio</h2>
+          <p><strong>(Exploración del entorno – sin crear datos aún)</strong></p>
+          <ul>
+            <li>Ingresa a la consola de Firebase.</li>
+            <li>Accede al apartado Firestore Database.</li>
+            <li>Observa la interfaz y localiza: colecciones, documentos y campos.</li>
+            <li>Identifica visualmente: documento → conjunto de datos tipo JSON.</li>
+            <li>Identifica visualmente: campo → clave.</li>
+            <li>Identifica visualmente: valor → dato.</li>
+          </ul>
+          <p>Reflexiona:</p>
+          <ul>
+            <li>¿Ves tablas?</li>
+            <li>¿Ves columnas obligatorias?</li>
+            <li>¿La estructura se parece más a una tabla o a un objeto?</li>
+          </ul>
+
+          <h2 class="section-title">🧪 Practicario</h2>
+
+          <h3 class="section-title">Parte A – Comprensión conceptual</h3>
+          <p>Explica con tus palabras:</p>
+          <ul>
+            <li>¿Qué es una base de datos relacional?</li>
+            <li>¿Qué es una base de datos no relacional?</li>
+          </ul>
+          <p>
+            Escribe dos ejemplos reales de aplicaciones que podrían usar una base de datos NoSQL y explica por qué.
+          </p>
+
+          <h3 class="section-title">Parte B – Análisis de estructura</h3>
+          <ul>
+            <li>Observa un documento de Firestore (proporcionado por el docente).</li>
+            <li>Dibuja en tu cuaderno cómo se vería ese documento en formato JSON.</li>
+          </ul>
+          <p>Responde:</p>
+          <ul>
+            <li>¿Todos los documentos deberían tener los mismos campos?</li>
+            <li>¿Por qué?</li>
+          </ul>
+
+          <h3 class="section-title">Parte C – Producción escrita</h3>
+          <p>
+            Redacta un texto de mínimo 150 palabras respondiendo: ¿por qué una aplicación moderna preferiría
+            una base de datos no relacional en lugar de una relacional?
+          </p>
+
+          <h2 class="section-title">🎨 Producción de contenido digital</h2>
+          <p><strong>(Elige UNA opción)</strong></p>
+          <ul>
+            <li><strong>Infografía:</strong> “Base de datos relacional vs base de datos no relacional”.</li>
+            <li><strong>Video (1–2 minutos):</strong> explica las diferencias y cuál usarías para una app móvil.</li>
+            <li><strong>Podcast (1–2 minutos):</strong> explica por qué JSON ofrece mayor flexibilidad que las tablas.</li>
+          </ul>
+
+          <h2 class="section-title">🌐 Registro en Google Sites</h2>
+          <p>Crea una página en tu Google Sites llamada:</p>
+          <div class="callout"><strong>Práctica 1 – Relacional vs No Relacional</strong></div>
+          <p>Incluye:</p>
+          <ul>
+            <li>Tabla comparativa</li>
+            <li>Conclusión escrita</li>
+            <li>Evidencia del laboratorio</li>
+            <li>Contenido digital (infografía / video / podcast)</li>
+          </ul>
+          <p>Reflexión personal:</p>
+          <ul>
+            <li>¿Qué fue lo que más te llamó la atención de las bases NoSQL?</li>
+          </ul>
+
+          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
+          <p>Investiga y documenta en tu Google Sites:</p>
+          <ul>
+            <li>¿Qué tipo de base de datos utiliza una red social?</li>
+            <li>¿Por qué una aplicación con millones de usuarios no usaría solo SQL?</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
