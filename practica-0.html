@@ -58,61 +58,102 @@
         <section class="card">
           <div class="unit-label">Unidad 0 · Contextualización y Evolución de las Bases de Datos</div>
           <div class="badge">🟨 Práctica 0</div>
-          <h1 class="page-title">Fundamentos de Bases de Datos No Relacionales</h1>
-          <p class="page-subtitle">Modalidad: Exposición + Podcast · Duración: 8 horas (fuera de laboratorio)</p>
+          <h1 class="page-title">Fundamentos, Historia y Estructura de Bases de Datos No Relacionales</h1>
+          <p class="page-subtitle">Modalidad: Exposición + Podcast + Taller de JSON · Duración: 8 horas (fuera de laboratorio)</p>
 
           <h2 class="section-title">🎯 Propósito</h2>
           <p>
-            Comprender el origen, la importancia y las características de las bases de datos No Relacionales (NoSQL),
-            desarrollando la capacidad de explicar conceptos técnicos de manera clara y fundamentada.
+            Comprender el origen, la evolución y la estructura fundamental de las bases de datos, profundizando en cómo
+            se representa la información en formato JSON antes de trabajar con MongoDB en el laboratorio.
           </p>
 
-          <h2 class="section-title">📚 Actividad 1 – Investigación Guiada</h2>
-          <p>Investigar y organizar información sobre:</p>
+          <h2 class="section-title">📚 Parte 1 — Historia y Evolución de las Bases de Datos</h2>
+          <p>Investigar y desarrollar:</p>
           <ul class="checklist">
             <li>¿Qué es una base de datos?</li>
-            <li>¿Qué es una base de datos relacional (SQL)?</li>
-            <li>¿Qué es una base de datos No Relacional (NoSQL)?</li>
-            <li>Diferencias principales entre SQL y NoSQL.</li>
-            <li>¿Qué significa escalabilidad horizontal?</li>
-            <li>Ejemplos reales de uso (Netflix, Amazon, redes sociales, videojuegos).</li>
+            <li>¿Cómo se almacenaba la información antes de las computadoras?</li>
+            <li>Modelos jerárquicos y de red (años 60).</li>
+            <li>Modelo relacional propuesto por Edgar F. Codd (años 70).</li>
+            <li>Aparición y consolidación de SQL.</li>
+            <li>Surgimiento de NoSQL y por qué fue necesario.</li>
+          </ul>
+          <p><strong>Actividad:</strong> elaborar una línea del tiempo que incluya:</p>
+          <ul>
+            <li>Década</li>
+            <li>Tipo de modelo</li>
+            <li>Características principales</li>
+            <li>Problema que resolvía</li>
           </ul>
 
-          <h2 class="section-title">🎙 Actividad 2 – Podcast Académico</h2>
-          <p><strong>Tema:</strong> “¿Por qué NoSQL cambió la forma de almacenar datos?”</p>
-          <p><strong>Requisitos:</strong></p>
-          <ul>
-            <li>Trabajo en equipos.</li>
-            <li>Duración: 5 a 8 minutos.</li>
-            <li>Grabado con celular.</li>
-            <li>Audio claro y organizado.</li>
-            <li>Explicación natural (no lectura completa).</li>
-          </ul>
-          <p><strong>Estructura obligatoria del podcast:</strong></p>
-          <ul>
-            <li>Presentación del equipo.</li>
-            <li>Explicación clara de SQL.</li>
-            <li>Explicación clara de NoSQL.</li>
-            <li>Comparación técnica.</li>
-            <li>Ejemplo real.</li>
-            <li>Conclusión argumentada del equipo.</li>
+          <h2 class="section-title">🧠 Parte 2 — Introducción a JSON</h2>
+          <p>Antes de trabajar con MongoDB es indispensable comprender cómo se estructura un documento.</p>
+          <p>Investigar:</p>
+          <ul class="checklist">
+            <li>¿Qué significa JSON?</li>
+            <li>¿Qué es un par clave–valor?</li>
+            <li>Tipos de datos en JSON.</li>
+            <li>Diferencia entre objeto y arreglo.</li>
           </ul>
 
-          <h2 class="section-title">🎤 Actividad 3 – Exposición Presencial</h2>
-          <p>Cada equipo realizará una exposición de 8–10 minutos donde deberá presentar:</p>
-          <ul>
-            <li>Un mapa conceptual o diapositiva.</li>
-            <li>Un ejemplo de documento JSON explicado.</li>
-            <li>Un ejemplo ilustrado de un tipo de base NoSQL (grafo, documental, etc.).</li>
+          <h2 class="section-title">✍️ Parte 3 — Construcción Manual de JSON</h2>
+          <p>En el cuaderno, construir correctamente:</p>
+          <div class="code-block">
+            <p><strong>1️⃣ JSON simple</strong></p>
+            <pre><code>{
+  "nombre": "Luis",
+  "edad": 18,
+  "activo": true
+}</code></pre>
+            <p>Explicar cada elemento.</p>
+          </div>
+          <div class="code-block">
+            <p><strong>2️⃣ JSON con arreglo</strong></p>
+            <pre><code>{
+  "materias": ["Programación", "Bases de Datos", "Redes"]
+}</code></pre>
+          </div>
+          <div class="code-block">
+            <p><strong>3️⃣ JSON anidado</strong></p>
+            <pre><code>{
+  "nombre": "Ana",
+  "direccion": {
+    "calle": "Reforma",
+    "numero": 120,
+    "ciudad": "CDMX"
+  }
+}</code></pre>
+          </div>
+          <div class="code-block">
+            <p><strong>4️⃣ Diseño propio: documento "Alumno"</strong></p>
+            <p>Debe incluir: nombre, edad, grupo, promedio, materias (arreglo), tutor (objeto anidado).</p>
+          </div>
+
+          <h2 class="section-title">🎙 Parte 4 — Podcast Académico</h2>
+          <p><strong>Tema:</strong> ¿Por qué NoSQL cambió la forma de almacenar datos?</p>
+          <ul class="checklist">
+            <li>Breve contexto histórico.</li>
+            <li>Qué es SQL.</li>
+            <li>Qué es NoSQL.</li>
+            <li>Diferencias estructurales.</li>
+            <li>Ejemplo real de aplicación.</li>
+            <li>Conclusión del equipo.</li>
+          </ul>
+          <p><strong>Duración:</strong> 5 a 8 minutos · <strong>Grabado con celular</strong> · <strong>Explicación clara y natural</strong>.</p>
+
+          <h2 class="section-title">🎤 Parte 5 — Exposición</h2>
+          <p>Duración: 8 a 10 minutos por equipo. Deben presentar:</p>
+          <ul class="checklist">
+            <li>Línea del tiempo.</li>
+            <li>Ejemplo de JSON construido.</li>
+            <li>Explicación clara de un tipo de base NoSQL.</li>
             <li>Participación de todos los integrantes.</li>
           </ul>
 
           <h2 class="section-title">📦 Entregables</h2>
-          <p><strong>Importante:</strong> Todo debe adjuntarse en su Google Sites.</p>
           <ul class="checklist">
-            <li>Archivo de audio en formato mp3 o similar.</li>
+            <li>Audio del podcast.</li>
             <li>Evidencia de exposición.</li>
-            <li>Material visual utilizado.</li>
+            <li>Fotografías o PDF del taller de JSON.</li>
           </ul>
 
           <h2 class="section-title">📊 Criterios de Evaluación</h2>
@@ -125,29 +166,29 @@
             </thead>
             <tbody>
               <tr>
-                <td>Dominio conceptual</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>Claridad en la explicación</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <td>Uso correcto de términos técnicos</td>
+                <td>Comprensión histórica</td>
                 <td>20</td>
               </tr>
               <tr>
-                <td>Calidad del podcast</td>
-                <td>15</td>
+                <td>Correcta estructura de JSON</td>
+                <td>30</td>
               </tr>
               <tr>
-                <td>Participación del equipo</td>
-                <td>10</td>
+                <td>Claridad técnica en podcast</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>Exposición</td>
+                <td>25</td>
               </tr>
             </tbody>
           </table>
           <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 0.1 — Sintaxis MongoDB y Simulación de Base de Datos. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
+          <p>
+            Esta práctica es requisito previo para trabajar la sintaxis de MongoDB en la Práctica 0.1.
+            Se espera que el estudiante domine: estructura JSON, concepto de documento y diferencia entre
+            modelo relacional y no relacional.
+          </p>
 
         </section>
       </main>
