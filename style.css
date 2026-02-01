@@ -156,6 +156,20 @@ a {
   margin-bottom: 10px;
 }
 
+.unit-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--texto-suave);
+  background: #efe5ea;
+  padding: 6px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
 .kicker {
   margin: 0 0 6px 0;
   font-size: 12.5px;
