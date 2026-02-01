@@ -64,6 +64,53 @@ a {
   gap: 6px;
 }
 
+.nav-section {
+  margin: 6px 0;
+}
+
+.nav-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nav-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-section > summary::after {
+  content: "▾";
+  font-size: 12px;
+  transition: transform 160ms ease;
+}
+
+.nav-section > summary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.nav-section[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 4px 6px;
+}
+
 .nav a {
   color: var(--blanco);
   text-decoration: none;

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Práctica 0.1 · Sintaxis MongoDB y Simulación de Base de Datos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+                <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <details class="nav-section" open>
+            <summary>Unidad 0 · Prácticas 0–0.1</summary>
+            <div class="nav-links">
+              <a href="practica-0.html">Práctica 0 — Fundamentos de Bases de Datos No Relacionales</a>
+              <a class="active" href="practica-0-1.html">Práctica 0.1 — Sintaxis MongoDB y Simulación de Base de Datos</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad 1 · Prácticas 1–6</summary>
+            <div class="nav-links">
+              <a href="practica-1.html">Práctica 1 — Base de datos relacional vs base de datos no relacional</a>
+              <a href="practica-2.html">Práctica 2 — Captura de datos y creación de documentos JSON usando comandos en MongoDB</a>
+              <a href="practica-3.html">Práctica 3 — Consulta y eliminación de documentos JSON usando comandos en MongoDB</a>
+              <a href="practica-4.html">Práctica 4 — Actualización de documentos JSON usando comandos (updateOne y $set)</a>
+              <a href="practica-5.html">Práctica 5 — Consultas avanzadas y filtros en MongoDB (find, operadores y ordenamiento)</a>
+              <a href="practica-6.html">Práctica 6 — Transición de MongoDB a Firebase Firestore: el mismo JSON en la nube</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad 2 · Prácticas 7–12</summary>
+            <div class="nav-links">
+              <a href="practica-7.html">Práctica 7 — Crear documentos JSON desde formularios</a>
+              <a href="practica-8.html">Práctica 8 — Lectura y visualización de JSON</a>
+              <a href="practica-9.html">Práctica 9</a>
+              <a href="practica-10.html">Práctica 10</a>
+              <a href="practica-11.html">Práctica 11</a>
+              <a href="practica-12.html">Práctica 12</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad 3 · Prácticas 13–16</summary>
+            <div class="nav-links">
+              <a href="practica-13.html">Práctica 13</a>
+              <a href="practica-14.html">Práctica 14</a>
+              <a href="practica-15.html">Práctica 15</a>
+              <a href="practica-16.html">Práctica 16</a>
+            </div>
+          </details>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="badge">🟨 Práctica 0.1</div>
+          <h1 class="page-title">Sintaxis MongoDB y Simulación de Base de Datos</h1>
+          <p class="page-subtitle">Modalidad: Podcast Técnico + Diseño en Papel · Duración: 8 horas (fuera de laboratorio)</p>
+
+          <h2 class="section-title">🎯 Propósito</h2>
+          <p>
+            Comprender la estructura de MongoDB, su sintaxis básica y el modelado documental antes de trabajar en entorno real.
+          </p>
+
+          <h2 class="section-title">📚 Actividad 1 – Investigación de Sintaxis</h2>
+          <p>Investigar y documentar:</p>
+          <ul class="checklist">
+            <li><code>use</code></li>
+            <li><code>db.createCollection()</code></li>
+            <li><code>insertOne()</code></li>
+            <li><code>insertMany()</code></li>
+            <li><code>find()</code></li>
+            <li><code>updateOne()</code></li>
+            <li><code>deleteOne()</code></li>
+          </ul>
+          <p>Para cada comando deben incluir:</p>
+          <ul>
+            <li>Sintaxis correcta.</li>
+            <li>Explicación.</li>
+            <li>Ejemplo práctico.</li>
+            <li>Resultado esperado.</li>
+          </ul>
+
+          <h2 class="section-title">🎙 Actividad 2 – Podcast Técnico</h2>
+          <p><strong>Tema:</strong> “¿Cómo funciona MongoDB y qué lo hace diferente?”</p>
+          <p>El audio debe incluir:</p>
+          <ul>
+            <li>¿Qué es una colección?</li>
+            <li>¿Qué es un documento?</li>
+            <li>¿Qué es JSON?</li>
+            <li>Explicación verbal de un ejemplo usando <code>insertOne()</code>.</li>
+            <li>Explicación de una consulta <code>find()</code>.</li>
+            <li>Duración: 5 a 8 minutos.</li>
+          </ul>
+
+          <h2 class="section-title">📘 Actividad 3 – Simulación en Papel</h2>
+          <p>Diseñar una base de datos para: <strong>“Tienda de Videojuegos”</strong></p>
+          <p>Debe incluir:</p>
+          <ul>
+            <li>Nombre de la base de datos.</li>
+            <li>3 colecciones.</li>
+            <li>5 documentos ejemplo.</li>
+            <li>5 consultas <code>find()</code>.</li>
+            <li>2 actualizaciones.</li>
+            <li>1 eliminación.</li>
+            <li>Corrección de al menos 2 comandos mal estructurados.</li>
+          </ul>
+
+          <h2 class="section-title">📦 Entregables</h2>
+          <p><strong>Importante:</strong> Todo debe adjuntarse en su Google Sites.</p>
+          <ul class="checklist">
+            <li>Audio del podcast técnico.</li>
+            <li>Fotografías claras del diseño en cuaderno o documento PDF.</li>
+          </ul>
+
+          <h2 class="section-title">📊 Criterios de Evaluación</h2>
+          <table class="table-like" aria-label="Criterios de evaluación">
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dominio de sintaxis</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>Diseño lógico de la base</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>Claridad técnica en el podcast</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>Corrección estructural</td>
+                <td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
