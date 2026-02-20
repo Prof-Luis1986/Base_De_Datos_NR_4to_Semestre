@@ -3,15 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 2 · MongoDB comandos</title>
+    <title>Práctica 2 · Python + MongoDB Atlas + Flet</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
   </head>
   <body>
     <div class="layout">
       <aside class="sidebar">
         <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
         <div class="nav-title">Menú</div>
-                                                <nav class="nav" aria-label="Navegación principal">
+        <nav class="nav" aria-label="Navegación principal">
           <a href="index.html">Inicio</a>
           <details class="nav-section">
             <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
@@ -24,7 +25,7 @@
             <summary>Unidad I · Fundamentos y Arquitecturas No Relacionales</summary>
             <div class="nav-links">
               <a href="practica-1.html">Práctica 1 — Conexión profesional a MongoDB Atlas + Creación progresiva de base de datos</a>
-              <a class="active" href="practica-2.html">Práctica 2 — Captura de datos y creación de documentos JSON usando comandos en MongoDB</a>
+              <a class="active" href="practica-2.html">Práctica 2 — Conexión segura a MongoDB Atlas y catálogo web con Flet</a>
               <a href="practica-3.html">Práctica 3 — Consulta y eliminación de documentos JSON usando comandos en MongoDB</a>
               <a href="practica-4.html">Práctica 4 — Actualización de documentos JSON usando comandos (updateOne y $set)</a>
               <a href="practica-5.html">Práctica 5 — Consultas avanzadas y filtros en MongoDB (find, operadores y ordenamiento)</a>
@@ -66,229 +67,654 @@
         <section class="card">
           <div class="unit-label">Unidad I · Fundamentos y Arquitecturas No Relacionales</div>
           <div class="badge">🟦 Práctica 2</div>
-          <h1 class="page-title">Captura de datos y creación de documentos JSON usando comandos en MongoDB</h1>
+          <h1 class="page-title">Tutorial: Catálogo Web de Películas con MongoDB Atlas + Flet (sample_mflix)</h1>
 
-          <h2 class="section-title">🧠 Guía de trabajo</h2>
-          <p>
-            En esta práctica aprenderás a capturar información y transformarla en documentos JSON, utilizando comandos
-            de MongoDB ejecutados desde MongoDB Studio 3T.
-          </p>
-          <p>
-            El objetivo es que comprendas cómo se crea una base de datos no relacional desde cero, cómo se insertan
-            documentos JSON mediante comandos y cómo estos documentos forman parte de una colección. Antes de usar
-            herramientas visuales o servicios en la nube, es indispensable entender qué hace cada comando y qué
-            efecto tiene sobre los datos.
-          </p>
-
-          <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>Insertar datos es el primer punto de verdad del sistema: si el JSON está mal diseñado, todo lo demás falla. Esta práctica conecta captura de datos con persistencia real en MongoDB.</p>
-          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
-          <p>Al finalizar la práctica, serás capaz de:</p>
+          <h2 class="section-title">🧠 Objetivo de aprendizaje</h2>
           <ul class="checklist">
-            <li>Crear una base de datos y una colección mediante comandos.</li>
-            <li>Insertar múltiples documentos JSON usando insertMany().</li>
-            <li>Consultar documentos con find().</li>
-            <li>Comprender cómo MongoDB almacena documentos JSON.</li>
-            <li>Relacionar comandos con cambios reales en la base de datos.</li>
+            <li>Conectarse a MongoDB Atlas usando PyMongo + TLS (<code>certifi</code>).</li>
+            <li>Verificar conexión con <code>ping</code>.</li>
+            <li>Realizar consultas <code>find_one()</code> y <code>find()</code> con proyección, orden y límite.</li>
+            <li>Construir una app web en Flet con dropdown + panel de detalle.</li>
+            <li>Comprender el flujo UI → evento → detalle sin reconsulta a BD.</li>
           </ul>
 
-          <h2 class="section-title">🪑 Actividades en salón</h2>
-          <p><strong>(Captura y análisis – sin computadora)</strong></p>
+          <h2 class="section-title">⏱️ Duración sugerida</h2>
+          <p>100 minutos (2 bloques de 50 min o 1 sesión larga).</p>
 
-          <h3 class="section-title">1. Captura de información</h3>
-          <p>Se plantea el siguiente contexto: registro básico de usuarios de un sistema.</p>
-          <p>En tu cuaderno, captura la información de al menos 5 personas:</p>
+          <h2 class="section-title">✅ Requisitos</h2>
           <ul>
-            <li>Nombre</li>
-            <li>Apellido</li>
-            <li>Edad</li>
+            <li>Python 3.10 o superior.</li>
+            <li>Internet estable.</li>
+            <li>URI de MongoDB Atlas funcional.</li>
           </ul>
-          <p>No pienses aún en MongoDB ni en comandos. Solo recopila los datos de forma clara.</p>
+          <pre class="code-block language-bash"><code>pip install pymongo certifi flet</code></pre>
 
-          <h3 class="section-title">2. Conversión de datos a estructura JSON</h3>
-          <p>Con los datos capturados, responde:</p>
+          <h2 class="section-title">1) PRUEBA DE CONEXIÓN (SCRIPT DE CONSOLA)</h2>
+
+          <h3 class="section-title">1.1 Importaciones</h3>
+          <pre class="code-block language-python"><code>from pymongo import MongoClient
+import certifi</code></pre>
+          <p><strong>¿Qué hace cada una?</strong></p>
           <ul>
-            <li>¿Qué datos se repiten?</li>
-            <li>¿Qué campos serán las claves?</li>
-            <li>¿Qué tipo de dato tiene cada valor?</li>
+            <li><code>MongoClient</code>: crea el cliente de conexión a MongoDB (Atlas o local).</li>
+            <li><code>certifi</code>: trae certificados raíz (CA) confiables.</li>
+            <li>Atlas usa TLS; Python necesita confiar en una CA para validar el certificado del servidor.</li>
+            <li><code>certifi.where()</code> da la ruta de <code>cacert.pem</code>.</li>
           </ul>
-          <p>Con base en esto, escribe un JSON base en tu cuaderno.</p>
-          <p>Ejemplo de referencia:</p>
-          <pre class="code-block"><code>{
-  "nombre": "",
-  "apellido": "",
-  "edad": 0
-}</code></pre>
 
-          <div class="callout">
-            <strong>📌 Producto del salón:</strong> Datos capturados + JSON base definido.
-          </div>
-
-          <h2 class="section-title">💻 Actividades en laboratorio</h2>
-          <p><strong>(MongoDB Studio 3T – comandos)</strong></p>
-
-          <h3 class="section-title">Parte A – Creación de base y colección</h3>
-          <p>Abre Studio 3T y crea una nueva ventana de consulta. Ejecuta los siguientes comandos:</p>
-          <pre class="code-block"><code>use registro_nombres;
-
-// Crea la colección
- db.createCollection("usuarios");</code></pre>
-          <p>Verifica visualmente que la base y la colección existan.</p>
-
-          <h3 class="section-title">Parte B – Inserción de documentos JSON</h3>
-          <p>Inserta los documentos usando insertMany():</p>
-          <pre class="code-block"><code>db.usuarios.insertMany([
-  { nombre: "Juan", apellido: "Pérez", edad: 30 },
-  { nombre: "María", apellido: "García", edad: 25 },
-  { nombre: "Carlos", apellido: "López", edad: 40 }
-]);</code></pre>
-          <p>Consulta los documentos:</p>
-          <pre class="code-block"><code>db.usuarios.find().pretty();</code></pre>
-
-          <h2 class="section-title">🧪 Practicario</h2>
-
-          <h3 class="section-title">Parte A – Comprensión de comandos</h3>
-          <p>Explica con tus palabras qué hace cada comando:</p>
+          <h3 class="section-title">1.2 Cadena de conexión (URI)</h3>
+          <pre class="code-block language-python"><code>uri = "mongodb+srv://luisalfonsomartinez_db_user:LuisAtlas2026@cluster0.huc0clk.mongodb.net/sample_mflix?retryWrites=true&amp;w=majority"</code></pre>
+          <p><strong>¿Qué significa?</strong></p>
           <ul>
-            <li>use</li>
-            <li>createCollection</li>
-            <li>insertMany</li>
-            <li>find().pretty()</li>
+            <li><code>mongodb+srv://</code>: usa DNS SRV para descubrir nodos del clúster.</li>
+            <li><code>usuario:password@cluster...</code>: credenciales de autenticación.</li>
+            <li><code>/sample_mflix</code>: base por defecto al conectar.</li>
+            <li><code>retryWrites=true</code>: reintenta escrituras en fallos temporales.</li>
+            <li><code>w=majority</code>: confirma escritura por mayoría.</li>
           </ul>
 
-          <h3 class="section-title">Parte B – Inserción ampliada</h3>
+          <h3 class="section-title">1.3 Crear el cliente de MongoDB</h3>
+          <pre class="code-block language-python"><code>client = MongoClient(
+    uri,
+    serverSelectionTimeoutMS=5000,
+    tls=True,
+    tlsCAFile=certifi.where()
+)</code></pre>
+          <p><strong>Explicación parámetro por parámetro</strong></p>
           <ul>
-            <li>Inserta al menos 5 documentos adicionales, usando los datos capturados en el salón.</li>
-            <li>Ejecuta nuevamente: db.usuarios.find().pretty();</li>
+            <li><code>uri</code>: cadena de conexión.</li>
+            <li><code>serverSelectionTimeoutMS=5000</code>: máximo 5 segundos para encontrar servidor.</li>
+            <li><code>tls=True</code>: fuerza conexión cifrada.</li>
+            <li><code>tlsCAFile=certifi.where()</code>: archivo CA para validar certificado Atlas.</li>
           </ul>
-          <p>Responde:</p>
+
+          <h3 class="section-title">1.4 Bloque try/except</h3>
+          <pre class="code-block language-python"><code>try:
+    client.admin.command("ping")
+    print("✅ Conectado a Atlas con certificado OK")
+
+    db = client["sample_mflix"]
+    col = db["movies"]
+    doc = col.find_one({}, {"title": 1})
+    print("🎬 Ejemplo:", doc.get("title"))
+
+except Exception as e:
+    print("❌ Error:")
+    print(e)</code></pre>
+
+          <h3 class="section-title">1.4.1 client.admin.command("ping")</h3>
+          <p><code>ping</code> confirma conectividad real, TLS funcional y respuesta del servidor Atlas.</p>
+
+          <h3 class="section-title">1.4.2 Seleccionar base y colección</h3>
+          <pre class="code-block language-python"><code>db = client["sample_mflix"]
+col = db["movies"]</code></pre>
+          <p>MongoDB no exige crear colección antes para leer; si no existe, se crea al insertar.</p>
+
+          <h3 class="section-title">1.4.3 Consulta find_one</h3>
+          <pre class="code-block language-python"><code>doc = col.find_one({}, {"title": 1})</code></pre>
           <ul>
-            <li>¿Cuántos documentos hay ahora?</li>
-            <li>¿Todos tienen la misma estructura?</li>
+            <li>Filtro <code>{}</code>: sin filtro, trae cualquiera.</li>
+            <li>Proyección <code>{"title": 1}</code>: trae <code>title</code> y <code>_id</code> por defecto.</li>
           </ul>
 
-          <h3 class="section-title">Parte C – Análisis de estructura</h3>
-          <p>Identifica:</p>
+          <h3 class="section-title">1.4.4 Mostrar resultado</h3>
+          <pre class="code-block language-python"><code>print("🎬 Ejemplo:", doc.get("title"))</code></pre>
+
+          <h3 class="section-title">1.4.5 Manejo de error</h3>
+          <p>Si falla DNS, contraseña, red, firewall o TLS, imprime el error real.</p>
+
+          <h2 class="section-title">2) APP FLET + MONGODB (CATÁLOGO WEB)</h2>
+
+          <h3 class="section-title">2.1 Importaciones</h3>
+          <pre class="code-block language-python"><code>from datetime import datetime
+
+import certifi
+import flet as ft
+from pymongo import MongoClient
+from pymongo.errors import ConfigurationError</code></pre>
           <ul>
-            <li>¿Qué campos se repiten?</li>
-            <li>¿Qué campo identifica de forma única a cada documento?</li>
+            <li><code>datetime</code>: formatear fechas.</li>
+            <li><code>certifi</code>: certificados TLS.</li>
+            <li><code>flet as ft</code>: framework UI.</li>
+            <li><code>MongoClient</code>: conexión a MongoDB.</li>
+            <li><code>ConfigurationError</code>: error típico de SRV/DNS/configuración.</li>
           </ul>
-          <p>Explica por qué MongoDB genera automáticamente el campo <strong>_id</strong>.</p>
 
-          <h2 class="section-title">🎨 Producción de contenido digital</h2>
-          <p><strong>(Elige UNA opción)</strong></p>
+          <h3 class="section-title">2.2 Constantes de conexión</h3>
+          <pre class="code-block language-python"><code>URI_POR_DEFECTO = "mongodb+srv://..."
+BASE_DATOS_POR_DEFECTO = "sample_mflix"
+COLECCION_POR_DEFECTO = "movies"</code></pre>
+
+          <h3 class="section-title">2.3 formatear_fecha(valor)</h3>
+          <pre class="code-block language-python"><code>def formatear_fecha(valor):
+    if isinstance(valor, datetime):
+        return valor.strftime("%Y-%m-%d")
+    if isinstance(valor, str) and valor:
+        return valor[:10]
+    return "-"</code></pre>
+
+          <h3 class="section-title">2.4 etiqueta(texto, color)</h3>
+          <pre class="code-block language-python"><code>def etiqueta(texto: str, color: str = ft.Colors.BLUE_50):
+    return ft.Container(
+        content=ft.Text(texto, size=11),
+        padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+        border_radius=999,
+        bgcolor=color,
+    )</code></pre>
+
+          <h3 class="section-title">2.5 a 2.15 Código completo de la app</h3>
+          <pre class="code-block language-python"><code>from datetime import datetime
+
+import certifi
+import flet as ft
+from pymongo import MongoClient
+from pymongo.errors import ConfigurationError
+
+
+URI_POR_DEFECTO = "mongodb+srv://luisalfonsomartinez_db_user:LuisAtlas2026@cluster0.huc0clk.mongodb.net/sample_mflix?retryWrites=true&amp;w=majority"
+BASE_DATOS_POR_DEFECTO = "sample_mflix"
+COLECCION_POR_DEFECTO = "movies"
+
+
+def formatear_fecha(valor):
+    if isinstance(valor, datetime):
+        return valor.strftime("%Y-%m-%d")
+    if isinstance(valor, str) and valor:
+        return valor[:10]
+    return "-"
+
+
+def etiqueta(texto: str, color: str = ft.Colors.BLUE_50):
+    return ft.Container(
+        content=ft.Text(texto, size=11),
+        padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+        border_radius=999,
+        bgcolor=color,
+    )
+
+
+def principal(pagina: ft.Page):
+    pagina.title = "Catalogo mflix"
+    pagina.theme_mode = ft.ThemeMode.LIGHT
+    pagina.padding = 16
+    pagina.scroll = "auto"
+
+    uri = URI_POR_DEFECTO
+    nombre_bd = BASE_DATOS_POR_DEFECTO
+    nombre_coleccion = COLECCION_POR_DEFECTO
+
+    cliente = None
+    coleccion = None
+
+    def notificar(mensaje: str):
+        pagina.snack_bar = ft.SnackBar(ft.Text(mensaje))
+        pagina.snack_bar.open = True
+        pagina.update()
+
+    def obtener_coleccion():
+        nonlocal cliente, coleccion
+        if coleccion is not None:
+            return coleccion
+
+        if not uri:
+            raise ValueError("Falta URI de conexion a MongoDB.")
+
+        cliente = MongoClient(
+            uri,
+            tls=True,
+            tlsCAFile=certifi.where(),
+            serverSelectionTimeoutMS=7000,
+        )
+        cliente.admin.command("ping")
+        coleccion = cliente[nombre_bd][nombre_coleccion]
+        return coleccion
+
+    documentos_por_id = {}
+    desplegable_pelicula = ft.Dropdown(label="Selecciona una pelicula", width=500)
+    contenedor_detalle = ft.Container()
+    texto_info = ft.Text(size=12, opacity=0.75)
+
+    def construir_detalle(documento):
+        titulo = documento.get("title") or "(sin titulo)"
+        id_pelicula = str(documento.get("_id", "-"))
+        anio = documento.get("year") or "-"
+        clasificacion = documento.get("rated") or "-"
+        duracion = documento.get("runtime") or "-"
+        generos = documento.get("genres") or []
+        idiomas = documento.get("languages") or []
+        paises = documento.get("countries") or []
+        reparto = documento.get("cast") or []
+        directores = documento.get("directors") or []
+        fecha_estreno = formatear_fecha(documento.get("released"))
+        trama = documento.get("fullplot") or documento.get("plot") or "Sin descripcion"
+        premios = documento.get("awards") or {}
+        imdb = documento.get("imdb") or {}
+        tomatoes = documento.get("tomatoes") or {}
+        poster = documento.get("poster")
+
+        calificacion_imdb = imdb.get("rating", "-")
+        votos_imdb = imdb.get("votes", "-")
+        calificacion_tomatoes = "-"
+        if isinstance(tomatoes, dict):
+            viewer = tomatoes.get("viewer", {})
+            calificacion_tomatoes = viewer.get("rating", "-") if isinstance(viewer, dict) else "-"
+
+        texto_premios = premios.get("text", "-") if isinstance(premios, dict) else "-"
+
+        imagen = (
+            ft.Image(src=poster, width=260, height=380)
+            if isinstance(poster, str) and poster.startswith("http")
+            else ft.Container(
+                content=ft.Icon(ft.Icons.IMAGE_NOT_SUPPORTED, size=60, opacity=0.5),
+                width=260,
+                height=380,
+                alignment=ft.Alignment(0, 0),
+                bgcolor=ft.Colors.GREY_100,
+                border_radius=10,
+            )
+        )
+
+        return ft.Container(
+            content=ft.Card(
+                content=ft.Container(
+                    padding=12,
+                    content=ft.Row(
+                        spacing=16,
+                        vertical_alignment=ft.CrossAxisAlignment.START,
+                        controls=[
+                            ft.Container(content=imagen, border_radius=10),
+                            ft.Container(
+                                expand=True,
+                                content=ft.Column(
+                                    spacing=8,
+                                    tight=True,
+                                    controls=[
+                                        ft.Text(f"{titulo} ({anio})", size=22, weight=ft.FontWeight.W_600),
+                                        ft.Row(
+                                            wrap=True,
+                                            controls=[
+                                                etiqueta(f"ID: {id_pelicula}"),
+                                                etiqueta(f"Clasificacion: {clasificacion}"),
+                                                etiqueta(f"Duracion: {duracion} min"),
+                                                etiqueta(f"Estreno: {fecha_estreno}"),
+                                            ],
+                                        ),
+                                        ft.Row(
+                                            wrap=True,
+                                            controls=[etiqueta(g) for g in generos]
+                                            if generos
+                                            else [etiqueta("Sin genero", ft.Colors.GREY_200)],
+                                        ),
+                                        ft.Text(trama, selectable=True),
+                                        ft.Divider(height=4),
+                                        ft.Text(
+                                            f"Directores: {', '.join(directores) if directores else '-'}",
+                                            size=12,
+                                        ),
+                                        ft.Text(
+                                            f"Reparto: {', '.join(reparto[:12]) if reparto else '-'}",
+                                            size=12,
+                                        ),
+                                        ft.Text(
+                                            f"Idiomas: {', '.join(idiomas) if idiomas else '-'}",
+                                            size=12,
+                                        ),
+                                        ft.Text(
+                                            f"Paises: {', '.join(paises) if paises else '-'}",
+                                            size=12,
+                                        ),
+                                        ft.Text(f"Premios: {texto_premios}", size=12),
+                                        ft.Text(
+                                            f"IMDb: {calificacion_imdb} ({votos_imdb} votos)",
+                                            size=12,
+                                        ),
+                                        ft.Text(
+                                            f"Tomatoes espectador: {calificacion_tomatoes}",
+                                            size=12,
+                                        ),
+                                        ft.Text(
+                                            f"Comentarios mflix: {documento.get('num_mflix_comments', 0)}",
+                                            size=12,
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+            ),
+        )
+
+    def al_seleccionar_pelicula(evento):
+        id_pelicula = str(desplegable_pelicula.value).strip() if desplegable_pelicula.value else ""
+        if not id_pelicula:
+            contenedor_detalle.content = ft.Text("Selecciona una pelicula para ver su detalle.")
+        else:
+            documento_seleccionado = documentos_por_id.get(id_pelicula)
+            if documento_seleccionado is None:
+                contenedor_detalle.content = ft.Text(
+                    "No se encontro la pelicula seleccionada. Recarga la lista."
+                )
+            else:
+                contenedor_detalle.content = construir_detalle(documento_seleccionado)
+        pagina.update()
+
+    desplegable_pelicula.on_select = al_seleccionar_pelicula
+
+    def cargar_peliculas():
+        try:
+            coleccion_db = obtener_coleccion()
+        except Exception as error:
+            mensaje_error = str(error)
+            if isinstance(error, ConfigurationError) and "_mongodb._tcp" in mensaje_error:
+                texto_info.value = (
+                    "Error DNS con mongodb+srv. Revisa internet/DNS o usa URI estandar mongodb://"
+                )
+            else:
+                texto_info.value = "Sin conexion a MongoDB"
+            contenedor_detalle.content = ft.Text("No se pudo conectar con MongoDB.")
+            pagina.update()
+            notificar(str(error))
+            return
+
+        proyeccion = {
+            "title": 1,
+            "year": 1,
+            "poster": 1,
+            "genres": 1,
+            "plot": 1,
+            "fullplot": 1,
+            "languages": 1,
+            "released": 1,
+            "directors": 1,
+            "rated": 1,
+            "awards": 1,
+            "runtime": 1,
+            "cast": 1,
+            "countries": 1,
+            "imdb": 1,
+            "tomatoes": 1,
+            "num_mflix_comments": 1,
+        }
+        documentos = list(coleccion_db.find({}, proyeccion).sort("title", 1).limit(300))
+        documentos_por_id.clear()
+        desplegable_pelicula.options = []
+
+        for documento in documentos:
+            id_pelicula = str(documento.get("_id"))
+            titulo = documento.get("title") or "(sin titulo)"
+            anio = documento.get("year") or "-"
+            documentos_por_id[id_pelicula] = documento
+            desplegable_pelicula.options.append(
+                ft.dropdown.Option(key=id_pelicula, text=f"{titulo} ({anio})")
+            )
+
+        texto_info.value = f"Peliculas cargadas: {len(documentos)}"
+        desplegable_pelicula.value = None
+        if documentos:
+            contenedor_detalle.content = ft.Text("Selecciona una pelicula para ver su detalle.")
+        else:
+            contenedor_detalle.content = ft.Text("No hay peliculas para mostrar.")
+
+        desplegable_pelicula.update()
+        pagina.update()
+
+    pagina.appbar = ft.AppBar(
+        title=ft.Text("Catalogo de peliculas mflix"),
+        actions=[
+            ft.IconButton(
+                icon=ft.Icons.REFRESH,
+                tooltip="Recargar",
+                on_click=lambda e: cargar_peliculas(),
+            )
+        ],
+    )
+
+    pagina.add(
+        desplegable_pelicula,
+        texto_info,
+        contenedor_detalle,
+    )
+
+    cargar_peliculas()
+
+
+ft.run(principal, view=ft.AppView.WEB_BROWSER)</code></pre>
+
+          <h3 class="section-title">2.10 Evento: al_seleccionar_pelicula(evento)</h3>
+          <p>Al seleccionar, toma el <code>_id</code> del dropdown y busca en <code>documentos_por_id</code>, sin consulta adicional.</p>
+
+          <h3 class="section-title">2.11 Función cargar_peliculas() (CONSULTA PRINCIPAL)</h3>
+          <p>Conecta, maneja error SRV DNS, define proyección, consulta, llena caché y actualiza UI.</p>
+
+          <h2 class="section-title">Desglose técnico exacto por subapartados</h2>
+          <h3 class="section-title">2.5.1 Configuración de la página</h3>
+          <pre class="code-block language-python"><code>pagina.title = "Catalogo mflix"
+pagina.theme_mode = ft.ThemeMode.LIGHT
+pagina.padding = 16
+pagina.scroll = "auto"</code></pre>
+          <h3 class="section-title">2.5.2 Variables internas de configuración</h3>
+          <pre class="code-block language-python"><code>uri = URI_POR_DEFECTO
+nombre_bd = BASE_DATOS_POR_DEFECTO
+nombre_coleccion = COLECCION_POR_DEFECTO</code></pre>
+          <h3 class="section-title">2.5.3 Variables para caché de conexión</h3>
+          <pre class="code-block language-python"><code>cliente = None
+coleccion = None</code></pre>
+          <h3 class="section-title">2.6 Función interna notificar(mensaje)</h3>
+          <pre class="code-block language-python"><code>def notificar(mensaje: str):
+    pagina.snack_bar = ft.SnackBar(ft.Text(mensaje))
+    pagina.snack_bar.open = True
+    pagina.update()</code></pre>
+          <h3 class="section-title">2.7.1 a 2.7.6 obtener_coleccion()</h3>
           <ul>
-            <li>Video (2–3 min): explica cómo creaste la base, la colección y los documentos usando comandos.</li>
-            <li>Infografía: “Inserción de documentos JSON con MongoDB”.</li>
-            <li>Podcast: reflexiona sobre la diferencia entre insertar datos manualmente y mediante comandos.</li>
+            <li><code>nonlocal cliente, coleccion</code> usa variables de <code>principal</code>.</li>
+            <li>Si ya hay colección, retorna caché inmediatamente.</li>
+            <li>Valida URI vacía y lanza <code>ValueError</code>.</li>
+            <li>Crea cliente con TLS, CA y timeout de 7000 ms.</li>
+            <li>Ejecuta ping para validar conexión real.</li>
+            <li>Selecciona colección con <code>cliente[nombre_bd][nombre_coleccion]</code>.</li>
           </ul>
-
-          <h2 class="section-title">🌐 Registro en Google Sites</h2>
-          <p>Página:</p>
-          <div class="callout"><strong>Práctica 2 – Creación de documentos JSON con MongoDB</strong></div>
-          <p>Incluye:</p>
+          <h3 class="section-title">2.8 Estado de la app y controles base</h3>
+          <pre class="code-block language-python"><code>documentos_por_id = {}
+desplegable_pelicula = ft.Dropdown(label="Selecciona una pelicula", width=500)
+contenedor_detalle = ft.Container()
+texto_info = ft.Text(size=12, opacity=0.75)</code></pre>
+          <h3 class="section-title">2.9.1 a 2.9.6 construir_detalle(documento)</h3>
           <ul>
-            <li>Capturas de Studio 3T.</li>
-            <li>Script completo ejecutado.</li>
-            <li>Explicación de cada comando.</li>
-            <li>Producto digital.</li>
-            <li>Reflexión personal: ¿qué aprendí al crear datos usando comandos?</li>
+            <li>Extrae campos con fallback usando <code>or</code>.</li>
+            <li>Convierte <code>_id</code> a string para mostrar y usar como key.</li>
+            <li>Lee IMDb con defaults.</li>
+            <li>Lee Tomatoes en modo defensivo validando diccionarios.</li>
+            <li>Maneja poster HTTP o placeholder con icono.</li>
+            <li>Construye layout final con <code>Card</code>, <code>Row</code> y <code>Column</code>.</li>
           </ul>
+          <h3 class="section-title">2.10 Evento: al_seleccionar_pelicula(evento)</h3>
+          <pre class="code-block language-python"><code>desplegable_pelicula.on_select = al_seleccionar_pelicula</code></pre>
+          <h3 class="section-title">2.11.1 a 2.11.9 cargar_peliculas()</h3>
+          <ul>
+            <li>Intenta conexión y maneja errores de red, credenciales, IP, SRV y TLS.</li>
+            <li>Diagnóstico específico para SRV DNS con <code>_mongodb._tcp</code>.</li>
+            <li>Define proyección para traer solo campos necesarios.</li>
+            <li>Ejecuta: <code>find({}, proyeccion).sort("title", 1).limit(300)</code>.</li>
+            <li>Resetea estado y recarga opciones del dropdown.</li>
+            <li>Actualiza textos y refresca UI con <code>update()</code>.</li>
+          </ul>
+          <h3 class="section-title">2.12 AppBar (barra superior)</h3>
+          <h3 class="section-title">2.13 Agregar controles al layout</h3>
+          <h3 class="section-title">2.14 Carga inicial</h3>
+          <h3 class="section-title">2.15 Ejecutar la app</h3>
 
-          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
-          <p>Investiga: ¿qué ventaja tiene insertMany() frente a insertOne()? Documenta la respuesta en tu Google Sites.</p>
+          <h2 class="section-title">3) LISTA EXACTA DE CONSULTAS A MONGODB QUE OCURREN</h2>
+          <p><strong>(A) Script consola</strong></p>
+          <pre class="code-block language-python"><code>client.admin.command("ping")
+col.find_one({}, {"title": 1})</code></pre>
+          <p><strong>(B) App Flet</strong></p>
+          <pre class="code-block language-python"><code>cliente.admin.command("ping")
+coleccion_db.find({}, proyeccion).sort("title", 1).limit(300)</code></pre>
+          <p><strong>Importante:</strong> al seleccionar película no hay consulta nueva; se usa <code>documentos_por_id</code>.</p>
 
-          <h2 class="section-title">✅ Cierre de la práctica</h2>
-          <p>Al finalizar esta práctica:</p>
+          <h2 class="section-title">4) OBSERVACIÓN DIDÁCTICA IMPORTANTE</h2>
+          <p>Si en el pegado aparece:</p>
+          <pre class="code-block language-python"><code>print(e) from datetime import datetime</code></pre>
+          <p>Debe estar así:</p>
+          <pre class="code-block language-python"><code>print(e)
+
+from datetime import datetime</code></pre>
+          <p>Si no, Python marca error de sintaxis.</p>
+
+          <h2 class="section-title">2) ¿Qué deberían ver al ejecutarlo?</h2>
           <ul class="checklist">
-            <li>Sabes crear datos desde cero con comandos.</li>
-            <li>Comprendes que cada documento es un JSON.</li>
-            <li>Estás listo para consultar y eliminar datos.</li>
+            <li>Se abre navegador con título “Catalogo de peliculas mflix”.</li>
+            <li>Dropdown “Selecciona una película”.</li>
+            <li>Texto: <code>Peliculas cargadas: X</code> (hasta 300).</li>
+            <li>Al seleccionar: tarjeta con poster o placeholder, título, año, trama, premios y ratings.</li>
           </ul>
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>Los ejercicios de insertMany y creación de colecciones te obligan a respetar tipos, estructura y consistencia. Esto simula escenarios reales de carga inicial de datos.</p>
 
-          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <h2 class="section-title">3) Consultas MongoDB que hace la app (clarísimo)</h2>
+          <h3 class="section-title">3.1 Ping (prueba de vida)</h3>
+          <pre class="code-block language-python"><code>cliente.admin.command("ping")</code></pre>
+          <h3 class="section-title">3.2 Cargar lista (consulta principal)</h3>
+          <pre class="code-block language-python"><code>coleccion_db.find({}, proyeccion).sort("title", 1).limit(300)</code></pre>
+
+          <h2 class="section-title">4) Problemas comunes y soluciones (modo escuela)</h2>
+          <ul>
+            <li><strong>Error: _mongodb._tcp</strong> → problema DNS/SRV. Cambiar red, probar hotspot o DNS público.</li>
+            <li><strong>Error: Authentication failed</strong> → revisar usuario, contraseña y roles en Atlas.</li>
+            <li><strong>Error: IP not allowed</strong> → agregar IP actual en <code>Network Access</code> de Atlas.</li>
+          </ul>
+
+          <h2 class="section-title">5) Actividades guiadas (para evidenciar aprendizaje)</h2>
+          <h3 class="section-title">Actividad 1: Cambia el límite</h3>
+          <pre class="code-block language-python"><code>.limit(50)</code></pre>
+          <p>Evidencia: captura con “Peliculas cargadas: 50”.</p>
+
+          <h3 class="section-title">Actividad 2: Solo películas desde 2000</h3>
+          <pre class="code-block language-python"><code>documentos = list(
+    coleccion_db.find({"year": {"$gte": 2000}}, proyeccion).sort("title", 1).limit(300)
+)</code></pre>
+
+          <h3 class="section-title">Actividad 3: Ordenar por año descendente</h3>
+          <pre class="code-block language-python"><code>.sort("year", -1)</code></pre>
+
+          <h3 class="section-title">Actividad 4: Filtrar por género Comedy</h3>
+          <pre class="code-block language-python"><code>{"genres": "Comedy"}</code></pre>
+
+          <h2 class="section-title">6) Evidencias a entregar</h2>
           <ul class="checklist">
-            <li>E-commerce: catálogo, carrito y historial de compras.</li>
-            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
-            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
-            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
-            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+            <li>Captura de consola con “✅ Conectado...” y “🎬 Ejemplo: ...”.</li>
+            <li>Captura de app con dropdown y “Peliculas cargadas: X”.</li>
+            <li>Captura de detalle completo de una película.</li>
+            <li>Código del proyecto con instrucciones de instalación.</li>
           </ul>
 
-          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En SQL, insertar implica respetar columnas y tipos fijos; en MongoDB puedes variar la estructura, pero debes controlar la calidad de los documentos.</p>
-
-          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
-          <ul class="checklist">
-            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
-            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
-            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
-            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
-            <li>Usa paginación o límites en lecturas de alto volumen.</li>
-          </ul>
-
-          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>En inserciones, MongoDB serializa a BSON, asigna _id, escribe en memoria y en el journal, y actualiza índices existentes.</p>
-
-          <h2 class="section-title">❗ Errores Comunes</h2>
-          <ul class="checklist">
-            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
-            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
-            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
-            <li>No documentar la estructura JSON y sus cambios.</li>
-            <li>Confundir colección con documento o arreglo con objeto.</li>
-          </ul>
-
-          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
-          <ul class="checklist">
-            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
-            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
-            <li>Usar índices en campos consultados con frecuencia.</li>
-            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
-            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
-          </ul>
-
-          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
-          <ul class="checklist">
-            <li>¿Qué campo usarías como identificador lógico además de _id?</li>
-            <li>¿Qué problema surge si insertas estructuras distintas sin control?</li>
-            <li>¿Cómo decidirías si un dato debe ser arreglo u objeto?</li>
-            <li>¿Qué impacto tiene insertMany en rendimiento?</li>
-          </ul>
-
-          <h2 class="section-title">🧭 Retos Aplicados</h2>
-          <ul class="checklist">
-            <li>Inserta documentos con campos opcionales y justifica cuándo omitirlos.</li>
-            <li>Agrega un subdocumento (direccion) y un arreglo (telefonos).</li>
-            <li>Crea un documento con fecha ISO y explica su tipo de dato.</li>
-          </ul>
-
-          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
-          <ul class="checklist">
-            <li>Carga 20 documentos usando un patrón real (usuarios con preferencias) y documenta tu esquema.</li>
-            <li>Simula un error de tipo y explica cómo lo detectarías.</li>
-          </ul>
-
-          <h2 class="section-title">📊 Rúbrica detallada</h2>
-          <table class="table-like" aria-label="Rúbrica detallada">
+          <h2 class="section-title">7) Mini rúbrica (10 puntos)</h2>
+          <table class="table-like" aria-label="Mini rubrica">
             <thead>
-              <tr><th>Nivel</th><th>Descripción</th></tr>
+              <tr>
+                <th>Criterio</th>
+                <th>10</th>
+                <th>8</th>
+                <th>6</th>
+                <th>4</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
-              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
-              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
-              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+              <tr>
+                <td>Conexión Atlas + ping</td>
+                <td>Conecta y muestra ping sin fallas</td>
+                <td>Conecta, pero sin evidencia clara</td>
+                <td>Conecta a veces</td>
+                <td>No conecta</td>
+              </tr>
+              <tr>
+                <td>Consulta find/find_one</td>
+                <td>Aplica filtro/proyección correctamente</td>
+                <td>Aplica solo parte</td>
+                <td>Consulta incompleta</td>
+                <td>No hay consultas</td>
+              </tr>
+              <tr>
+                <td>UI Flet (Dropdown + detalle)</td>
+                <td>Muestra lista y detalle completo</td>
+                <td>Muestra lista y detalle parcial</td>
+                <td>Solo lista o solo detalle</td>
+                <td>No funciona</td>
+              </tr>
+              <tr>
+                <td>Evidencias</td>
+                <td>4 evidencias completas</td>
+                <td>3 evidencias</td>
+                <td>2 evidencias</td>
+                <td>0-1 evidencia</td>
+              </tr>
             </tbody>
           </table>
-
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 3 — Consulta y eliminación de documentos JSON usando comandos en MongoDB. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
-
         </section>
       </main>
     </div>
+    <div class="screen-guard" id="screenGuard" aria-hidden="true">
+      <div class="screen-guard-content">
+        <h3>Contenido protegido</h3>
+        <p>
+          Se detectó un intento de captura, impresión o copia visual.
+          El contenido se ocultó temporalmente.
+        </p>
+        <button id="unlockScreenGuard" type="button">Desbloquear vista</button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script>
+      (function () {
+        const bloques = document.querySelectorAll(".code-block");
+        const guard = document.getElementById("screenGuard");
+        const unlockBtn = document.getElementById("unlockScreenGuard");
+        let protegido = false;
+
+        function activarProteccion() {
+          if (protegido) return;
+          protegido = true;
+          document.body.classList.add("protect-screen");
+          guard.setAttribute("aria-hidden", "false");
+        }
+
+        function desactivarProteccion() {
+          protegido = false;
+          document.body.classList.remove("protect-screen");
+          guard.setAttribute("aria-hidden", "true");
+        }
+
+        unlockBtn.addEventListener("click", desactivarProteccion);
+
+        bloques.forEach((bloque) => {
+          bloque.addEventListener("copy", (e) => e.preventDefault());
+          bloque.addEventListener("cut", (e) => e.preventDefault());
+          bloque.addEventListener("contextmenu", (e) => e.preventDefault());
+
+          bloque.addEventListener("keydown", (e) => {
+            const esCopiar = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "c";
+            const esCortar = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "x";
+            if (esCopiar || esCortar) e.preventDefault();
+          });
+        });
+
+        window.addEventListener("keydown", (e) => {
+          const tecla = e.key.toLowerCase();
+          const printScreen = tecla === "printscreen";
+          const snipWindows = e.ctrlKey && e.shiftKey && (tecla === "s");
+          const capturaMac = e.metaKey && e.shiftKey && (tecla === "3" || tecla === "4" || tecla === "5");
+          if (printScreen || snipWindows || capturaMac) activarProteccion();
+        });
+
+        window.addEventListener("blur", () => activarProteccion());
+        window.addEventListener("beforeprint", () => activarProteccion());
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") activarProteccion();
+        });
+      })();
+    </script>
   </body>
 </html>

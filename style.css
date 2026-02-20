@@ -263,16 +263,60 @@ li {
 
 .code-block {
   margin: 10px 0 16px 0;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 12px;
-  border: 1px solid var(--borde);
-  background: #fff9fb;
+  border: 1px solid #2b2f3a;
+  background: #1e1f26;
   overflow: auto;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   font-size: 13.5px;
   line-height: 1.6;
-  color: #3b2f34;
+  color: #f8f8f2;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.code-block code {
+  color: inherit;
+  text-shadow: none;
+}
+
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: #7f8c98;
+}
+
+.code-block .token.punctuation {
+  color: #f8f8f2;
+}
+
+.code-block .token.keyword,
+.code-block .token.selector,
+.code-block .token.important {
+  color: #ff79c6;
+}
+
+.code-block .token.string,
+.code-block .token.attr-value,
+.code-block .token.char,
+.code-block .token.inserted {
+  color: #f1fa8c;
+}
+
+.code-block .token.number,
+.code-block .token.boolean,
+.code-block .token.constant {
+  color: #bd93f9;
+}
+
+.code-block .token.function,
+.code-block .token.class-name {
+  color: #50fa7b;
 }
 
 .footer-note {
@@ -289,5 +333,59 @@ li {
   .sidebar {
     position: relative;
     height: auto;
+  }
+}
+
+.screen-guard {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 16, 0.96);
+  color: #f5f7fa;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.screen-guard-content {
+  max-width: 560px;
+}
+
+.screen-guard h3 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}
+
+.screen-guard p {
+  margin: 0 0 14px 0;
+  color: #d6dbe5;
+}
+
+.screen-guard button {
+  border: 1px solid #3d4454;
+  background: #151a23;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+body.protect-screen .content,
+body.protect-screen .sidebar {
+  filter: blur(10px) brightness(0.35);
+  user-select: none;
+  pointer-events: none;
+}
+
+body.protect-screen .screen-guard {
+  display: flex;
+}
+
+@media print {
+  body {
+    visibility: hidden !important;
   }
 }
