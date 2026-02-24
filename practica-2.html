@@ -708,12 +708,7 @@ from datetime import datetime</code></pre>
           if (printScreen || snipWindows || capturaMac) activarProteccion();
         });
 
-        window.addEventListener("blur", () => activarProteccion());
         window.addEventListener("beforeprint", () => activarProteccion());
-
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") activarProteccion();
-        });
       })();
     </script>
   </body>
