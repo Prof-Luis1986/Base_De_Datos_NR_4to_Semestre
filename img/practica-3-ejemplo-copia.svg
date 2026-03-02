@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f4f8" />
+      <stop offset="100%" stop-color="#e6e8f0" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)" />
+  <rect x="40" y="40" width="1520" height="920" rx="24" fill="#f7f8fc" stroke="#c7ccd8" stroke-width="2" />
+  <text x="800" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#1b2330">
+    Flet + MongoDB Atlas | Registro y Visualización
+  </text>
+  <text x="90" y="190" font-family="Arial, sans-serif" font-size="60" font-weight="700" fill="#1b2330">
+    Práctica: Flet + MongoDB Atlas
+  </text>
+  <text x="90" y="255" font-family="Arial, sans-serif" font-size="26" fill="#222c3a">
+    Objetivo: registrar y visualizar datos dentro de la misma app.
+  </text>
+  <rect x="90" y="310" width="1420" height="330" rx="28" fill="#e8ebf4" stroke="#cbd0dd" />
+  <text x="120" y="382" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#1b2330">
+    Registro de datos
+  </text>
+  <rect x="120" y="420" width="560" height="92" rx="12" fill="#f1f3f8" stroke="#2f3640" stroke-width="3" />
+  <rect x="700" y="420" width="320" height="92" rx="12" fill="#f1f3f8" stroke="#2f3640" stroke-width="3" />
+  <rect x="120" y="535" width="560" height="92" rx="12" fill="#f1f3f8" stroke="#2f3640" stroke-width="3" />
+  <text x="150" y="479" font-family="Arial, sans-serif" font-size="52" fill="#4a5160">Nombre</text>
+  <text x="730" y="479" font-family="Arial, sans-serif" font-size="52" fill="#4a5160">Grupo</text>
+  <text x="150" y="594" font-family="Arial, sans-serif" font-size="52" fill="#4a5160">Correo</text>
+  <rect x="1290" y="560" width="200" height="72" rx="32" fill="#e2e6f0" stroke="#bcc3d1" />
+  <text x="1390" y="607" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#35608f">
+    Guardar
+  </text>
+  <rect x="90" y="690" width="1420" height="230" rx="24" fill="#e8ebf4" stroke="#cbd0dd" />
+  <text x="120" y="755" font-family="Arial, sans-serif" font-size="30" fill="#1b2330">
+    Visualización (MongoDB Atlas)
+  </text>
+  <text x="120" y="808" font-family="Arial, sans-serif" font-size="24" fill="#4a5160">
+    Buscar por nombre o grupo | Buscar | Refrescar
+  </text>
+  <text x="120" y="860" font-family="Arial, sans-serif" font-size="20" fill="#1b2330">
+    Nombre | Grupo | Correo | Fecha
+  </text>
+  <text x="120" y="900" font-family="Arial, sans-serif" font-size="18" fill="#4a5160">
+    Reemplaza este SVG por la captura real de tu app para evidencia final.
+  </text>
+</svg>

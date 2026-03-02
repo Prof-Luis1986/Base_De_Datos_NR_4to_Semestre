@@ -279,9 +279,67 @@ li {
   -ms-user-select: none;
 }
 
+pre.code-block.editor-block {
+  padding-top: 46px;
+  border-radius: 14px;
+  border-color: #1c2230;
+  background: #0f1726;
+  box-shadow: 0 10px 20px rgba(8, 12, 20, 0.22);
+  position: relative;
+  color: #e6edf3;
+  margin: 10px 0 16px 0;
+  padding: 46px 16px 14px 16px;
+  overflow: auto;
+}
+
+pre.code-block.editor-block[class*="language-"] {
+  margin: 10px 0 16px 0;
+  padding: 46px 16px 14px 16px;
+  background: #0f1726;
+}
+
+pre.code-block.editor-block::before {
+  content: attr(data-title);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding-left: 68px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c8d4e3;
+  background: linear-gradient(180deg, #1a2434, #131d2c);
+  border-bottom: 1px solid #273247;
+}
+
+pre.code-block.editor-block:not([data-title])::before {
+  content: "codigo";
+}
+
+pre.code-block.editor-block::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 14px;
+  width: 38px;
+  height: 12px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 6px 6px, #ff5f57 0 5px, transparent 6px),
+    radial-gradient(circle at 19px 6px, #febc2e 0 5px, transparent 6px),
+    radial-gradient(circle at 32px 6px, #28c840 0 5px, transparent 6px);
+}
+
 .code-block code {
   color: inherit;
   text-shadow: none;
+}
+
+pre.code-block.editor-block code {
+  white-space: pre;
 }
 
 .code-block .token.comment,
