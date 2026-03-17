@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 5 · Consultas avanzadas</title>
+    <title>Práctica 5 · Cacería de Datos con Pygame y MongoDB Atlas</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,7 +11,7 @@
       <aside class="sidebar">
         <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
         <div class="nav-title">Menú</div>
-                                                <nav class="nav" aria-label="Navegación principal">
+        <nav class="nav" aria-label="Navegación principal">
           <a href="index.html">Inicio</a>
           <details class="nav-section">
             <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
@@ -27,7 +27,7 @@
               <a href="practica-2.html">Práctica 2 — Conexión segura a MongoDB Atlas y catálogo web con Flet</a>
               <a href="practica-3.html">Práctica 3 — Diseño de Formularios Estructurados con Modelo de Datos</a>
               <a href="practica-4.html">Práctica 4 — Quiz Interactivo con Flet y MongoDB</a>
-              <a class="active" href="practica-5.html">Práctica 5 — Persistencia de Datos con MongoDB (Insertar y Consultar)</a>
+              <a class="active" href="practica-5.html">Práctica 5 — Cacería de Datos: Sistema visual con Pygame y MongoDB Atlas</a>
               <a href="practica-6.html">Práctica 6 — CRUD Completo con MongoDB</a>
             </div>
           </details>
@@ -66,161 +66,309 @@
         <section class="card">
           <div class="unit-label">Unidad I · Fundamentos y Arquitecturas No Relacionales</div>
           <div class="badge">🟦 Práctica 5</div>
-          <h1 class="page-title">Consultas avanzadas y filtros en MongoDB (find, operadores y ordenamiento)</h1>
+          <h1 class="page-title">Cacería de Datos: Sistema visual con Pygame y MongoDB Atlas</h1>
 
-          <h2 class="section-title">🧠 Guía de trabajo</h2>
+          <h2 class="section-title">🎯 Propósito</h2>
           <p>
-            En esta práctica aprenderás a consultar información específica dentro de una base de datos NoSQL
-            usando filtros y operadores. Consultar bien los datos es tan importante como almacenarlos correctamente.
+            Desarrollar una aplicación funcional en Python con Pygame, basada en un código base obligatorio,
+            que permita capturar, almacenar y gestionar registros con imágenes convertidas a Base64 en
+            MongoDB Atlas, aplicando el método T.I.R.E. y realizando modificaciones funcionales reales.
           </p>
 
-          <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>Las consultas avanzadas permiten transformar datos en decisiones. Aprender a filtrar, ordenar y limitar es esencial para cualquier aplicación real.</p>
-          <h2 class="section-title">🎯 Aprendizajes esperados</h2>
+          <h2 class="section-title">⚠️ Condiciones obligatorias</h2>
           <ul class="checklist">
-            <li>Filtrar documentos con condiciones.</li>
-            <li>Usar operadores como $gt, $lt.</li>
-            <li>Ordenar resultados.</li>
-            <li>Limitar resultados.</li>
-            <li>Analizar resultados de consultas.</li>
+            <li>Debes usar el código base proporcionado.</li>
+            <li>Debes mantener su funcionamiento.</li>
+            <li>No se aceptan proyectos desde cero.</li>
+            <li>No se aceptan proyectos sin modificaciones.</li>
+            <li>Debes modificar el sistema funcionalmente.</li>
+            <li>Debes aplicar el método T.I.R.E.</li>
           </ul>
 
-          <h2 class="section-title">🪑 Actividades en salón</h2>
-          <p>Analiza:</p>
-          <pre class="code-block"><code>{ "edad": { "$gt": 30 } }</code></pre>
-          <p>Responde:</p>
-          <ul>
-            <li>¿Qué documentos regresaría?</li>
-            <li>¿Para qué sirve este filtro?</li>
+          <h2 class="section-title">🧠 Metodología: T.I.R.E.</h2>
+
+          <h3 class="section-title">T – Tarea</h3>
+          <ul class="checklist">
+            <li>Define qué hace el sistema base.</li>
+            <li>Explica qué le falta.</li>
+            <li>Describe qué vas a mejorar.</li>
           </ul>
 
-          <h2 class="section-title">💻 Actividades en laboratorio</h2>
-          <p><strong>(MongoDB – consultas)</strong></p>
-
-          <h3 class="section-title">Parte A – Filtros simples</h3>
-          <pre class="code-block"><code>db.usuarios.find({ edad: 30 }).pretty();</code></pre>
-
-          <h3 class="section-title">Parte B – Operadores de comparación</h3>
-          <pre class="code-block"><code>db.usuarios.find({ edad: { $gt: 30 } }).pretty();
-
-db.usuarios.find({ edad: { $lt: 30 } }).pretty();</code></pre>
-
-          <h3 class="section-title">Parte C – Ordenamiento y límite</h3>
-          <pre class="code-block"><code>db.usuarios.find().sort({ edad: 1 }).pretty();
-
-db.usuarios.find().limit(2).pretty();</code></pre>
-
-          <h2 class="section-title">🧪 Practicario</h2>
-          <ul>
-            <li>Realiza al menos 2 consultas con filtros.</li>
-            <li>Realiza 1 consulta ordenada.</li>
-            <li>Realiza 1 consulta con límite.</li>
-            <li>Explica qué devuelve cada una.</li>
+          <h3 class="section-title">I – Investigación</h3>
+          <ul class="checklist">
+            <li>Investiga MongoDB Atlas.</li>
+            <li>Investiga Base64.</li>
+            <li>Investiga el manejo de imágenes en Python.</li>
+            <li>Investiga interfaces en Pygame.</li>
           </ul>
 
-          <h2 class="section-title">🎨 Producción de contenido digital</h2>
-          <ul>
-            <li>Infografía: “Consultas NoSQL con MongoDB”.</li>
-            <li>Video: explicación de filtros y operadores.</li>
+          <h3 class="section-title">R – Resolución</h3>
+          <ul class="checklist">
+            <li>Modifica el código base.</li>
+            <li>Agrega nuevas funciones.</li>
+            <li>Mejora la interfaz.</li>
+            <li>Implementa mejoras reales.</li>
           </ul>
+
+          <h3 class="section-title">E – Evaluación</h3>
+          <ul class="checklist">
+            <li>Comprueba que el CRUD sea funcional.</li>
+            <li>Verifica el guardado en MongoDB.</li>
+            <li>Confirma que Base64 funcione correctamente.</li>
+            <li>Comprueba que el sistema opere sin errores.</li>
+          </ul>
+
+          <h2 class="section-title">🧩 Producto final</h2>
+          <ul class="checklist">
+            <li>Registrar datos.</li>
+            <li>Guardar imagen en Base64.</li>
+            <li>Conectarse a MongoDB Atlas.</li>
+            <li>Permitir CRUD completo.</li>
+            <li>Tener modificaciones funcionales.</li>
+          </ul>
+
+          <h2 class="section-title">💻 Practicario</h2>
+
+          <h3 class="section-title">🔧 Paso 1 – Instalar librerías</h3>
+          <pre class="code-block"><code>pip install pygame pymongo dnspython</code></pre>
+
+          <h3 class="section-title">🔧 Paso 2 – Código base obligatorio</h3>
+          <p>
+            Este código es el punto de partida. Debe ser modificado y debe seguir funcionando.
+          </p>
+          <pre class="code-block"><code>import pygame
+import sys
+import base64
+from pymongo import MongoClient
+from datetime import datetime
+
+# =========================
+# MONGODB
+# =========================
+MONGO_URI = "TU_URI_AQUI"
+client = MongoClient(MONGO_URI)
+
+db = client["caceria_datos"]
+coleccion = db["registros"]
+
+# =========================
+# FUNCIONES
+# =========================
+def imagen_a_base64(ruta):
+    try:
+        with open(ruta, "rb") as archivo:
+            return base64.b64encode(archivo.read()).decode("utf-8")
+    except:
+        return ""
+
+def guardar_registro(data):
+    coleccion.insert_one(data)
+
+def obtener_registros():
+    return list(coleccion.find({}, {"foto_base64": 0}))
+
+def actualizar_registro(nombre, nuevos_datos):
+    coleccion.update_one(
+        {"nombre_lugar": nombre},
+        {"$set": nuevos_datos}
+    )
+
+def eliminar_registro(nombre):
+    coleccion.delete_one({"nombre_lugar": nombre})
+
+# =========================
+# PYGAME
+# =========================
+pygame.init()
+
+ANCHO, ALTO = 1000, 650
+pantalla = pygame.display.set_mode((ANCHO, ALTO))
+pygame.display.set_caption("Cacería de Datos")
+
+fuente = pygame.font.SysFont("Arial", 22)
+reloj = pygame.time.Clock()
+
+BLANCO = (255,255,255)
+NEGRO = (30,30,30)
+AZUL = (70,120,255)
+GRIS = (230,230,230)
+VERDE = (50,170,90)
+ROJO = (200,70,70)
+
+# =========================
+# INPUT BOX
+# =========================
+class InputBox:
+    def __init__(self, x, y, w, h):
+        self.rect = pygame.Rect(x, y, w, h)
+        self.texto = ""
+        self.activo = False
+
+    def manejar_evento(self, evento):
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            self.activo = self.rect.collidepoint(evento.pos)
+
+        if evento.type == pygame.KEYDOWN and self.activo:
+            if evento.key == pygame.K_BACKSPACE:
+                self.texto = self.texto[:-1]
+            else:
+                self.texto += evento.unicode
+
+    def dibujar(self, pantalla):
+        pygame.draw.rect(pantalla, BLANCO, self.rect)
+        pygame.draw.rect(pantalla, AZUL if self.activo else NEGRO, self.rect, 2)
+        texto_render = fuente.render(self.texto, True, NEGRO)
+        pantalla.blit(texto_render, (self.rect.x+5, self.rect.y+8))
+
+# =========================
+# CAMPOS
+# =========================
+campos = {
+    "nombre_lugar": InputBox(300, 80, 500, 35),
+    "ubicacion": InputBox(300, 130, 500, 35),
+    "tipo_lugar": InputBox(300, 180, 500, 35),
+    "nivel_actividad": InputBox(300, 230, 500, 35),
+    "comentario": InputBox(300, 280, 500, 35),
+    "ruta_imagen": InputBox(300, 330, 500, 35),
+}
+
+mensaje = ""
+registros = []
+
+# =========================
+# BOTONES
+# =========================
+btn_guardar = pygame.Rect(200, 400, 150, 50)
+btn_consultar = pygame.Rect(380, 400, 150, 50)
+btn_actualizar = pygame.Rect(560, 400, 150, 50)
+btn_eliminar = pygame.Rect(740, 400, 150, 50)
+
+# =========================
+# LOOP PRINCIPAL
+# =========================
+while True:
+    pantalla.fill(GRIS)
+
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        for campo in campos.values():
+            campo.manejar_evento(evento)
+
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+
+            # GUARDAR
+            if btn_guardar.collidepoint(evento.pos):
+                try:
+                    ruta = campos["ruta_imagen"].texto
+                    documento = {
+                        "nombre_lugar": campos["nombre_lugar"].texto,
+                        "ubicacion": campos["ubicacion"].texto,
+                        "tipo_lugar": campos["tipo_lugar"].texto,
+                        "nivel_actividad": int(campos["nivel_actividad"].texto),
+                        "comentario": campos["comentario"].texto,
+                        "foto_base64": imagen_a_base64(ruta),
+                        "fecha": datetime.utcnow()
+                    }
+                    guardar_registro(documento)
+                    mensaje = "Registro guardado"
+                except:
+                    mensaje = "Error al guardar"
+
+            # CONSULTAR
+            if btn_consultar.collidepoint(evento.pos):
+                registros = obtener_registros()
+                mensaje = f"{len(registros)} registros encontrados"
+
+            # ACTUALIZAR
+            if btn_actualizar.collidepoint(evento.pos):
+                actualizar_registro(
+                    campos["nombre_lugar"].texto,
+                    {"comentario": campos["comentario"].texto}
+                )
+                mensaje = "Registro actualizado"
+
+            # ELIMINAR
+            if btn_eliminar.collidepoint(evento.pos):
+                eliminar_registro(campos["nombre_lugar"].texto)
+                mensaje = "Registro eliminado"
+
+    # DIBUJAR CAMPOS
+    for campo in campos.values():
+        campo.dibujar(pantalla)
+
+    # BOTONES
+    pygame.draw.rect(pantalla, VERDE, btn_guardar)
+    pygame.draw.rect(pantalla, AZUL, btn_consultar)
+    pygame.draw.rect(pantalla, (240,180,60), btn_actualizar)
+    pygame.draw.rect(pantalla, ROJO, btn_eliminar)
+
+    pantalla.blit(fuente.render("Guardar", True, BLANCO), (230,415))
+    pantalla.blit(fuente.render("Consultar", True, BLANCO), (400,415))
+    pantalla.blit(fuente.render("Actualizar", True, BLANCO), (570,415))
+    pantalla.blit(fuente.render("Eliminar", True, BLANCO), (760,415))
+
+    pantalla.blit(fuente.render(mensaje, True, NEGRO), (50, 500))
+
+    pygame.display.flip()
+    reloj.tick(60)</code></pre>
+
+          <h2 class="section-title">🔧 Modificación obligatoria</h2>
+          <p>Debes realizar mínimo 2 modificaciones funcionales reales.</p>
+
+          <h3 class="section-title">❌ No válido</h3>
+          <ul class="checklist">
+            <li>Cambiar colores.</li>
+            <li>Cambiar textos.</li>
+            <li>Mover botones.</li>
+          </ul>
+
+          <h3 class="section-title">✅ Sí válido</h3>
+          <ul class="checklist">
+            <li>Validación de campos.</li>
+            <li>Nuevos campos.</li>
+            <li>Mostrar registros en pantalla.</li>
+            <li>Filtros o búsqueda.</li>
+            <li>Confirmación antes de eliminar.</li>
+            <li>Mejor interfaz.</li>
+            <li>Cambio en lógica de consulta.</li>
+          </ul>
+
+          <h2 class="section-title">📦 Entregables</h2>
+          <ul class="checklist">
+            <li>Código modificado.</li>
+            <li>Capturas del sistema.</li>
+            <li>MongoDB con datos.</li>
+            <li>Evidencia de cambios.</li>
+            <li>Método T.I.R.E. aplicado.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 Reflexión final</h2>
+          <ul class="checklist">
+            <li>¿Qué cambiaste del sistema?</li>
+            <li>¿Cómo mejoraste el código base?</li>
+            <li>¿Qué aprendiste?</li>
+          </ul>
+
+          <h2 class="section-title">💡 Mensaje final</h2>
+          <p>
+            Este proyecto no es para copiar. Es para demostrar que puedes entender un sistema, modificarlo,
+            mejorarlo y construir sobre él.
+          </p>
 
           <h2 class="section-title">🌐 Google Sites</h2>
-          <p>Página: <strong>Práctica 5 – Consultas avanzadas en MongoDB</strong></p>
-          <p>Sube:</p>
-          <ul>
-            <li>Capturas de consultas.</li>
-            <li>Explicación de cada filtro.</li>
-            <li>Contenido digital.</li>
-            <li>Reflexión: ¿por qué consultar bien los datos es clave en una app?</li>
-          </ul>
-
-          <h2 class="section-title">🏠 Actividad fuera del aula</h2>
-          <p>Investiga: ¿qué hace el operador $eq?</p>
-
-          <h2 class="section-title">✅ Cierre</h2>
-          <p>Al finalizar esta práctica sabes extraer información útil de una base NoSQL.</p>
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>Los ejercicios introducen filtros por rango y ordenamiento, habilidades básicas para construir búsquedas útiles en sistemas reales.</p>
-
-          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <p>
+            Toda la documentación de esta práctica debe realizarse en tu Google Sites.
+          </p>
           <ul class="checklist">
-            <li>E-commerce: catálogo, carrito y historial de compras.</li>
-            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
-            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
-            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
-            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+            <li>Sube el desarrollo completo del método T.I.R.E.</li>
+            <li>Incluye capturas del sistema funcionando.</li>
+            <li>Agrega evidencias de MongoDB Atlas con datos guardados.</li>
+            <li>Documenta las modificaciones funcionales que realizaste.</li>
+            <li>Integra tu reflexión final y conclusiones.</li>
           </ul>
-
-          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En SQL usarías WHERE, ORDER BY y LIMIT; en MongoDB esos conceptos se expresan con filtros JSON y métodos como sort y limit.</p>
-
-          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
-          <ul class="checklist">
-            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
-            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
-            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
-            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
-            <li>Usa paginación o límites en lecturas de alto volumen.</li>
-          </ul>
-
-          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>MongoDB genera un plan de consulta, decide si usar índices y ordena en memoria o usando el índice según el caso.</p>
-
-          <h2 class="section-title">❗ Errores Comunes</h2>
-          <ul class="checklist">
-            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
-            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
-            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
-            <li>No documentar la estructura JSON y sus cambios.</li>
-            <li>Confundir colección con documento o arreglo con objeto.</li>
-          </ul>
-
-          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
-          <ul class="checklist">
-            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
-            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
-            <li>Usar índices en campos consultados con frecuencia.</li>
-            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
-            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
-          </ul>
-
-          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
-          <ul class="checklist">
-            <li>¿Qué diferencia hay entre filtrar y ordenar?</li>
-            <li>¿Cómo afecta el rendimiento ordenar sin índice?</li>
-            <li>¿Qué impacto tiene limitar resultados en la UX?</li>
-            <li>¿Qué filtro sería más selectivo y por qué?</li>
-          </ul>
-
-          <h2 class="section-title">🧭 Retos Aplicados</h2>
-          <ul class="checklist">
-            <li>Combina dos filtros en una sola consulta y justifica su lógica.</li>
-            <li>Mide cuántos documentos devuelve cada consulta y explica por qué.</li>
-            <li>Aplica sort y limit juntos para simular un ranking.</li>
-          </ul>
-
-          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
-          <ul class="checklist">
-            <li>Diseña un buscador con filtros múltiples y justifica cada condición.</li>
-            <li>Propón índices para acelerar las consultas más usadas.</li>
-          </ul>
-
-          <h2 class="section-title">📊 Rúbrica detallada</h2>
-          <table class="table-like" aria-label="Rúbrica detallada">
-            <thead>
-              <tr><th>Nivel</th><th>Descripción</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
-              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
-              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
-              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
-            </tbody>
-          </table>
-
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 6 — CRUD Completo con MongoDB. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
-
         </section>
       </main>
     </div>
