@@ -130,13 +130,13 @@
           <h2 class="section-title">💻 Practicario</h2>
 
           <h3 class="section-title">🔧 Paso 1 – Instalar librerías</h3>
-          <pre class="code-block"><code>pip install pygame pymongo dnspython</code></pre>
+          <pre class="code-block editor-block language-bash" data-title="terminal"><code class="language-bash">pip install pygame pymongo dnspython</code></pre>
 
           <h3 class="section-title">🔧 Paso 2 – Código base obligatorio</h3>
           <p>
             Este código es el punto de partida. Debe ser modificado y debe seguir funcionando.
           </p>
-          <pre class="code-block"><code>import pygame
+          <pre class="code-block editor-block language-python" data-title="main.py"><code class="language-python">import pygame
 import sys
 import base64
 from pymongo import MongoClient
@@ -372,5 +372,9 @@ while True:
         </section>
       </main>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script>Prism.highlightAll();</script>
   </body>
 </html>
