@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 8 · Lectura y visualización de JSON</title>
+    <title>Práctica 8 · PokeDesk con Python, Flet y Firebase</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,7 +11,7 @@
       <aside class="sidebar">
         <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
         <div class="nav-title">Menú</div>
-                                                <nav class="nav" aria-label="Navegación principal">
+        <nav class="nav" aria-label="Navegación principal">
           <a href="index.html">Inicio</a>
           <details class="nav-section">
             <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
@@ -35,7 +35,7 @@
             <summary>Unidad II · Modelado Documental y Estructura de Datos con JSON</summary>
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Pokedex</a>
-              <a class="active" href="practica-8.html">Práctica 8 — Agregaciones y Reportes Estadísticos con MongoDB</a>
+              <a class="active" href="practica-8.html">Práctica 8 — PokeDesk con Python, Flet y Firebase</a>
               <a href="practica-9.html">Práctica 9 — Integración de Flet con Firebase Firestore</a>
               <a href="practica-10.html">Práctica 10 — CRUD Completo con Firebase Firestore</a>
               <a href="practica-11.html">Práctica 11 — Consultas y Ordenamientos en Firestore</a>
@@ -65,136 +65,1442 @@
       <main class="content">
         <section class="card">
           <div class="unit-label">Unidad II · Modelado Documental y Estructura de Datos con JSON</div>
-          <div class="badge">🟦 Práctica 8</div>
-          <h1 class="page-title">Lectura y visualización de JSON</h1>
-          <p class="page-subtitle">Leer documentos y mostrarlos en pantalla con claridad.</p>
+          <div class="badge">🧪 GUÍA DE TRABAJO Y PRACTICARIO</div>
+          <h1 class="page-title">PokeDesk con Python, Flet y Firebase</h1>
+          <p class="page-subtitle">Evolución de una Pokédex web.</p>
 
-          <h2 class="section-title">📘 Guía de trabajo</h2>
+          <h2 class="section-title">📘 1. Introducción</h2>
+          <p>En esta práctica continuarás el desarrollo de una aplicación que ya conoces: una Pokédex.</p>
+          <p>En la actividad anterior construiste una versión funcional utilizando:</p>
+          <ul class="checklist">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+          <p>Ahora trabajarás con una nueva versión llamada PokeDesk, desarrollada con:</p>
+          <ul class="checklist">
+            <li>Python</li>
+            <li>Flet</li>
+            <li>Firebase</li>
+          </ul>
           <p>
-            El alumno consultará documentos en Firestore y mostrará la información en una interfaz,
-            reforzando el ciclo completo: guardar, leer y visualizar datos.
+            Esta práctica no es independiente, es una continuación directa, cuyo objetivo principal es que
+            comprendas cómo un mismo problema puede resolverse con diferentes tecnologías.
           </p>
 
-          <div class="callout">
-            No basta con guardar datos: el verdadero valor está en poder leerlos y mostrarlos correctamente.
-          </div>
-
-          <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>Leer y visualizar JSON correctamente es la base para depurar errores y validar datos. Esta práctica entrena tu capacidad para interpretar estructuras complejas.</p>
-          <h2 class="section-title">🎯 Objetivos de aprendizaje</h2>
+          <h2 class="section-title">🔗 2. Relación con la práctica anterior</h2>
+          <p>Antes:</p>
           <ul class="checklist">
-            <li>Leer documentos desde Firestore.</li>
-            <li>Recorrer los campos y mostrarlos en HTML.</li>
-            <li>Separar claramente la capa de datos y la capa de presentación.</li>
+            <li>Estructura → <code>index.html</code></li>
+            <li>Estilos → <code>styles.css</code></li>
+            <li>Lógica → <code>script.js</code></li>
           </ul>
+          <p>Ahora:</p>
+          <div class="callout">Todo se concentra en un solo archivo: <strong>main.py</strong></div>
+          <p>Esto implica un cambio importante en la forma de pensar el desarrollo.</p>
 
-          <h2 class="section-title">🧪 Practicario (entregable)</h2>
+          <h2 class="section-title">🎯 3. Propósito de la actividad</h2>
           <ul class="checklist">
-            <li>Leer al menos un documento o una colección pequeña.</li>
-            <li>Mostrar los datos en una lista, tabla o tarjetas.</li>
-            <li>Incluir un estado de “sin datos” o “cargando” si es posible.</li>
+            <li>Comprender el uso de Flet en un proyecto real.</li>
+            <li>Integrar una base de datos en la nube (Firebase).</li>
+            <li>Analizar diferencias entre dos paradigmas de desarrollo.</li>
+            <li>Identificar cómo interactúan interfaz, lógica y datos.</li>
           </ul>
 
-          <h2 class="section-title">🧩 Buenas prácticas sugeridas</h2>
-          <ul>
-            <li>Mostrar solo los campos relevantes para el usuario.</li>
-            <li>Formatear números, fechas y textos largos cuando sea necesario.</li>
-            <li>Evitar mezclar demasiada lógica dentro del HTML.</li>
-          </ul>
-
-          <h2 class="section-title">🎨 Producto digital</h2>
-          <p>Infografía de flujo: captura → JSON → Firestore → lectura → visualización.</p>
-
-          <h2 class="section-title">✅ Evidencias para Google Sites</h2>
+          <h2 class="section-title">🧠 4. Competencias a desarrollar</h2>
           <ul class="checklist">
-            <li>Captura del resultado visual.</li>
-            <li>Captura o fragmento del código de lectura.</li>
-            <li>Infografía final.</li>
+            <li>Análisis de código estructurado en Python.</li>
+            <li>Comprensión de arquitecturas cliente-servicio.</li>
+            <li>Integración de APIs externas.</li>
+            <li>Pensamiento comparativo entre tecnologías.</li>
           </ul>
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>Los ejercicios de lectura te obligan a identificar tipos de datos, niveles de anidación y coherencia en la estructura.</p>
 
-          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <h2 class="section-title">📚 5. Conocimientos previos</h2>
           <ul class="checklist">
-            <li>E-commerce: catálogo, carrito y historial de compras.</li>
-            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
-            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
-            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
-            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+            <li>DOM (documento HTML).</li>
+            <li>Eventos en JavaScript.</li>
+            <li>Consumo de APIs.</li>
+            <li>Uso básico de Flet.</li>
           </ul>
 
-          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En SQL la lectura se hace en filas y columnas; en MongoDB debes interpretar objetos y arreglos con diferentes niveles.</p>
-
-          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
+          <h2 class="section-title">🔍 6. Fase previa de investigación (2 horas)</h2>
+          <h3 class="section-title">⏱️ Organización del tiempo</h3>
           <ul class="checklist">
-            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
-            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
-            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
-            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
-            <li>Usa paginación o límites en lecturas de alto volumen.</li>
+            <li>🕐 Bloque 1 (40 min) — Firebase: ¿Qué es Firebase?, ¿qué servicios ofrece?, ¿qué es Firestore?</li>
+            <li>🕑 Bloque 2 (40 min) — Backend y APIs: ¿Qué es una REST API?, ¿qué es autenticación?, ¿qué significa autenticación anónima?</li>
+            <li>🕒 Bloque 3 (40 min) — Comparación: diferencias entre frontend tradicional y Flet, y ventajas de usar una base de datos en la nube.</li>
           </ul>
 
-          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>MongoDB devuelve documentos BSON convertidos a JSON en el cliente, conservando tipos como ObjectId y Date para su correcta interpretación.</p>
-
-          <h2 class="section-title">❗ Errores Comunes</h2>
+          <h2 class="section-title">❓ 7. Preguntas orientadoras</h2>
           <ul class="checklist">
-            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
-            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
-            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
-            <li>No documentar la estructura JSON y sus cambios.</li>
-            <li>Confundir colección con documento o arreglo con objeto.</li>
+            <li>Investiga por qué una aplicación puede requerir autenticación aunque no tenga registro tradicional de usuarios. Explica qué riesgos existirían si cualquiera pudiera escribir directamente en la base de datos sin control, y relaciona tu respuesta con el uso de autenticación anónima en Firebase.</li>
+            <li>Compara Firebase con el almacenamiento local del navegador. No te limites a decir cuál es “mejor”: analiza persistencia, seguridad, sincronización entre dispositivos, control de acceso, escalabilidad y recuperación de datos, e incluye un ejemplo concreto aplicado a PokeDesk.</li>
+            <li>Explica qué papel juega una API en una aplicación moderna y demuestra tu respuesta identificando en esta práctica qué datos vienen de PokeAPI, cuáles se guardan en Firebase y cómo ambos servicios cumplen funciones distintas dentro del flujo completo de la app.</li>
           </ul>
 
-          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
+          <h2 class="section-title">📄 8. Entregable de investigación</h2>
+          <p>Elige uno:</p>
           <ul class="checklist">
-            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
-            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
-            <li>Usar índices en campos consultados con frecuencia.</li>
-            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
-            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
+            <li>Cuadro comparativo.</li>
+            <li>Mapa conceptual.</li>
+            <li>Resumen estructurado.</li>
           </ul>
-
-          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
+          <p>Debe incluir:</p>
           <ul class="checklist">
-            <li>¿Qué problemas aparecen si un JSON no tiene formato consistente?</li>
-            <li>¿Cómo detectarías valores nulos peligrosos?</li>
-            <li>¿Qué campos son candidatos a indexarse?</li>
-            <li>¿Qué decisiones de lectura impactan el rendimiento?</li>
+            <li>Firebase.</li>
+            <li>REST API.</li>
+            <li>Diferencias entre enfoques.</li>
           </ul>
 
-          <h2 class="section-title">🧭 Retos Aplicados</h2>
+          <h2 class="section-title">🧰 9. Materiales</h2>
           <ul class="checklist">
-            <li>Identifica inconsistencias en un JSON grande y propón correcciones.</li>
-            <li>Distingue campos opcionales vs obligatorios en una muestra real.</li>
-            <li>Propón un esquema mínimo para validar ese JSON.</li>
+            <li>Código base <code>main.py</code>.</li>
+            <li>Python instalado.</li>
+            <li>Flet configurado.</li>
+            <li>Navegador.</li>
           </ul>
 
-          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
+          <h2 class="section-title">🧩 10. Explicación del proyecto actual</h2>
+          <p>La app PokeDesk:</p>
           <ul class="checklist">
-            <li>Diseña una visualización que muestre jerarquías de un JSON complejo.</li>
-            <li>Explica cómo mapearías ese JSON a un modelo relacional.</li>
+            <li>Consulta datos desde PokeAPI.</li>
+            <li>Muestra Pokémon.</li>
+            <li>Permite búsqueda.</li>
+            <li>Permite seleccionar.</li>
+            <li>Permite guardar favoritos en Firebase.</li>
           </ul>
 
-          <h2 class="section-title">📊 Rúbrica detallada</h2>
-          <table class="table-like" aria-label="Rúbrica detallada">
+          <h2 class="section-title">🔄 11. Comparación con la práctica anterior</h2>
+          <h3 class="section-title">Organización del proyecto</h3>
+          <table class="table-like" aria-label="Comparación del proyecto">
             <thead>
-              <tr><th>Nivel</th><th>Descripción</th></tr>
+              <tr>
+                <th>Antes</th>
+                <th>Ahora</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
-              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
-              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
-              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
+              <tr>
+                <td><code>index.html</code></td>
+                <td><code>main.py</code></td>
+              </tr>
+              <tr>
+                <td><code>styles.css</code></td>
+                <td>Flet styling</td>
+              </tr>
+              <tr>
+                <td><code>script.js</code></td>
+                <td>Lógica en Python</td>
+              </tr>
             </tbody>
           </table>
 
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 9. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
+          <h3 class="section-title">Construcción de interfaz</h3>
+          <p>Antes: HTML declarativo.</p>
+          <p>Ahora: componentes como <code>ft.Container()</code>, <code>ft.Row()</code> y <code>ft.Column()</code>.</p>
 
+          <h3 class="section-title">Manejo de eventos</h3>
+          <p>Antes: <code>button.onclick</code>.</p>
+          <p>Ahora: <code>on_click=lambda e: ...</code>.</p>
+
+          <h3 class="section-title">Consumo de API</h3>
+          <p>Antes: <code>fetch()</code>.</p>
+          <p>Ahora: <code>fetch_json()</code>.</p>
+
+          <h3 class="section-title">Manipulación</h3>
+          <p>Antes: DOM.</p>
+          <p>Ahora: renderización declarativa.</p>
+
+          <h2 class="section-title">⚖️ 12. Diferencias clave (explicación profunda)</h2>
+          <ul class="checklist">
+            <li>Centralización del código en <code>main.py</code>, con mayor control del flujo y menor fragmentación.</li>
+            <li>Representación visual mediante componentes Python en lugar de etiquetas HTML.</li>
+            <li>Eventos manejados como funciones, no como atributos HTML.</li>
+            <li>Estado controlado con variables como <code>favorite_ids</code> y <code>selected_pokemon_id</code>.</li>
+          </ul>
+
+          <h2 class="section-title">🔥 13. ¿Qué es Firebase?</h2>
+          <p>Firebase es una plataforma que permite autenticación, base de datos y backend sin servidor.</p>
+
+          <h2 class="section-title">🗄️ 14. ¿Qué es Firestore?</h2>
+          <p>Es una base de datos NoSQL en la nube que guarda datos en documentos y se consulta mediante API.</p>
+
+          <h2 class="section-title">🔐 15. ¿Qué es autenticación anónima?</h2>
+          <p>Permite crear sesión sin usuario real y obtener un identificador único (<code>UID</code>).</p>
+
+          <h2 class="section-title">🌐 16. ¿Qué es una REST API?</h2>
+          <p>Es una forma de comunicación entre sistemas usando HTTP.</p>
+          <ul class="checklist">
+            <li><code>GET</code> → obtener datos.</li>
+            <li><code>POST</code> → enviar datos.</li>
+            <li><code>PATCH</code> → actualizar.</li>
+            <li><code>DELETE</code> → eliminar.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 17. Configuración de Firebase (paso a paso)</h2>
+          <ul class="checklist">
+            <li>Crear proyecto en Firebase Console.</li>
+            <li>Registrar Web App desde el ícono web y asignar nombre.</li>
+            <li>Obtener configuración para <code>FIREBASE_API_KEY</code> y <code>FIREBASE_PROJECT_ID</code>.</li>
+            <li>Activar autenticación anónima en <code>Authentication → Anonymous → Enable</code>.</li>
+            <li>Crear Firestore en modo prueba.</li>
+            <li>Usar reglas de seguridad para práctica: <code>allow read, write: if true;</code></li>
+          </ul>
+
+          <h2 class="section-title">🔗 18. ¿Cómo se conecta el código?</h2>
+          <ul class="checklist">
+            <li>Autenticación con <code>sign_in_anonymously_with_firebase()</code>.</li>
+            <li>Generación de <code>idToken</code> y <code>uid</code>.</li>
+            <li>Uso del token con <code>firestore_auth_headers(firebase_id_token)</code>.</li>
+            <li>Guardar favoritos con <code>firestore_save_favorite()</code>.</li>
+            <li>Eliminar favoritos con <code>firestore_delete_favorite()</code>.</li>
+          </ul>
+
+          <h2 class="section-title">🧪 19. Guía práctica</h2>
+          <ul class="checklist">
+            <li>Paso 1: ejecuta el proyecto.</li>
+            <li>Paso 2: observa la carga de Pokémon.</li>
+            <li>Paso 3: busca un Pokémon.</li>
+            <li>Paso 4: selecciona uno.</li>
+            <li>Paso 5: guárdalo en favoritos.</li>
+          </ul>
+
+          <h2 class="section-title">👀 20. Momentos de análisis</h2>
+          <p>Analiza las siguientes funciones y documenta lo que descubras con evidencias del código:</p>
+          <ul class="checklist">
+            <li><code>build_pokemon_collection_async()</code>: explica cómo obtiene los datos, por qué usa concurrencia y qué problemas intenta evitar con el semáforo. Investiga además qué pasaría si se aumentara demasiado el número de solicitudes simultáneas.</li>
+            <li><code>initialize_firebase_session()</code>: identifica qué datos devuelve Firebase, para qué sirve cada uno y por qué la aplicación no podría guardar favoritos si esta fase falla.</li>
+            <li><code>toggle_favorite()</code>: describe el flujo completo cuando un Pokémon se agrega o se elimina de favoritos. Relaciona la parte visual con la persistencia real en Firestore y explica qué función HTTP se usa en cada caso.</li>
+          </ul>
+
+          <h2 class="section-title">❓ 21. Preguntas durante la práctica</h2>
+          <ul class="checklist">
+            <li>¿Dónde se almacenan exactamente los favoritos? No respondas solo “en Firebase”: identifica la ruta documental que construye el programa, explica cómo se organiza por usuario y verifica qué campos se guardan realmente dentro de cada documento.</li>
+            <li>¿Qué función usa <code>PATCH</code> y por qué se eligió ese método en lugar de <code>POST</code> o <code>PUT</code>? Investiga brevemente la diferencia entre estos métodos HTTP y justifica cuál tiene más sentido en este caso.</li>
+            <li>¿Qué pasa si no hay conexión a Internet o si uno de los servicios responde con error? Revisa el manejo de excepciones del archivo, identifica qué mensajes recibe el usuario y propone una mejora para que la aplicación sea más clara o más robusta ante fallos.</li>
+          </ul>
+
+          <h2 class="section-title">🧩 22. Actividad de código</h2>
+          <p>Identifica en <code>main.py</code> cada una de las siguientes partes y explica qué responsabilidad cumple dentro del sistema:</p>
+          <ul class="checklist">
+            <li>Configuración: localiza constantes, variables de entorno y parámetros generales; explica por qué conviene centralizarlos.</li>
+            <li>Modelos (<code>@dataclass</code>): describe qué representa cada clase y cómo ayuda a organizar la información que llega desde la API.</li>
+            <li>API: ubica las funciones que consultan PokeAPI y analiza cómo convierten respuestas JSON en objetos útiles para la app.</li>
+            <li>Firebase: señala dónde se autentica la app, dónde se construyen encabezados, y dónde se guardan o eliminan favoritos.</li>
+            <li>UI: identifica qué partes crean la interfaz y cómo interactúan con el estado para actualizar la vista.</li>
+          </ul>
+
+          <h2 class="section-title">⚠️ 23. Errores comunes</h2>
+          <ul class="checklist">
+            <li>Firebase no conecta → API key incorrecta.</li>
+            <li>No guarda favoritos → reglas mal configuradas.</li>
+            <li>No carga → error en API.</li>
+          </ul>
+
+          <h2 class="section-title">🧾 24. Actividad final</h2>
+          <p>Elabora un documento de análisis donde expliques y argumentes:</p>
+          <ul class="checklist">
+            <li>El flujo completo de la aplicación, desde que inicia la interfaz hasta que un Pokémon queda guardado como favorito en Firestore. Debes mencionar funciones, servicios involucrados y datos que circulan entre ellos.</li>
+            <li>Las diferencias entre esta práctica y la práctica anterior, comparando arquitectura, organización del código, manejo de eventos, persistencia de datos y forma de construir la interfaz.</li>
+            <li>Las ventajas y desventajas del enfoque actual. No te limites a una lista breve: justifica qué gana el proyecto con Flet y Firebase, y qué complejidades nuevas aparecen frente a la versión web tradicional.</li>
+          </ul>
+
+          <h2 class="section-title">🧠 25. Conclusión</h2>
+          <ul class="checklist">
+            <li>Un mismo problema puede resolverse con distintas tecnologías.</li>
+            <li>Python puede reemplazar el frontend tradicional.</li>
+            <li>Firebase permite crear apps completas sin backend propio.</li>
+          </ul>
+
+          <h2 class="section-title">💡 26. Lecciones aprendidas</h2>
+          <ul class="checklist">
+            <li>Las APIs son fundamentales.</li>
+            <li>El backend puede ser un servicio externo.</li>
+            <li>Flet simplifica la UI.</li>
+            <li>Firebase facilita persistencia.</li>
+            <li>Comparar tecnologías mejora tu comprensión.</li>
+          </ul>
+
+          <h2 class="section-title">💻 Código base: <code>main.py</code></h2>
+          <pre class="code-block editor-block language-python protected-code" data-title="main.py"><code class="language-python">from __future__ import annotations
+
+
+import asyncio
+import json
+import os
+import urllib.error
+import urllib.parse
+import urllib.request
+from dataclasses import dataclass
+
+
+import flet as ft
+
+
+# =========================================================
+# CONFIGURACIÓN
+# =========================================================
+API_URL = "https://pokeapi.co/api/v2/pokemon?limit=30"
+
+
+# Firebase
+FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY", "AQUI_VA_TU_FIREBASE_API_KEY")
+FIREBASE_PROJECT_ID = os.getenv("FIREBASE_PROJECT_ID", "AQUI_VA_TU_FIREBASE_PROJECT_ID")
+
+
+TYPE_COLORS = {
+   "grass": "#5FAE62",
+   "poison": "#9D5BBA",
+   "fire": "#F08A4B",
+   "water": "#4E9EEA",
+   "bug": "#8CB230",
+   "normal": "#9DA0AA",
+   "electric": "#E9C63E",
+   "ground": "#C09B52",
+   "fairy": "#EFA4C6",
+   "fighting": "#CE4265",
+   "psychic": "#F36D9B",
+   "rock": "#B9A15B",
+   "ghost": "#6F6ECF",
+   "ice": "#70C9C8",
+   "dragon": "#0A6DC4",
+   "dark": "#595761",
+   "steel": "#5A8EA1",
+   "flying": "#89AAE3",
+}
+
+
+TYPE_LABELS = {
+   "grass": "planta",
+   "poison": "veneno",
+   "fire": "fuego",
+   "water": "agua",
+   "bug": "bicho",
+   "normal": "normal",
+   "electric": "eléctrico",
+   "ground": "tierra",
+   "fairy": "hada",
+   "fighting": "lucha",
+   "psychic": "psíquico",
+   "rock": "roca",
+   "ghost": "fantasma",
+   "ice": "hielo",
+   "dragon": "dragón",
+   "dark": "siniestro",
+   "steel": "acero",
+   "flying": "volador",
+}
+
+
+STAT_LABELS = {
+   "hp": "PS",
+   "attack": "ataque",
+   "defense": "defensa",
+   "special-attack": "ataque especial",
+   "special-defense": "defensa especial",
+   "speed": "velocidad",
+}
+
+
+
+
+# =========================================================
+# MODELOS
+# =========================================================
+@dataclass
+class PokemonType:
+   key: str
+   label: str
+
+
+
+
+@dataclass
+class PokemonStat:
+   name: str
+   value: int
+
+
+
+
+@dataclass
+class Pokemon:
+   id: int
+   name: str
+   display_name: str
+   image: str
+   height: float
+   weight: float
+   base_experience: int
+   stats: list[PokemonStat]
+   types: list[PokemonType]
+
+
+
+
+# =========================================================
+# UTILIDADES HTTP
+# =========================================================
+def fetch_json(url: str, headers: dict | None = None) -> dict:
+   request_headers = {"User-Agent": "PokeDesk-Flet/1.0"}
+   if headers:
+       request_headers.update(headers)
+
+
+   request = urllib.request.Request(url, headers=request_headers)
+   try:
+       with urllib.request.urlopen(request, timeout=20) as response:
+           return json.load(response)
+   except urllib.error.HTTPError as exc:
+       body = exc.read().decode("utf-8", errors="ignore")
+       raise RuntimeError(f"HTTP {exc.code} al consultar {url}: {body}") from exc
+   except urllib.error.URLError as exc:
+       raise RuntimeError(f"No se pudo cargar información desde {url}") from exc
+   except Exception as exc:
+       raise RuntimeError(f"Error inesperado al cargar {url}: {exc}") from exc
+
+
+
+
+def post_json(url: str, payload: dict, headers: dict | None = None) -> dict:
+   data = json.dumps(payload).encode("utf-8")
+   request_headers = {
+       "Content-Type": "application/json",
+       "User-Agent": "PokeDesk-Flet/1.0",
+   }
+   if headers:
+       request_headers.update(headers)
+
+
+   request = urllib.request.Request(
+       url,
+       data=data,
+       headers=request_headers,
+       method="POST",
+   )
+   try:
+       with urllib.request.urlopen(request, timeout=20) as response:
+           return json.load(response)
+   except urllib.error.HTTPError as exc:
+       body = exc.read().decode("utf-8", errors="ignore")
+       raise RuntimeError(f"HTTP {exc.code}: {body}") from exc
+   except Exception as exc:
+       raise RuntimeError(f"Error en POST {url}: {exc}") from exc
+
+
+
+
+def patch_json(url: str, payload: dict, headers: dict | None = None) -> dict:
+   data = json.dumps(payload).encode("utf-8")
+   request_headers = {
+       "Content-Type": "application/json",
+       "User-Agent": "PokeDesk-Flet/1.0",
+   }
+   if headers:
+       request_headers.update(headers)
+
+
+   request = urllib.request.Request(
+       url,
+       data=data,
+       headers=request_headers,
+       method="PATCH",
+   )
+   try:
+       with urllib.request.urlopen(request, timeout=20) as response:
+           return json.load(response)
+   except urllib.error.HTTPError as exc:
+       body = exc.read().decode("utf-8", errors="ignore")
+       raise RuntimeError(f"HTTP {exc.code}: {body}") from exc
+   except Exception as exc:
+       raise RuntimeError(f"Error en PATCH {url}: {exc}") from exc
+
+
+
+
+def delete_request(url: str, headers: dict | None = None) -> None:
+   request_headers = {"User-Agent": "PokeDesk-Flet/1.0"}
+   if headers:
+       request_headers.update(headers)
+
+
+   request = urllib.request.Request(
+       url,
+       headers=request_headers,
+       method="DELETE",
+   )
+   try:
+       with urllib.request.urlopen(request, timeout=20) as response:
+           response.read()
+   except urllib.error.HTTPError as exc:
+       body = exc.read().decode("utf-8", errors="ignore")
+       raise RuntimeError(f"HTTP {exc.code}: {body}") from exc
+   except Exception as exc:
+       raise RuntimeError(f"Error en DELETE {url}: {exc}") from exc
+
+
+
+
+# =========================================================
+# POKEAPI
+# =========================================================
+def format_pokemon_name(name: str) -> str:
+   return name.replace("-", " ").title()
+
+
+
+
+def translate_type(type_name: str) -> str:
+   return TYPE_LABELS.get(type_name, type_name)
+
+
+
+
+def translate_stat(stat_name: str) -> str:
+   return STAT_LABELS.get(stat_name, stat_name.replace("-", " "))
+
+
+
+
+async def fetch_pokemon_details(url: str) -> dict:
+   return await asyncio.to_thread(fetch_json, url)
+
+
+
+
+async def build_pokemon_collection_async() -> list[Pokemon]:
+   payload = await asyncio.to_thread(fetch_json, API_URL)
+   urls = [item["url"] for item in payload.get("results", [])]
+   semaphore = asyncio.Semaphore(6)
+
+
+   async def fetch_limited(url: str) -> dict:
+       async with semaphore:
+           return await fetch_pokemon_details(url)
+
+
+   details_list = await asyncio.gather(
+       *(fetch_limited(url) for url in urls),
+       return_exceptions=True,
+   )
+
+
+   collection: list[Pokemon] = []
+
+
+   for details in details_list:
+       if isinstance(details, Exception):
+           continue
+
+
+       display_name = format_pokemon_name(details["name"])
+       artwork = details["sprites"]["other"]["official-artwork"]["front_default"]
+       sprite = details["sprites"]["front_default"]
+
+
+       collection.append(
+           Pokemon(
+               id=details["id"],
+               name=details["name"],
+               display_name=display_name,
+               image=artwork or sprite or "",
+               height=details["height"] / 10,
+               weight=details["weight"] / 10,
+               base_experience=details.get("base_experience") or 0,
+               stats=[
+                   PokemonStat(
+                       name=translate_stat(stat["stat"]["name"]),
+                       value=stat["base_stat"],
+                   )
+                   for stat in details.get("stats", [])
+               ],
+               types=[
+                   PokemonType(
+                       key=entry["type"]["name"],
+                       label=translate_type(entry["type"]["name"]),
+                   )
+                   for entry in details.get("types", [])
+               ],
+           )
+       )
+
+
+   collection.sort(key=lambda p: p.id)
+
+
+   if not collection:
+       raise RuntimeError("No se pudo cargar ningún Pokémon desde PokeAPI.")
+
+
+   return collection
+
+
+
+
+# =========================================================
+# FIREBASE AUTH + FIRESTORE REST
+# =========================================================
+def sign_in_anonymously_with_firebase() -> dict:
+   """
+   Crea una sesión anónima en Firebase Auth usando la REST API.
+   Devuelve, entre otros:
+   - idToken
+   - refreshToken
+   - localId
+   """
+   url = (
+       "AQUI_VA_TU_ENDPOINT_DE_AUTH_FIREBASE"
+       f"?key={FIREBASE_API_KEY}"
+   )
+   payload = {"returnSecureToken": True}
+   return post_json(url, payload)
+
+
+
+
+def firestore_auth_headers(firebase_id_token: str) -> dict:
+   return {
+       "Authorization": f"Bearer {firebase_id_token}",  # Aqui va tu token de sesion
+   }
+
+
+
+
+def firestore_document_url(path: str) -> str:
+   return (
+       f"AQUI_VA_TU_ENDPOINT_DE_FIRESTORE/{FIREBASE_PROJECT_ID}"
+       f"/databases/(default)/documents/{path}"
+   )
+
+
+
+
+def firestore_list_favorites(firebase_id_token: str, uid: str) -> set[int]:
+   url = firestore_document_url(f"users/{uid}/favorites")
+   try:
+       payload = fetch_json(url, headers=firestore_auth_headers(firebase_id_token))
+   except RuntimeError as exc:
+       error_text = str(exc)
+       if "HTTP 404" in error_text:
+           return set()
+       raise
+
+
+   docs = payload.get("documents", [])
+   result: set[int] = set()
+
+
+   for doc in docs:
+       fields = doc.get("fields", {})
+       pokemon_id_raw = fields.get("pokemonId", {}).get("integerValue")
+       if pokemon_id_raw is not None:
+           try:
+               result.add(int(pokemon_id_raw))
+           except Exception:
+               pass
+
+
+   return result
+
+
+
+
+def firestore_save_favorite(firebase_id_token: str, uid: str, pokemon: Pokemon) -> dict:
+   url = firestore_document_url(f"users/{uid}/favorites/{pokemon.id}")
+   payload = {
+       "fields": {
+           "pokemonId": {"integerValue": str(pokemon.id)},
+           "name": {"stringValue": pokemon.name},
+           "displayName": {"stringValue": pokemon.display_name},
+           "image": {"stringValue": pokemon.image},
+       }
+   }
+   return patch_json(url, payload, headers=firestore_auth_headers(firebase_id_token))
+
+
+
+
+def firestore_delete_favorite(firebase_id_token: str, uid: str, pokemon_id: int) -> None:
+   url = firestore_document_url(f"users/{uid}/favorites/{pokemon_id}")
+   try:
+       delete_request(url, headers=firestore_auth_headers(firebase_id_token))
+   except RuntimeError as exc:
+       if "HTTP 404" in str(exc):
+           return
+       raise
+
+
+
+
+# =========================================================
+# UI PRINCIPAL
+# =========================================================
+async def main(page: ft.Page) -> None:
+   page.title = "PokeDesk Flet + Firebase"
+   page.theme_mode = ft.ThemeMode.DARK
+   page.bgcolor = "#0F1528"
+   page.padding = 20
+   page.scroll = ft.ScrollMode.AUTO
+   page.theme = ft.Theme(color_scheme_seed="#C53239")
+
+
+   # ---------- ESTADO ----------
+   pokemon_collection: list[Pokemon] = []
+   filtered_collection: list[Pokemon] = []
+   selected_pokemon_id: int | None = None
+   favorite_ids: set[int] = set()
+   favorite_status_message = ""
+   is_loading = False
+
+
+   firebase_id_token: str | None = None
+   firebase_refresh_token: str | None = None
+   firebase_uid: str | None = None
+
+
+   # ---------- CONTROLES ----------
+   featured_container = ft.Container()
+   pokemon_list_column = ft.Column(spacing=10)
+   favorites_column = ft.Column(spacing=8)
+
+
+   loaded_count_text = ft.Text("0", weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE)
+   visible_count_text = ft.Text("0", weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE)
+   favorites_count_text = ft.Text("0", weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE)
+   status_banner = ft.Text("Listo para cargar.", color="#D3DCF4")
+
+
+   user_status_text = ft.Text("Conectando con Firebase...", color="#D3DCF4")
+   user_name_text = ft.Text("", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
+
+
+   search_field = ft.TextField(
+       label="Buscar por nombre o número",
+       hint_text="Ej. pikachu o 25",
+       bgcolor="#FFFFFF",
+       color="#132038",
+       border_radius=14,
+   )
+
+
+   refresh_button = ft.Button(
+       content="Recargar",
+       icon=ft.Icons.REFRESH,
+       bgcolor="#FFBF3D",
+       color="#132038",
+   )
+
+
+   # ---------- FUNCIONES AUXILIARES ----------
+   def show_snack(message: str, color: str = "#1C253D") -> None:
+       page.snack_bar = ft.SnackBar(
+           content=ft.Text(message),
+           bgcolor=color,
+           open=True,
+       )
+       page.update()
+
+
+   def update_auth_ui() -> None:
+       if firebase_uid:
+           user_name_text.value = "Modo práctica"
+           user_status_text.value = f"Sesión anónima activa: {firebase_uid[:10]}..."
+       else:
+           user_name_text.value = ""
+           user_status_text.value = "No se pudo iniciar la sesión anónima."
+
+
+   def get_selected_pokemon() -> Pokemon | None:
+       for pokemon in filtered_collection:
+           if pokemon.id == selected_pokemon_id:
+               return pokemon
+       for pokemon in pokemon_collection:
+           if pokemon.id == selected_pokemon_id:
+               return pokemon
+       if filtered_collection:
+           return filtered_collection[0]
+       if pokemon_collection:
+           return pokemon_collection[0]
+       return None
+
+
+   def build_type_badges(types: list[PokemonType]) -> ft.Row:
+       return ft.Row(
+           wrap=True,
+           spacing=8,
+           run_spacing=8,
+           controls=[
+               ft.Container(
+                   content=ft.Text(
+                       pokemon_type.label,
+                       color=ft.Colors.WHITE,
+                       weight=ft.FontWeight.BOLD,
+                       size=12,
+                   ),
+                   bgcolor=TYPE_COLORS.get(pokemon_type.key, "#5D6B86"),
+                   border_radius=999,
+                   padding=ft.padding.symmetric(horizontal=12, vertical=7),
+               )
+               for pokemon_type in types
+           ],
+       )
+
+
+   def update_counters() -> None:
+       loaded_count_text.value = str(len(pokemon_collection))
+       visible_count_text.value = str(len(filtered_collection))
+       favorites_count_text.value = str(len(favorite_ids))
+
+
+   def render_favorites() -> None:
+       favorites_column.controls.clear()
+
+
+       favorites = [pokemon for pokemon in pokemon_collection if pokemon.id in favorite_ids]
+       favorites.sort(key=lambda pokemon: pokemon.id)
+       update_counters()
+
+
+       if not favorites:
+           favorites_column.controls.append(
+               ft.Text(
+                   "Todavía no has agregado Pokémon a favoritos.",
+                   color="#F7D8DD",
+               )
+           )
+           return
+
+
+       for pokemon in favorites:
+           favorites_column.controls.append(
+               ft.Container(
+                   bgcolor="#F7F8FB",
+                   border_radius=16,
+                   padding=12,
+                   content=ft.Row(
+                       alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                       controls=[
+                           ft.Text(
+                               f"#{pokemon.id:03d} {pokemon.display_name}",
+                               color="#132038",
+                               weight=ft.FontWeight.BOLD,
+                           ),
+                           ft.IconButton(
+                               icon=ft.Icons.CLOSE,
+                               icon_color="#D8394F",
+                               tooltip="Quitar de favoritos",
+                               on_click=lambda e, current=pokemon: toggle_favorite(current),
+                           ),
+                       ],
+                   ),
+               )
+           )
+
+
+   def build_stat_rows(stats: list[PokemonStat]) -> ft.Column:
+       rows: list[ft.Control] = []
+       for stat in stats:
+           percentage = min((stat.value / 180) * 100, 100)
+           rows.append(
+               ft.Column(
+                   spacing=6,
+                   controls=[
+                       ft.Row(
+                           alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                           controls=[
+                               ft.Text(stat.name, color="#132038", weight=ft.FontWeight.W_600),
+                               ft.Text(str(stat.value), color="#132038", weight=ft.FontWeight.BOLD),
+                           ],
+                       ),
+                       ft.ProgressBar(
+                           value=percentage / 100,
+                           color="#4F7EFF",
+                           bgcolor="#DBE4F2",
+                           bar_height=12,
+                       ),
+                   ],
+               )
+           )
+       return ft.Column(spacing=12, controls=rows)
+
+
+   def render_featured(pokemon: Pokemon | None) -> None:
+       nonlocal favorite_status_message
+
+
+       if pokemon is None:
+           featured_container.content = ft.Container(
+               bgcolor="#FFFFFF",
+               border_radius=18,
+               padding=18,
+               content=ft.Text("No hay información para mostrar.", color="#132038"),
+           )
+           return
+
+
+       saved = pokemon.id in favorite_ids
+       can_save = firebase_uid is not None
+
+
+       favorite_button = ft.Button(
+           content="Quitar de favoritos" if saved else "Guardar en favoritos",
+           icon=ft.Icons.FAVORITE if saved else ft.Icons.FAVORITE_BORDER,
+           bgcolor="#2F8754" if saved else "#D8394F",
+           color=ft.Colors.WHITE,
+           disabled=not can_save,
+           on_click=lambda e, current=pokemon: toggle_favorite(current),
+       )
+
+
+       featured_container.content = ft.Container(
+           bgcolor="#F4EFE2",
+           border_radius=24,
+           padding=24,
+           content=ft.Column(
+               spacing=16,
+               controls=[
+                   ft.Row(
+                       alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                       vertical_alignment=ft.CrossAxisAlignment.START,
+                       controls=[
+                           ft.Column(
+                               spacing=4,
+                               controls=[
+                                   ft.Text(f"#{pokemon.id:03d}", color="#657089", size=13),
+                                   ft.Text(
+                                       pokemon.display_name,
+                                       color="#132038",
+                                       size=34,
+                                       weight=ft.FontWeight.BOLD,
+                                   ),
+                               ],
+                           ),
+                           build_type_badges(pokemon.types),
+                       ],
+                   ),
+                   ft.Container(
+                       alignment=ft.Alignment(0, 0),
+                       height=240,
+                       border_radius=24,
+                       gradient=ft.RadialGradient(
+                           center=ft.Alignment(0, 0),
+                           radius=0.9,
+                           colors=["#DFF4FF", "#F4EFE2"],
+                       ),
+                       content=ft.Image(
+                           src=pokemon.image,
+                           fit=ft.BoxFit.CONTAIN,
+                           height=220,
+                       ),
+                   ),
+                   ft.ResponsiveRow(
+                       controls=[
+                           ft.Container(
+                               col={"xs": 12, "sm": 4},
+                               bgcolor="#E7EBF4",
+                               border_radius=18,
+                               padding=14,
+                               content=ft.Column(
+                                   spacing=4,
+                                   controls=[
+                                       ft.Text("Altura", color="#657089"),
+                                       ft.Text(
+                                           f"{pokemon.height} m",
+                                           color="#132038",
+                                           weight=ft.FontWeight.BOLD,
+                                       ),
+                                   ],
+                               ),
+                           ),
+                           ft.Container(
+                               col={"xs": 12, "sm": 4},
+                               bgcolor="#E7EBF4",
+                               border_radius=18,
+                               padding=14,
+                               content=ft.Column(
+                                   spacing=4,
+                                   controls=[
+                                       ft.Text("Peso", color="#657089"),
+                                       ft.Text(
+                                           f"{pokemon.weight} kg",
+                                           color="#132038",
+                                           weight=ft.FontWeight.BOLD,
+                                       ),
+                                   ],
+                               ),
+                           ),
+                           ft.Container(
+                               col={"xs": 12, "sm": 4},
+                               bgcolor="#E7EBF4",
+                               border_radius=18,
+                               padding=14,
+                               content=ft.Column(
+                                   spacing=4,
+                                   controls=[
+                                       ft.Text("Experiencia base", color="#657089"),
+                                       ft.Text(
+                                           str(pokemon.base_experience),
+                                           color="#132038",
+                                           weight=ft.FontWeight.BOLD,
+                                       ),
+                                   ],
+                               ),
+                           ),
+                       ]
+                   ),
+                   ft.Row(
+                       wrap=True,
+                       alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                       controls=[
+                           favorite_button,
+                           ft.Text(
+                               favorite_status_message if firebase_uid else "No hay sesión de Firebase disponible.",
+                               color="#657089",
+                           ),
+                       ],
+                   ),
+                   build_stat_rows(pokemon.stats),
+               ],
+           ),
+       )
+
+
+   def render_pokemon_list() -> None:
+       pokemon_list_column.controls.clear()
+
+
+       if not filtered_collection:
+           pokemon_list_column.controls.append(
+               ft.Container(
+                   bgcolor="#FFFFFF",
+                   border_radius=18,
+                   padding=18,
+                   content=ft.Text("No se encontraron Pokémon con ese nombre.", color="#132038"),
+               )
+           )
+           return
+
+
+       for pokemon in filtered_collection:
+           is_selected = pokemon.id == selected_pokemon_id
+           pokemon_list_column.controls.append(
+               ft.Container(
+                   bgcolor="#EEF2F8" if is_selected else "#F7F8FB",
+                   border_radius=22,
+                   padding=14,
+                   ink=True,
+                   on_click=lambda e, current=pokemon: select_pokemon(current),
+                   content=ft.Row(
+                       vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                       controls=[
+                           ft.Image(
+                               src=pokemon.image,
+                               width=58,
+                               height=58,
+                               fit=ft.BoxFit.CONTAIN,
+                           ),
+                           ft.Column(
+                               expand=True,
+                               spacing=2,
+                               controls=[
+                                   ft.Text(f"#{pokemon.id:03d}", color="#657089", size=12),
+                                   ft.Text(
+                                       pokemon.display_name,
+                                       color="#132038",
+                                       size=16,
+                                       weight=ft.FontWeight.BOLD,
+                                   ),
+                               ],
+                           ),
+                           build_type_badges(pokemon.types),
+                       ],
+                   ),
+               )
+           )
+
+
+   def select_pokemon(pokemon: Pokemon) -> None:
+       nonlocal selected_pokemon_id
+       selected_pokemon_id = pokemon.id
+       render_pokemon_list()
+       render_featured(pokemon)
+       page.update()
+
+
+   def filter_pokemon(_: ft.ControlEvent | None = None) -> None:
+       nonlocal filtered_collection, selected_pokemon_id
+
+
+       query = (search_field.value or "").strip().lower()
+
+
+       filtered_collection = [
+           pokemon
+           for pokemon in pokemon_collection
+           if query in pokemon.name.lower()
+           or query in pokemon.display_name.lower()
+           or query in str(pokemon.id)
+       ]
+
+
+       if not any(pokemon.id == selected_pokemon_id for pokemon in filtered_collection):
+           selected_pokemon_id = filtered_collection[0].id if filtered_collection else None
+
+
+       render_pokemon_list()
+       render_featured(get_selected_pokemon())
+       update_counters()
+       page.update()
+
+
+   # ---------- FIREBASE FAVORITOS ----------
+   async def load_favorites() -> None:
+       nonlocal favorite_ids
+       if not firebase_uid or not firebase_id_token:
+           favorite_ids = set()
+           return
+
+
+       favorite_ids = await asyncio.to_thread(
+           firestore_list_favorites,
+           firebase_id_token,
+           firebase_uid,
+       )
+
+
+   def toggle_favorite(pokemon: Pokemon) -> None:
+       nonlocal favorite_status_message, favorite_ids
+
+
+       if not firebase_uid or not firebase_id_token:
+           show_snack("Firebase no está disponible para guardar favoritos.", "#8B1E2D")
+           return
+
+
+       async def persist_and_refresh() -> None:
+           nonlocal favorite_status_message, favorite_ids
+           try:
+               if pokemon.id in favorite_ids:
+                   await asyncio.to_thread(
+                       firestore_delete_favorite,
+                       firebase_id_token,
+                       firebase_uid,
+                       pokemon.id,
+                   )
+                   favorite_ids.remove(pokemon.id)
+                   favorite_status_message = f"{pokemon.display_name} se eliminó de favoritos."
+               else:
+                   await asyncio.to_thread(
+                       firestore_save_favorite,
+                       firebase_id_token,
+                       firebase_uid,
+                       pokemon,
+                   )
+                   favorite_ids.add(pokemon.id)
+                   favorite_status_message = f"{pokemon.display_name} se guardó en favoritos."
+
+
+               render_favorites()
+               render_featured(get_selected_pokemon())
+               show_snack(favorite_status_message, "#2F8754")
+               page.update()
+           except Exception as exc:
+               show_snack(f"No se pudo actualizar Firebase: {exc}", "#8B1E2D")
+
+
+       page.run_task(persist_and_refresh)
+
+
+   # ---------- CARGA DE POKÉMON ----------
+   def load_pokemon_data(_: ft.ControlEvent | None = None) -> None:
+       page.run_task(load_pokemon_data_async)
+
+
+   async def load_pokemon_data_async() -> None:
+       nonlocal pokemon_collection, filtered_collection, selected_pokemon_id
+       nonlocal favorite_status_message, is_loading
+
+
+       if is_loading:
+           return
+
+
+       is_loading = True
+       refresh_button.disabled = True
+       refresh_button.content = "Cargando..."
+       status_banner.value = "Cargando Pokémon desde PokeAPI..."
+       featured_container.content = ft.Container(
+           alignment=ft.Alignment(0, 0),
+           padding=30,
+           content=ft.ProgressRing(color="#4EC7FF"),
+       )
+       page.update()
+
+
+       try:
+           pokemon_collection = await build_pokemon_collection_async()
+           filtered_collection = list(pokemon_collection)
+           selected_pokemon_id = pokemon_collection[0].id if pokemon_collection else None
+           favorite_status_message = ""
+
+
+           await load_favorites()
+           render_pokemon_list()
+           render_favorites()
+           render_featured(get_selected_pokemon())
+           update_counters()
+           status_banner.value = f"Datos cargados: {len(pokemon_collection)} Pokémon."
+       except Exception as exc:
+           status_banner.value = f"Error al cargar: {exc}"
+           featured_container.content = ft.Container(
+               bgcolor="#FFFFFF",
+               border_radius=18,
+               padding=18,
+               content=ft.Text(str(exc), color="#132038"),
+           )
+           pokemon_list_column.controls.clear()
+           favorites_column.controls.clear()
+           update_counters()
+       finally:
+           is_loading = False
+           refresh_button.disabled = False
+           refresh_button.content = "Recargar"
+           page.update()
+
+
+   async def initialize_firebase_session() -> None:
+       nonlocal firebase_id_token, firebase_refresh_token, firebase_uid
+
+
+       if "AQUI_VA_TU" in FIREBASE_API_KEY:
+           raise RuntimeError("Falta configurar FIREBASE_API_KEY.")
+
+
+       session_data = await asyncio.to_thread(sign_in_anonymously_with_firebase)
+       firebase_id_token = session_data.get("idToken")
+       firebase_refresh_token = session_data.get("refreshToken")
+       firebase_uid = session_data.get("localId")
+
+
+       if not firebase_id_token or not firebase_uid:
+           raise RuntimeError("Firebase no devolvió una sesión anónima válida.")
+
+
+   # ---------- EVENTOS ----------
+   search_field.on_change = filter_pokemon
+   refresh_button.on_click = load_pokemon_data
+
+
+   # ---------- LAYOUT ----------
+   auth_card = ft.Container(
+       bgcolor="#18213A",
+       border_radius=20,
+       padding=16,
+       content=ft.Column(
+           spacing=10,
+           controls=[
+               ft.Text("Firebase", color=ft.Colors.WHITE, size=20, weight=ft.FontWeight.BOLD),
+               user_name_text,
+               user_status_text,
+           ],
+       ),
+   )
+
+
+   main_content = ft.Column(
+       expand=True,
+       spacing=16,
+       controls=[
+           ft.Text("PokeDesk", color=ft.Colors.WHITE, size=36, weight=ft.FontWeight.BOLD),
+           ft.Text(
+               "Versión de práctica con sesión anónima en Firebase.",
+               color="#D3DCF4",
+           ),
+           auth_card,
+           status_banner,
+           search_field,
+           ft.Row(
+               alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+               controls=[
+                   ft.Row(
+                       spacing=16,
+                       controls=[
+                           ft.Text("Total", color="#D3DCF4"),
+                           loaded_count_text,
+                           ft.Text("Mostrados", color="#D3DCF4"),
+                           visible_count_text,
+                           ft.Text("Favoritos", color="#D3DCF4"),
+                           favorites_count_text,
+                       ],
+                   ),
+                   refresh_button,
+               ],
+           ),
+           ft.Container(
+               bgcolor="#18213A",
+               border_radius=20,
+               padding=16,
+               content=featured_container,
+           ),
+           ft.Text("Favoritos", color=ft.Colors.WHITE, size=20, weight=ft.FontWeight.BOLD),
+           favorites_column,
+           ft.Text("Listado", color=ft.Colors.WHITE, size=20, weight=ft.FontWeight.BOLD),
+           ft.Container(
+               bgcolor="#18213A",
+               border_radius=20,
+               padding=12,
+               content=pokemon_list_column,
+           ),
+       ],
+   )
+
+
+   page.add(main_content)
+
+
+   try:
+       await initialize_firebase_session()
+   except Exception as exc:
+       user_status_text.value = f"Firebase no disponible: {exc}"
+       show_snack(str(exc), "#8B1E2D")
+
+
+   update_auth_ui()
+   await load_pokemon_data_async()
+
+
+
+
+ft.run(main)</code></pre>
         </section>
       </main>
     </div>
+    <style>
+      .protected-code,
+      .protected-code code {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+      }
+    </style>
+    <script>
+      (() => {
+        const escapeHtml = (text) =>
+          text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        const highlightPython = (code) => {
+          const keywords = new Set([
+            "from", "import", "as", "async", "await", "def", "class", "return", "if",
+            "elif", "else", "for", "while", "in", "try", "except", "finally", "raise",
+            "with", "lambda", "None", "True", "False", "and", "or", "not", "nonlocal", "pass"
+          ]);
+
+          const isWordStart = (ch) => /[A-Za-z_]/.test(ch);
+          const isWord = (ch) => /[A-Za-z0-9_]/.test(ch);
+          const isDigit = (ch) => /[0-9]/.test(ch);
+          const wrap = (cls, text) => `<span class="token ${cls}">${escapeHtml(text)}</span>`;
+
+          let result = "";
+          let i = 0;
+
+          while (i < code.length) {
+            const ch = code[i];
+            const next3 = code.slice(i, i + 3);
+
+            if (ch === "#") {
+              let j = i;
+              while (j < code.length && code[j] !== "\n") j++;
+              result += wrap("comment", code.slice(i, j));
+              i = j;
+              continue;
+            }
+
+            if (next3 === '"""' || next3 === "'''") {
+              const quote = next3;
+              let j = i + 3;
+              while (j < code.length && code.slice(j, j + 3) !== quote) j++;
+              j = Math.min(code.length, j + 3);
+              result += wrap("string", code.slice(i, j));
+              i = j;
+              continue;
+            }
+
+            if (ch === '"' || ch === "'") {
+              const quote = ch;
+              let j = i + 1;
+              while (j < code.length) {
+                if (code[j] === "\\") {
+                  j += 2;
+                  continue;
+                }
+                if (code[j] === quote) {
+                  j++;
+                  break;
+                }
+                j++;
+              }
+              result += wrap("string", code.slice(i, j));
+              i = j;
+              continue;
+            }
+
+            if (isDigit(ch)) {
+              let j = i + 1;
+              while (j < code.length && /[0-9.]/.test(code[j])) j++;
+              result += wrap("number", code.slice(i, j));
+              i = j;
+              continue;
+            }
+
+            if (isWordStart(ch)) {
+              let j = i + 1;
+              while (j < code.length && isWord(code[j])) j++;
+              const word = code.slice(i, j);
+              let k = j;
+              while (k < code.length && /\s/.test(code[k])) k++;
+
+              if (keywords.has(word)) {
+                result += wrap("keyword", word);
+              } else if (/^[A-Z]/.test(word)) {
+                result += wrap("class-name", word);
+              } else if (code[k] === "(") {
+                result += wrap("function", word);
+              } else {
+                result += escapeHtml(word);
+              }
+              i = j;
+              continue;
+            }
+
+            result += escapeHtml(ch);
+            i++;
+          }
+
+          return result;
+        };
+
+        document.querySelectorAll("pre.code-block.language-python code").forEach((block) => {
+          block.innerHTML = highlightPython(block.textContent);
+        });
+
+        document.querySelectorAll(".protected-code").forEach((block) => {
+          const deny = (event) => event.preventDefault();
+          ["copy", "cut", "contextmenu", "dragstart", "selectstart"].forEach((eventName) => {
+            block.addEventListener(eventName, deny);
+          });
+          block.addEventListener("keydown", (event) => {
+            const key = event.key.toLowerCase();
+            if ((event.metaKey || event.ctrlKey) && ["c", "x", "a", "s"].includes(key)) {
+              event.preventDefault();
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
