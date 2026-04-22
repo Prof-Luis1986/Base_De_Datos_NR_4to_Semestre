@@ -244,8 +244,16 @@
             <li>Obtener configuración para <code>FIREBASE_API_KEY</code> y <code>FIREBASE_PROJECT_ID</code>.</li>
             <li>Activar autenticación anónima en <code>Authentication → Anonymous → Enable</code>.</li>
             <li>Crear Firestore en modo prueba.</li>
-            <li>Usar reglas de seguridad para práctica: <code>allow read, write: if true;</code></li>
+            <li>Configurar reglas para que cada usuario solo pueda leer y escribir sus propios favoritos usando su <code>uid</code>.</li>
           </ul>
+          <pre class="code-block editor-block language-javascript protected-code" data-title="firestore.rules"><code class="language-javascript">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/favorites/{docId} {
+      allow read, write: if request.auth != null &amp;&amp; request.auth.uid == userId;
+    }
+  }
+}</code></pre>
 
           <h2 class="section-title">🔗 18. ¿Cómo se conecta el código?</h2>
           <ul class="checklist">
