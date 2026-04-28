@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 9 · Modelado Documental Avanzado y Estructuras Complejas en JSON</title>
+    <title>Práctica 9 · Tutorial del alumno: registro de plantas con Flet</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -37,7 +37,7 @@
             <div class="nav-links">
               <a href="practica-7.html">Práctica 7 — Pokedex</a>
               <a href="practica-8.html">Práctica 8 — PokeDesk con Python, Flet y Firebase</a>
-              <a class="active" href="practica-9.html">Práctica 9 — Integración de Flet con Firebase Firestore</a>
+              <a class="active" href="practica-9.html">Práctica 9 — Tutorial del alumno: registro de plantas con Flet</a>
               <a href="practica-10.html">Práctica 10 — CRUD Completo con Firebase Firestore</a>
               <a href="practica-11.html">Práctica 11 — Consultas y Ordenamientos en Firestore</a>
               <a href="practica-12.html">Práctica 12 — Mini Sistema Comparativo: MongoDB vs Firestore</a>
@@ -67,205 +67,856 @@
         <section class="card">
           <div class="unit-label">Unidad II · Modelado Documental y Estructura de Datos con JSON</div>
           <div class="badge">🟦 Práctica 9</div>
-          <h2 class="page-title">Modelado Documental Avanzado y Estructuras Complejas en JSON</h2>
-          <p class="page-subtitle">Modalidad: Laboratorio · Duración estimada: 2 sesiones</p>
-
-          <h2 class="section-title">🎯 Propósito</h2>
-          <p>
-            Diseñar y estructurar documentos JSON complejos utilizando objetos anidados y arreglos de objetos,
-            aplicando principios de modelado documental en MongoDB.
+          <h2 class="page-title">Tutorial del alumno: registro de plantas con Flet</h2>
+          <p class="page-subtitle">
+            Modalidad: laboratorio guiado · Propósito: adaptar una interfaz en Flet para capturar
+            datos reales y conectarla con MongoDB o Firebase sin modificar el diseño visual base.
           </p>
 
-          <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>Modelar documentos complejos es lo que diferencia a un usuario básico de un diseñador de bases NoSQL. Aquí aprendes a decidir qué embebes y qué separas.</p>
-          <h2 class="section-title">🧠 Competencia a desarrollar</h2>
-          <ul class="checklist">
-            <li>Construye documentos JSON estructurados correctamente.</li>
-            <li>Aplica modelado documental coherente.</li>
-            <li>Justifica decisiones de diseño en bases NoSQL.</li>
-          </ul>
-
-          <h2 class="section-title">🔎 Contexto</h2>
-          <p>
-            En bases de datos relacionales las relaciones se manejan mediante tablas y llaves foráneas. En MongoDB,
-            muchas veces se manejan documentos embebidos y arreglos de objetos, lo que cambia completamente la forma
-            de diseñar. Esta práctica se enfoca en aprender a pensar en documentos.
-          </p>
-
-          <h2 class="section-title">📚 Parte 1 — Diseño previo (En cuaderno)</h2>
-          <p>Antes de abrir MongoDB, diseñar una base de datos para:</p>
-          <p><strong>“Plataforma de Streaming”</strong></p>
-          <p>Debe incluir:</p>
-          <ul class="checklist">
-            <li>Colección: usuarios</li>
-            <li>Colección: peliculas</li>
-            <li>Colección: reproducciones</li>
-          </ul>
-          <p>En el diseño deben decidir:</p>
-          <ul class="checklist">
-            <li>¿Qué datos se embeben?</li>
-            <li>¿Qué datos se separan?</li>
-            <li>¿Por qué?</li>
-          </ul>
-
-          <h2 class="section-title">💻 Parte 2 — Implementación en MongoDB</h2>
-          <p><strong>Paso 1:</strong> Crear colección <strong>usuarios</strong> e insertar un documento complejo:</p>
-          <div class="code-block">
-            <pre><code>db.usuarios.insertOne({
-  nombre: "Carlos",
-  edad: 20,
-  suscripcion: {
-    tipo: "Premium",
-    fecha_inicio: "2024-01-15",
-    activa: true
-  },
-  perfiles: [
-    { nombre: "Carlos Jr", edad: 10 },
-    { nombre: "Invitado", edad: 25 }
-  ],
-  historial: [
-    {
-      titulo: "Interstellar",
-      fecha: "2024-02-10",
-      minutos_vistos: 120
-    },
-    {
-      titulo: "Matrix",
-      fecha: "2024-02-15",
-      minutos_vistos: 90
-    }
-  ]
-})</code></pre>
+          <div class="callout">
+            Esta práctica no pide rediseñar la app. El trabajo del alumno consiste en leer el
+            formulario, validar los datos y guardar registros reales en una base de datos.
           </div>
-          <p><strong>Paso 2:</strong> Insertar mínimo 3 usuarios más con estructuras similares pero variando datos.</p>
 
-          <h2 class="section-title">🔍 Parte 3 — Análisis</h2>
-          <p>Responder:</p>
+          <h2 class="section-title">1. Objetivo de la práctica</h2>
+          <p>La aplicación ya tiene la parte visual construida. El alumno debe enfocarse en la lógica de persistencia.</p>
           <ul class="checklist">
-            <li>¿Por qué el historial se guarda como arreglo?</li>
-            <li>¿Qué pasaría si el historial creciera demasiado?</li>
-            <li>¿En qué caso convendría separar el historial en otra colección?</li>
+            <li><strong>Ya existe:</strong> panel lateral, encabezado, formulario y tabla de ejemplo.</li>
+            <li><strong>Debe desarrollar:</strong> lectura de campos, validación, conexión y guardado real.</li>
+            <li><strong>Resultado esperado:</strong> mostrar en pantalla registros obtenidos desde MongoDB o Firebase.</li>
           </ul>
 
-          <h2 class="section-title">📦 Entregables</h2>
+          <h2 class="section-title">2. Estructura del proyecto</h2>
+          <pre class="code-block editor-block language-none" data-title="estructura del proyecto"><code>Cazadores de plantas 4to Semestre/
+├── .venv/
+├── README.md
+├── requirements.txt
+├── tutorial.html
+└── src/
+    └── main.py</code></pre>
+          <table class="table-like" aria-label="Estructura del proyecto">
+            <thead>
+              <tr>
+                <th>Archivo</th>
+                <th>Función</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>src/main.py</code></td>
+                <td>Contiene la interfaz completa de la aplicación.</td>
+              </tr>
+              <tr>
+                <td><code>requirements.txt</code></td>
+                <td>Incluye la dependencia principal del proyecto.</td>
+              </tr>
+              <tr>
+                <td><code>.venv</code></td>
+                <td>Entorno virtual con librerías instaladas.</td>
+              </tr>
+              <tr>
+                <td><code>tutorial.html</code></td>
+                <td>Documento de apoyo para el alumno.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="section-title">3. Actividad de investigación en el patio</h2>
+          <p>
+            Antes de capturar información en la app, el alumno debe observar plantas reales del patio,
+            jardín, huerto escolar o zona permitida por el docente.
+          </p>
           <ul class="checklist">
-            <li>Captura de inserciones.</li>
-            <li>Documento de diseño previo.</li>
-            <li>Respuestas al análisis.</li>
+            <li><strong>Propósito:</strong> relacionar programación con observación del entorno real.</li>
+            <li><strong>Materiales:</strong> teléfono móvil o cuaderno, lápiz o pluma y cámara si se permite.</li>
+            <li><strong>Regla clave:</strong> no inventar datos; registrar solo lo observado.</li>
+          </ul>
+          <p><strong>Datos mínimos para anotar:</strong></p>
+          <ul>
+            <li>Nombre común de la planta, si se conoce.</li>
+            <li>Características visibles como tamaño, color o tipo de hoja.</li>
+            <li>Ubicación donde fue encontrada.</li>
+            <li>Estado observable, por ejemplo sana, seca o floreciendo.</li>
+            <li>Fecha de observación.</li>
+          </ul>
+          <pre class="code-block editor-block language-none" data-title="notas de campo"><code>Registro 1
+Nombre común: ____________________
+Nombre científico: ____________________ o pendiente
+Tipo de planta: ____________________
+Ubicación: ____________________
+Estado observable: ____________________
+Observaciones: ____________________</code></pre>
+
+          <h2 class="section-title">4. Cómo ejecutar la app</h2>
+          <p>La ejecución sugerida es en modo web para conservar el comportamiento esperado de Flet.</p>
+          <pre class="code-block editor-block language-bash" data-title="terminal"><code>source .venv/bin/activate
+flet run --web src/main.py</code></pre>
+          <div class="callout">
+            Si se ejecuta con <code>python src/main.py</code>, Flet puede abrirse en otro modo y no
+            coincidir con la experiencia planeada para la práctica.
+          </div>
+
+          <h2 class="section-title">5. Lectura guiada del código actual</h2>
+          <p>El archivo <code>src/main.py</code> debe leerse por bloques para identificar qué parte es visual y qué parte debe completarse.</p>
+          <ul class="checklist">
+            <li><strong><code>import flet as ft</code>:</strong> importa la librería principal de interfaz.</li>
+            <li><strong><code>stat_card()</code>:</strong> crea tarjetas visuales reutilizables.</li>
+            <li><strong><code>label_value()</code>:</strong> genera pares de etiqueta y valor en columna.</li>
+            <li><strong><code>main(page)</code>:</strong> arma la página completa y define tema, scroll y layout.</li>
+            <li><strong><code>mostrar_aviso()</code>:</strong> hoy solo muestra mensajes temporales; debe reemplazarse por lógica real.</li>
+            <li><strong><code>form_section</code>:</strong> contiene los controles que el alumno debe convertir en variables.</li>
+            <li><strong><code>table_section</code>:</strong> muestra filas simuladas que luego deberán provenir de la base de datos.</li>
+            <li><strong><code>ft.run(main)</code>:</strong> inicia la aplicación.</li>
           </ul>
 
-          <h2 class="section-title">📊 Evaluación</h2>
-          <table class="table-like" aria-label="Criterios de evaluación">
+          <h2 class="section-title">6. Qué debe modificar el alumno</h2>
+          <ul class="checklist">
+            <li>Guardar cada control del formulario en una variable.</li>
+            <li>Validar campos obligatorios.</li>
+            <li>Construir un diccionario con los datos.</li>
+            <li>Conectar MongoDB o Firebase.</li>
+            <li>Guardar con el botón <code>Guardar registro</code>.</li>
+            <li>Actualizar la tabla con registros reales.</li>
+          </ul>
+
+          <p><strong>Ejemplo de controles guardados en variables:</strong></p>
+          <pre class="code-block editor-block language-python" data-title="main.py"><code>nombre_comun = ft.TextField(
+    label="Nombre común",
+    hint_text="Ej. Lavanda",
+    prefix_icon=ft.Icons.LOCAL_FLORIST,
+    border_radius=16,
+)
+
+nombre_cientifico = ft.TextField(
+    label="Nombre científico",
+    hint_text="Ej. Lavandula angustifolia",
+    prefix_icon=ft.Icons.BIOTECH,
+    border_radius=16,
+)
+
+tipo_planta = ft.Dropdown(
+    label="Tipo de planta",
+    options=[
+        ft.dropdown.Option("Ornamental"),
+        ft.dropdown.Option("Medicinal"),
+        ft.dropdown.Option("Aromática"),
+        ft.dropdown.Option("Frutal"),
+    ],
+)</code></pre>
+
+          <p><strong>Ejemplo de diccionario del formulario:</strong></p>
+          <pre class="code-block editor-block language-python" data-title="main.py"><code>def obtener_datos_formulario():
+    return {
+        "nombre_comun": nombre_comun.value,
+        "nombre_cientifico": nombre_cientifico.value,
+        "tipo_planta": tipo_planta.value,
+        "alumno_responsable": alumno_responsable.value,
+        "ubicacion": ubicacion.value,
+        "base_datos": base_datos.value,
+        "fecha_registro": fecha_registro.value,
+        "estado": estado.value,
+        "observaciones": observaciones.value,
+    }</code></pre>
+
+          <p><strong>Ejemplo de validación mínima:</strong></p>
+          <pre class="code-block editor-block language-python" data-title="main.py"><code>def validar_formulario():
+    if not nombre_comun.value:
+        return "El nombre común es obligatorio."
+    if not nombre_cientifico.value:
+        return "El nombre científico es obligatorio."
+    if not tipo_planta.value:
+        return "Debes seleccionar el tipo de planta."
+    return None</code></pre>
+
+          <h2 class="section-title">7. Conexión con MongoDB</h2>
+          <p>MongoDB es una base documental NoSQL y en Python suele usarse mediante <code>pymongo</code>.</p>
+          <pre class="code-block editor-block language-bash" data-title="terminal"><code>pip install pymongo</code></pre>
+          <ul>
+            <li>Tener cuenta en MongoDB Atlas o servidor local.</li>
+            <li>Crear base de datos y colección, por ejemplo <code>plantas</code>.</li>
+            <li>Usar una cadena de conexión válida.</li>
+            <li>Verificar permisos de lectura y escritura.</li>
+          </ul>
+          <pre class="code-block editor-block language-python" data-title="conexion_mongo.py"><code>from pymongo import MongoClient
+
+MONGO_URI = "mongodb+srv://USUARIO:CLAVE@cluster0.xxxxx.mongodb.net/?retryWrites=true&amp;w=majority"
+
+client = MongoClient(MONGO_URI)
+db = client["registro_plantas"]
+coleccion = db["plantas"]
+
+def guardar_en_mongo(datos):
+    resultado = coleccion.insert_one(datos)
+    return str(resultado.inserted_id)
+
+def obtener_registros_mongo():
+    registros = []
+    for doc in coleccion.find():
+        doc["_id"] = str(doc["_id"])
+        registros.append(doc)
+    return registros</code></pre>
+
+          <h2 class="section-title">8. Conexión con Firebase</h2>
+          <p>Para esta práctica se propone trabajar con Cloud Firestore desde Python usando <code>firebase-admin</code>.</p>
+          <pre class="code-block editor-block language-bash" data-title="terminal"><code>pip install firebase-admin</code></pre>
+          <ul>
+            <li>Crear un proyecto en Firebase.</li>
+            <li>Habilitar Firestore en modo nativo.</li>
+            <li>Descargar la cuenta de servicio en JSON.</li>
+            <li>Comprobar permisos y nombre de la colección.</li>
+          </ul>
+          <pre class="code-block editor-block language-python" data-title="conexion_firebase.py"><code>import firebase_admin
+from firebase_admin import credentials, firestore
+
+cred = credentials.Certificate("credenciales/firebase-key.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+def guardar_en_firebase(datos):
+    ref = db.collection("plantas").add(datos)
+    return str(ref[1].id)
+
+def obtener_registros_firebase():
+    registros = []
+    docs = db.collection("plantas").stream()
+    for doc in docs:
+        item = doc.to_dict()
+        item["id"] = doc.id
+        registros.append(item)
+    return registros</code></pre>
+
+          <h2 class="section-title">9. Cómo decidir entre MongoDB y Firebase</h2>
+          <table class="table-like" aria-label="Comparación MongoDB y Firebase">
+            <thead>
+              <tr>
+                <th>Opción</th>
+                <th>Conviene cuando</th>
+                <th>Punto de atención</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MongoDB</td>
+                <td>Se quiere trabajar con documentos JSON y consultas flexibles.</td>
+                <td>Debe cuidarse la cadena de conexión y los permisos.</td>
+              </tr>
+              <tr>
+                <td>Firebase</td>
+                <td>Se busca una solución administrada con servicios de Google.</td>
+                <td>Debe protegerse el archivo JSON de credenciales.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="section-title">10. Lógica general para guardar</h2>
+          <pre class="code-block editor-block language-python" data-title="main.py"><code>def guardar_registro(e):
+    error = validar_formulario()
+    if error:
+        page.snack_bar = ft.SnackBar(content=ft.Text(error))
+        page.snack_bar.open = True
+        page.update()
+        return
+
+    datos = obtener_datos_formulario()
+
+    try:
+        if base_datos.value == "MongoDB":
+            guardar_en_mongo(datos)
+        elif base_datos.value == "Firebase":
+            guardar_en_firebase(datos)
+        else:
+            raise ValueError("Selecciona una base de datos.")
+
+        page.snack_bar = ft.SnackBar(content=ft.Text("Registro guardado correctamente."))
+        page.snack_bar.open = True
+        page.update()
+    except Exception as ex:
+        page.snack_bar = ft.SnackBar(content=ft.Text(f"Error al guardar: {ex}"))
+        page.snack_bar.open = True
+        page.update()</code></pre>
+
+          <h2 class="section-title">11. Cómo actualizar la tabla con datos reales</h2>
+          <p>Las filas fijas deben reemplazarse por una lista construida dinámicamente con los documentos guardados.</p>
+          <pre class="code-block editor-block language-python" data-title="main.py"><code>def construir_filas(registros):
+    filas = []
+    for item in registros:
+        filas.append(
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text(item.get("nombre_comun", ""))),
+                    ft.DataCell(ft.Text(item.get("tipo_planta", ""))),
+                    ft.DataCell(ft.Text(item.get("alumno_responsable", ""))),
+                    ft.DataCell(ft.Text(item.get("ubicacion", ""))),
+                    ft.DataCell(ft.Text(item.get("base_datos", ""))),
+                    ft.DataCell(ft.Text(item.get("estado", ""))),
+                ]
+            )
+        )
+    return filas</code></pre>
+
+          <h2 class="section-title">12. Código completo de la interfaz base</h2>
+          <p>
+            Este es el archivo completo de la interfaz base que el alumno debe tomar como punto de
+            partida para implementar la conexión con la base de datos.
+          </p>
+          <pre class="code-block editor-block language-python" data-title="src/main.py"><code>import flet as ft
+
+
+def stat_card(title: str, value: str, icon: str, color: str) -&gt; ft.Container:
+    return ft.Container(
+        bgcolor=ft.Colors.WHITE,
+        border_radius=20,
+        padding=20,
+        expand=True,
+        content=ft.Column(
+            spacing=12,
+            controls=[
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    controls=[
+                        ft.Text(title, size=14, color=ft.Colors.BLUE_GREY_400),
+                        ft.Container(
+                            width=42,
+                            height=42,
+                            border_radius=12,
+                            bgcolor=color,
+                            alignment=ft.Alignment.CENTER,
+                            content=ft.Icon(icon, color=ft.Colors.WHITE),
+                        ),
+                    ],
+                ),
+                ft.Text(value, size=28, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
+            ],
+        ),
+    )
+
+
+def label_value(label: str, value: str) -&gt; ft.Column:
+    return ft.Column(
+        spacing=4,
+        controls=[
+            ft.Text(label, size=12, color=ft.Colors.BLUE_GREY_400),
+            ft.Text(value, size=14, weight=ft.FontWeight.W_600, color=ft.Colors.BLUE_GREY_900),
+        ],
+    )
+
+
+def main(page: ft.Page) -&gt; None:
+    page.title = "Registro de Plantas"
+    page.bgcolor = "#EEF4ED"
+    page.padding = 0
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.scroll = ft.ScrollMode.AUTO
+    page.window_min_width = 1100
+    page.window_min_height = 760
+    page.theme = ft.Theme(
+        color_scheme_seed="#4F772D",
+        scaffold_bgcolor="#EEF4ED",
+        font_family="Poppins",
+    )
+
+    def mostrar_aviso(_: ft.ControlEvent) -&gt; None:
+        page.snack_bar = ft.SnackBar(
+            content=ft.Text(
+                "Esta vista es solo la estructura visual. El alumno debe conectar MongoDB o Firebase."
+            ),
+            bgcolor="#31572C",
+        )
+        page.snack_bar.open = True
+        page.update()
+
+    sidebar = ft.Container(
+        width=260,
+        bgcolor="#1F3B2C",
+        padding=ft.Padding.symmetric(horizontal=22, vertical=26),
+        content=ft.Column(
+            expand=True,
+            spacing=24,
+            controls=[
+                ft.Row(
+                    controls=[
+                        ft.Container(
+                            width=44,
+                            height=44,
+                            border_radius=14,
+                            bgcolor="#4F772D",
+                            alignment=ft.Alignment.CENTER,
+                            content=ft.Icon(ft.Icons.ECO, color=ft.Colors.WHITE, size=24),
+                        ),
+                        ft.Column(
+                            spacing=2,
+                            controls=[
+                                ft.Text(
+                                    "PlantApp",
+                                    size=20,
+                                    weight=ft.FontWeight.BOLD,
+                                    color=ft.Colors.WHITE,
+                                ),
+                                ft.Text(
+                                    "Registro escolar",
+                                    size=12,
+                                    color="#D8F3DC",
+                                ),
+                            ],
+                        ),
+                    ]
+                ),
+                ft.Container(
+                    border_radius=18,
+                    padding=18,
+                    bgcolor="#31572C",
+                    content=ft.Column(
+                        spacing=10,
+                        controls=[
+                            ft.Text("Proyecto", size=13, color="#B7E4C7"),
+                            ft.Text(
+                                "Captura especies, responsable y origen del registro.",
+                                size=18,
+                                weight=ft.FontWeight.W_600,
+                                color=ft.Colors.WHITE,
+                            ),
+                            ft.Text(
+                                "El diseño ya deja visible el punto donde se conectará MongoDB o Firebase.",
+                                size=13,
+                                color="#D8F3DC",
+                            ),
+                        ],
+                    ),
+                ),
+                ft.Column(
+                    spacing=12,
+                    controls=[
+                        ft.ListTile(
+                            leading=ft.Icon(ft.Icons.DATA_OBJECT, color="#D8F3DC"),
+                            title=ft.Text("Base de datos", color=ft.Colors.WHITE),
+                            subtitle=ft.Text("MongoDB o Firebase", color="#B7E4C7"),
+                        ),
+                        ft.ListTile(
+                            leading=ft.Icon(ft.Icons.FACT_CHECK, color="#D8F3DC"),
+                            title=ft.Text("Formulario", color=ft.Colors.WHITE),
+                            subtitle=ft.Text("Alta de plantas", color="#B7E4C7"),
+                        ),
+                        ft.ListTile(
+                            leading=ft.Icon(ft.Icons.TABLE_VIEW, color="#D8F3DC"),
+                            title=ft.Text("Listado", color=ft.Colors.WHITE),
+                            subtitle=ft.Text("Vista previa de registros", color="#B7E4C7"),
+                        ),
+                    ],
+                ),
+                ft.Container(expand=True),
+                ft.Container(
+                    border=ft.border.all(1, "#4F772D"),
+                    border_radius=18,
+                    padding=16,
+                    content=ft.Column(
+                        spacing=8,
+                        controls=[
+                            ft.Text("Entrega sugerida", size=12, color="#B7E4C7"),
+                            ft.Text(
+                                "Conectar el botón Guardar con la base elegida y persistir los datos del formulario.",
+                                size=13,
+                                color=ft.Colors.WHITE,
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        ),
+    )
+
+    hero = ft.Container(
+        border_radius=28,
+        padding=28,
+        gradient=ft.LinearGradient(
+            begin=ft.Alignment.TOP_LEFT,
+            end=ft.Alignment.BOTTOM_RIGHT,
+            colors=["#D8F3DC", "#B7E4C7", "#95D5B2"],
+        ),
+        content=ft.ResponsiveRow(
+            run_spacing=18,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                ft.Column(
+                    col={"xs": 12, "md": 8},
+                    spacing=10,
+                    controls=[
+                        ft.Text("Sistema web para registro de plantas", size=34, weight=ft.FontWeight.BOLD, color="#1B4332"),
+                        ft.Text(
+                            "Interfaz lista para que el alumno implemente la conexión a MongoDB o Firebase sin rehacer el diseño.",
+                            size=15,
+                            color="#2D6A4F",
+                        ),
+                        ft.Row(
+                            spacing=12,
+                            controls=[
+                                ft.FilledButton("Simular guardado", icon=ft.Icons.SAVE, on_click=mostrar_aviso),
+                                ft.OutlinedButton("Probar conexión", icon=ft.Icons.CLOUD_SYNC, on_click=mostrar_aviso),
+                            ],
+                        ),
+                    ],
+                ),
+                ft.Container(
+                    col={"xs": 12, "md": 4},
+                    bgcolor="#FFFFFFAA",
+                    border_radius=22,
+                    padding=20,
+                    content=ft.Column(
+                        spacing=12,
+                        controls=[
+                            ft.Text("Estado del proyecto", size=14, color="#2D6A4F"),
+                            label_value("Frontend", "Completo"),
+                            label_value("Base de datos", "Pendiente"),
+                            label_value("Modo", "Aplicación web Flet"),
+                        ],
+                    ),
+                ),
+            ],
+        ),
+    )
+
+    stats = ft.ResponsiveRow(
+        run_spacing=16,
+        controls=[
+            ft.Container(col={"xs": 12, "md": 4}, content=stat_card("Registros del día", "18", ft.Icons.GRASS, "#588157")),
+            ft.Container(col={"xs": 12, "md": 4}, content=stat_card("Especies únicas", "9", ft.Icons.SPA, "#3A5A40")),
+            ft.Container(col={"xs": 12, "md": 4}, content=stat_card("Pendientes de validar", "4", ft.Icons.PENDING_ACTIONS, "#6B8E23")),
+        ],
+    )
+
+    form_section = ft.Container(
+        bgcolor=ft.Colors.WHITE,
+        border_radius=24,
+        padding=24,
+        content=ft.Column(
+            spacing=18,
+            controls=[
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    controls=[
+                        ft.Text("Formulario de registro", size=22, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
+                        ft.Chip(
+                            label=ft.Text("Solo interfaz"),
+                            leading=ft.Icon(ft.Icons.VISIBILITY, size=18),
+                            bgcolor="#D8F3DC",
+                        ),
+                    ],
+                ),
+                ft.ResponsiveRow(
+                    run_spacing=14,
+                    controls=[
+                        ft.TextField(
+                            col={"xs": 12, "md": 6},
+                            label="Nombre común",
+                            hint_text="Ej. Lavanda",
+                            prefix_icon=ft.Icons.LOCAL_FLORIST,
+                            border_radius=16,
+                        ),
+                        ft.TextField(
+                            col={"xs": 12, "md": 6},
+                            label="Nombre científico",
+                            hint_text="Ej. Lavandula angustifolia",
+                            prefix_icon=ft.Icons.BIOTECH,
+                            border_radius=16,
+                        ),
+                        ft.Dropdown(
+                            col={"xs": 12, "md": 4},
+                            label="Tipo de planta",
+                            border_radius=16,
+                            options=[
+                                ft.dropdown.Option("Ornamental"),
+                                ft.dropdown.Option("Medicinal"),
+                                ft.dropdown.Option("Aromática"),
+                                ft.dropdown.Option("Frutal"),
+                            ],
+                        ),
+                        ft.TextField(
+                            col={"xs": 12, "md": 4},
+                            label="Alumno responsable",
+                            prefix_icon=ft.Icons.PERSON,
+                            border_radius=16,
+                        ),
+                        ft.TextField(
+                            col={"xs": 12, "md": 4},
+                            label="Ubicación",
+                            prefix_icon=ft.Icons.PLACE,
+                            border_radius=16,
+                        ),
+                        ft.Dropdown(
+                            col={"xs": 12, "md": 6},
+                            label="Base de datos a integrar",
+                            border_radius=16,
+                            options=[
+                                ft.dropdown.Option("MongoDB"),
+                                ft.dropdown.Option("Firebase"),
+                            ],
+                        ),
+                        ft.TextField(
+                            col={"xs": 12, "md": 3},
+                            label="Fecha de registro",
+                            hint_text="28/04/2026",
+                            prefix_icon=ft.Icons.CALENDAR_MONTH,
+                            border_radius=16,
+                        ),
+                        ft.TextField(
+                            col={"xs": 12, "md": 3},
+                            label="Estado",
+                            hint_text="Activa",
+                            prefix_icon=ft.Icons.INFO,
+                            border_radius=16,
+                        ),
+                        ft.TextField(
+                            col={"xs": 12},
+                            label="Observaciones",
+                            min_lines=3,
+                            max_lines=5,
+                            border_radius=16,
+                        ),
+                    ],
+                ),
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.END,
+                    controls=[
+                        ft.TextButton("Limpiar", icon=ft.Icons.CLEAR_ALL, on_click=mostrar_aviso),
+                        ft.FilledButton("Guardar registro", icon=ft.Icons.ADD_TASK, on_click=mostrar_aviso),
+                    ],
+                ),
+            ],
+        ),
+    )
+
+    table_section = ft.Container(
+        bgcolor=ft.Colors.WHITE,
+        border_radius=24,
+        padding=24,
+        content=ft.Column(
+            spacing=18,
+            controls=[
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    controls=[
+                        ft.Text("Vista previa de registros", size=22, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
+                        ft.OutlinedButton("Exportar", icon=ft.Icons.DOWNLOAD, on_click=mostrar_aviso),
+                    ],
+                ),
+                ft.DataTable(
+                    column_spacing=32,
+                    columns=[
+                        ft.DataColumn(ft.Text("Nombre")),
+                        ft.DataColumn(ft.Text("Tipo")),
+                        ft.DataColumn(ft.Text("Alumno")),
+                        ft.DataColumn(ft.Text("Ubicación")),
+                        ft.DataColumn(ft.Text("Base")),
+                        ft.DataColumn(ft.Text("Estado")),
+                    ],
+                    rows=[
+                        ft.DataRow(
+                            cells=[
+                                ft.DataCell(ft.Text("Lavanda")),
+                                ft.DataCell(ft.Text("Aromática")),
+                                ft.DataCell(ft.Text("María López")),
+                                ft.DataCell(ft.Text("Invernadero A")),
+                                ft.DataCell(ft.Text("MongoDB")),
+                                ft.DataCell(ft.Text("Activa")),
+                            ]
+                        ),
+                        ft.DataRow(
+                            cells=[
+                                ft.DataCell(ft.Text("Sábila")),
+                                ft.DataCell(ft.Text("Medicinal")),
+                                ft.DataCell(ft.Text("Carlos Ruiz")),
+                                ft.DataCell(ft.Text("Jardín central")),
+                                ft.DataCell(ft.Text("Firebase")),
+                                ft.DataCell(ft.Text("Revisión")),
+                            ]
+                        ),
+                        ft.DataRow(
+                            cells=[
+                                ft.DataCell(ft.Text("Romero")),
+                                ft.DataCell(ft.Text("Aromática")),
+                                ft.DataCell(ft.Text("Ana Torres")),
+                                ft.DataCell(ft.Text("Huerto 2")),
+                                ft.DataCell(ft.Text("MongoDB")),
+                                ft.DataCell(ft.Text("Activa")),
+                            ]
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    )
+
+    content = ft.Container(
+        expand=True,
+        padding=28,
+        content=ft.Column(
+            spacing=22,
+            controls=[
+                hero,
+                stats,
+                form_section,
+                table_section,
+            ],
+        ),
+    )
+
+    page.add(
+        ft.ResponsiveRow(
+            expand=True,
+            spacing=0,
+            run_spacing=0,
+            controls=[
+                ft.Container(col={"xs": 12, "lg": 3}, content=sidebar),
+                ft.Container(col={"xs": 12, "lg": 9}, content=content),
+            ],
+        )
+    )
+
+
+ft.run(main)</code></pre>
+
+          <h2 class="section-title">13. Errores comunes</h2>
+          <ul class="checklist">
+            <li>No guardar referencias a los campos del formulario.</li>
+            <li>Intentar leer <code>.value</code> de controles no asignados a variables.</li>
+            <li>Escribir credenciales dentro del código y compartirlas.</li>
+            <li>No capturar excepciones de conexión.</li>
+            <li>Olvidar <code>page.update()</code> después de modificar la interfaz.</li>
+            <li>Confundir Firestore con Realtime Database.</li>
+            <li>No convertir <code>ObjectId</code> a texto al mostrar datos de MongoDB.</li>
+          </ul>
+
+          <h2 class="section-title">14. Preguntas de desarrollo</h2>
+          <ul class="checklist">
+            <li>¿Por qué es importante observar plantas reales antes de registrarlas?</li>
+            <li>¿Qué hace la función <code>main(page)</code> dentro de una app Flet?</li>
+            <li>¿Por qué conviene convertir campos del formulario en variables?</li>
+            <li>¿Qué diferencia existe entre interfaz visual y conexión a base de datos?</li>
+            <li>¿Qué similitudes y diferencias encontraste entre MongoDB y Firebase?</li>
+          </ul>
+
+          <h2 class="section-title">15. Rúbrica sugerida</h2>
+          <table class="table-like" aria-label="Rúbrica sugerida">
             <thead>
               <tr>
                 <th>Criterio</th>
-                <th>Valor</th>
+                <th>Qué se espera</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Estructura JSON correcta</td>
-                <td>30</td>
+                <td>Comprensión de la interfaz</td>
+                <td>Identifica correctamente formulario, botones y tabla.</td>
               </tr>
               <tr>
-                <td>Modelado coherente</td>
-                <td>30</td>
+                <td>Manejo de controles</td>
+                <td>Convierte los campos visuales en variables utilizables.</td>
               </tr>
               <tr>
-                <td>Implementación funcional</td>
-                <td>20</td>
+                <td>Validación</td>
+                <td>Revisa campos obligatorios antes de guardar.</td>
               </tr>
               <tr>
-                <td>Análisis técnico</td>
-                <td>20</td>
+                <td>Conexión a base de datos</td>
+                <td>Implementa MongoDB o Firebase correctamente.</td>
+              </tr>
+              <tr>
+                <td>Persistencia y lectura</td>
+                <td>Guarda registros reales y los muestra en la tabla.</td>
               </tr>
             </tbody>
           </table>
 
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>El diseño previo obliga a justificar embebidos y referencias, clave para rendimiento y consistencia en MongoDB.</p>
-
-          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
+          <h2 class="section-title">16. Actividad final sugerida</h2>
           <ul class="checklist">
-            <li>E-commerce: catálogo, carrito y historial de compras.</li>
-            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
-            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
-            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
-            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
+            <li>Observar plantas reales y registrar notas de campo.</li>
+            <li>Reconocer la estructura visual de la app en Flet.</li>
+            <li>Convertir campos del formulario en variables.</li>
+            <li>Crear funciones de validación y obtención de datos.</li>
+            <li>Elegir MongoDB o Firebase.</li>
+            <li>Guardar al menos un registro real y mostrarlo en la tabla.</li>
           </ul>
 
-          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En relacional, separar en tablas es norma; en documental, embebido puede reducir JOINs pero aumenta el tamaño del documento.</p>
-
-          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
-          <ul class="checklist">
-            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
-            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
-            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
-            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
-            <li>Usa paginación o límites en lecturas de alto volumen.</li>
-          </ul>
-
-          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>MongoDB recupera documentos completos; embebidos se leen en una sola operación, pero arreglos muy grandes pueden degradar el rendimiento.</p>
-
-          <h2 class="section-title">❗ Errores Comunes</h2>
-          <ul class="checklist">
-            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
-            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
-            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
-            <li>No documentar la estructura JSON y sus cambios.</li>
-            <li>Confundir colección con documento o arreglo con objeto.</li>
-          </ul>
-
-          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
-          <ul class="checklist">
-            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
-            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
-            <li>Usar índices en campos consultados con frecuencia.</li>
-            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
-            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
-          </ul>
-
-          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
-          <ul class="checklist">
-            <li>¿Cuándo embebido mejora el rendimiento?</li>
-            <li>¿Cuándo conviene normalizar en colecciones separadas?</li>
-            <li>¿Cómo afecta el tamaño del documento al rendimiento?</li>
-            <li>¿Qué decisiones impactan la escalabilidad?</li>
-          </ul>
-
-          <h2 class="section-title">🧭 Retos Aplicados</h2>
-          <ul class="checklist">
-            <li>Define límites de crecimiento para el historial y justifícalos.</li>
-            <li>Diseña una versión con historial separado y compara lecturas.</li>
-            <li>Incluye subdocumentos con validación de tipos.</li>
-          </ul>
-
-          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
-          <ul class="checklist">
-            <li>Plantea un esquema alternativo para la plataforma de streaming y defiéndelo.</li>
-            <li>Simula 3 escenarios de consulta y evalúa qué diseño es mejor.</li>
-          </ul>
-
-          <h2 class="section-title">📊 Rúbrica detallada</h2>
-          <table class="table-like" aria-label="Rúbrica detallada">
-            <thead>
-              <tr><th>Nivel</th><th>Descripción</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
-              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
-              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
-              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
-            </tbody>
-          </table>
-
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 10. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
+          <h2 class="section-title">17. Cierre</h2>
+          <p>
+            La app ya resuelve la parte visual. La práctica consiste en completar la lógica de captura,
+            validación, persistencia y lectura de datos. Si el alumno entiende la estructura de
+            <code>main.py</code>, la conexión con la base de datos se vuelve un proceso ordenado.
+          </p>
+          <div class="callout">
+            Sugerencia para el docente: puede pedirse la práctica con una sola base de datos o como
+            reto adicional permitir que el alumno implemente ambas opciones.
+          </div>
 
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const escapeHtml = (value) =>
+          value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        const createStash = () => {
+          const items = [];
+          return {
+            save(value) {
+              const key = `__TOKEN_${items.length}__`;
+              items.push(value);
+              return key;
+            },
+            restore(value) {
+              return value.replace(/__TOKEN_(\d+)__/g, (_, index) => items[Number(index)]);
+            },
+          };
+        };
+
+        const highlightPython = (code) => {
+          const stash = createStash();
+          let html = escapeHtml(code);
+
+          html = html.replace(/(#.*$)/gm, (match) =>
+            stash.save(`<span class="token comment">${match}</span>`));
+          html = html.replace(/("""[\s\S]*?"""|'''[\s\S]*?'''|"[^"\n]*"|'[^'\n]*')/g, (match) =>
+            stash.save(`<span class="token string">${match}</span>`));
+          html = html.replace(
+            /\b(import|from|as|def|return|if|elif|else|for|while|in|try|except|finally|with|class|lambda|pass|break|continue|and|or|not|is|None|True|False)\b/g,
+            '<span class="token keyword">$1</span>'
+          );
+          html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="token number">$1</span>');
+          html = html.replace(/\b([A-Z][A-Za-z0-9_]*)\b/g, '<span class="token class-name">$1</span>');
+          html = html.replace(/\b([a-zA-Z_][A-Za-z0-9_]*)(?=\s*\()/g, '<span class="token function">$1</span>');
+
+          return stash.restore(html);
+        };
+
+        const highlightBash = (code) => {
+          const stash = createStash();
+          let html = escapeHtml(code);
+
+          html = html.replace(/(#.*$)/gm, (match) =>
+            stash.save(`<span class="token comment">${match}</span>`));
+          html = html.replace(/(".*?"|'.*?')/g, (match) =>
+            stash.save(`<span class="token string">${match}</span>`));
+          html = html.replace(
+            /\b(source|pip|python|python3|flet|cd|ls|mkdir|export)\b/g,
+            '<span class="token keyword">$1</span>'
+          );
+          html = html.replace(/(\s)(\-\-[a-zA-Z-]+|\-[a-zA-Z]+)/g, '$1<span class="token property">$2</span>');
+          html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="token number">$1</span>');
+
+          return stash.restore(html);
+        };
+
+        document.querySelectorAll("pre.code-block.language-python code").forEach((block) => {
+          block.innerHTML = highlightPython(block.textContent);
+        });
+
+        document.querySelectorAll("pre.code-block.language-bash code").forEach((block) => {
+          block.innerHTML = highlightBash(block.textContent);
+        });
+      })();
+    </script>
   </body>
 </html>
