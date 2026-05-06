@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluación Práctica · CRUD con Flet y Firebase Firestore</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
+        <div class="nav-title">Menú</div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <details class="nav-section">
+            <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
+            <div class="nav-links">
+              <a href="practica-0.html">Práctica 0 — Fundamentos de Bases de Datos No Relacionales</a>
+              <a href="practica-0-1.html">Práctica 0.1 — Sintaxis MongoDB y Simulación de Base de Datos</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad I · Fundamentos y Arquitecturas No Relacionales</summary>
+            <div class="nav-links">
+              <a href="practica-1.html">Práctica 1 — Conexión profesional a MongoDB Atlas + Creación progresiva de base de datos</a>
+              <a href="practica-2.html">Práctica 2 — Conexión segura a MongoDB Atlas y catálogo web con Flet</a>
+              <a href="practica-3.html">Práctica 3 — Diseño de Formularios Estructurados con Modelo de Datos</a>
+              <a href="practica-4.html">Práctica 4 — Quiz Interactivo con Flet y MongoDB</a>
+              <a href="practica-5.html">Práctica 5 — Cacería de Datos: Sistema visual con Pygame y MongoDB Atlas</a>
+              <a href="practica-6.html">Práctica 6 — Firebase: Firestore, Google Auth y reglas</a>
+            </div>
+          </details>
+          <details class="nav-section" open>
+            <summary>Unidad II · Modelado Documental y Estructura de Datos con JSON</summary>
+            <div class="nav-links">
+              <a href="practica-7.html">Práctica 7 — Pokedex</a>
+              <a href="practica-8.html">Práctica 8 — PokeDesk con Python, Flet y Firebase</a>
+              <a href="practica-9.html">Práctica 9 — Tutorial del alumno: registro de plantas con Flet</a>
+              <a class="active" href="evaluacion-practica.html">Evaluación Práctica — CRUD con Flet y Firebase</a>
+              <a href="practica-10.html">Práctica 10 — CRUD Completo con Firebase Firestore</a>
+              <a href="practica-11.html">Práctica 11 — Consultas y Ordenamientos en Firestore</a>
+              <a href="practica-12.html">Práctica 12 — Mini Sistema Comparativo: MongoDB vs Firestore</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad III · Operaciones y Manipulación de Datos en MongoDB</summary>
+            <div class="nav-links">
+              <a href="practica-13.html">Práctica 13 — Sistema con Autenticación y Roles</a>
+              <a href="practica-14.html">Práctica 14 — Arquitectura Modular y Separación por Capas</a>
+              <a href="practica-15.html">Práctica 15 — Paginación y Optimización de Consultas</a>
+              <a href="practica-16.html">Práctica 16 — Dashboard Estadístico con Métricas en Tiempo Real</a>
+              <a href="practica-17.html">Práctica 17 — Modelado Relacional en NoSQL (Referencias y Subcolecciones)</a>
+              <a href="practica-18.html">Práctica 18 — Aplicación Final Lista para Ponencia ABP</a>
+            </div>
+          </details>
+          <details class="nav-section">
+            <summary>Unidad ABP · Aprendizaje Basado en Proyectos</summary>
+            <div class="nav-links">
+              <a href="practica-abp.html">Proyectos ABP</a>
+            </div>
+          </details>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="unit-label">Unidad II · Modelado Documental y Estructura de Datos con JSON</div>
+          <div class="badge">🟨 Evaluación Práctica</div>
+          <h2 class="page-title">Evaluación Práctica: CRUD con Flet y Firebase</h2>
+          <p class="page-subtitle">
+            Propósito: Evaluar la capacidad del alumno para integrar una interfaz gráfica en Flet con
+            servicios de Firebase Firestore mediante la REST API y autenticación anónima.
+          </p>
+
+          <div class="callout">
+            Esta evaluación requiere la creación de un sistema funcional que permita la gestión de datos
+            (Guardar, Mostrar y Eliminar) asegurando la persistencia en la nube.
+          </div>
+
+          <h2 class="section-title">1. Competencias a evaluar</h2>
+          <ul class="checklist">
+            <li>Implementación de Autenticación Anónima en Firebase.</li>
+            <li>Manejo de peticiones HTTP para interactuar con Firestore REST API.</li>
+            <li>Diseño de interfaces dinámicas y reactivas con Flet.</li>
+            <li>Gestión del ciclo de vida de los datos (CRUD básico).</li>
+          </ul>
+
+          <h2 class="section-title">2. Requerimientos del proyecto</h2>
+          <ul>
+            <li><strong>Entorno:</strong> Python 3.10 o superior.</li>
+            <li><strong>Librerías:</strong> <code>flet</code> y <code>requests</code>.</li>
+            <li><strong>Firebase:</strong> Proyecto activo con Firestore y Auth habilitado.</li>
+            <li><strong>REST API:</strong> Uso obligatorio de los endpoints de Firebase para operaciones.</li>
+          </ul>
+
+          <h2 class="section-title">3. Instrucciones de desarrollo</h2>
+          <ol>
+            <li>Configurar en Firebase Console la <strong>Autenticación Anónima</strong>.</li>
+            <li>Crear una base de datos <strong>Firestore</strong> en modo de prueba.</li>
+            <li>Obtener la <strong>Web API Key</strong> desde la configuración del proyecto.</li>
+            <li>Desarrollar la aplicación en Python utilizando el código base proporcionado.</li>
+            <li>Completar las funciones de Guardar, Mostrar y Eliminar.</li>
+          </ol>
+
+          <h2 class="section-title">4. Código Base</h2>
+          <p>Utiliza esta estructura como punto de partida. Los comentarios <code># AQUÍ VA TU CÓDIGO</code> indican las secciones que debes implementar.</p>
+          
+          <pre class="code-block editor-block language-python" data-title="evaluacion_crud.py"><code>import flet as ft
+import requests
+
+# --- CONFIGURACIÓN DE FIREBASE ---
+API_KEY = "TU_WEB_API_KEY"
+PROJECT_ID = "TU_PROJECT_ID"
+AUTH_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={API_KEY}"
+DB_URL = f"https://firestore.googleapis.com/v1/projects/{PROJECT_ID}/databases/(default)/documents/inventario"
+
+def main(page: ft.Page):
+    page.title = "Evaluación: CRUD Firebase REST"
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.padding = 30
+
+    # Referencia para el token de sesión
+    id_token = ft.Ref[str]()
+
+    # Controles de interfaz
+    tf_item = ft.TextField(label="Nombre del Producto", border_radius=12)
+    tf_cantidad = ft.TextField(label="Cantidad", border_radius=12, keyboard_type=ft.KeyboardType.NUMBER)
+    lv_resultados = ft.Column(spacing=10)
+
+    def login_anonimo():
+        try:
+            # Implementación de autenticación anónima
+            payload = {"returnSecureToken": True}
+            response = requests.post(AUTH_URL, json=payload)
+            data = response.json()
+            id_token.current = data.get("idToken")
+            print("Autenticación exitosa")
+        except Exception as e:
+            print(f"Error de conexión: {e}")
+
+    def guardar_registro(e):
+        if not id_token.current: return
+        # AQUÍ VA TU CÓDIGO: Realizar un POST a DB_URL con el token
+        # Payload: {"fields": {"item": {"stringValue": tf_item.value}, "cantidad": {"integerValue": tf_cantidad.value}}}
+        page.snack_bar = ft.SnackBar(ft.Text("Procesando guardado..."))
+        page.snack_bar.open = True
+        page.update()
+
+    def consultar_registros(e):
+        if not id_token.current: return
+        # AQUÍ VA TU CÓDIGO: Realizar un GET a DB_URL
+        # Limpiar lv_resultados y llenarlo con los datos obtenidos
+        pass
+
+    def eliminar_registro(doc_name):
+        # AQUÍ VA TU CÓDIGO: Realizar un DELETE a DB_URL/doc_name
+        pass
+
+    # Layout Principal
+    page.add(
+        ft.Text("Evaluación: Sistema de Inventario", size=30, weight=ft.FontWeight.BOLD),
+        ft.Text("Uso de Firebase REST API y Autenticación Anónima", color=ft.Colors.BLUE_GREY_600),
+        ft.Divider(),
+        tf_item,
+        tf_cantidad,
+        ft.Row([
+            ft.ElevatedButton("Guardar", icon=ft.Icons.SAVE, on_click=guardar_registro),
+            ft.ElevatedButton("Actualizar Lista", icon=ft.Icons.REFRESH, on_click=consultar_registros),
+        ]),
+        ft.Divider(),
+        ft.Text("Registros en Firestore:", size=18, weight=ft.FontWeight.W_600),
+        lv_resultados
+    )
+
+    # Intentar login al iniciar
+    login_anonimo()
+
+ft.run(main)</code></pre>
+
+          <h2 class="section-title">5. Evidencias solicitadas</h2>
+          <ul class="checklist">
+            <li><strong>Captura de Pantalla:</strong> De la consola de Firebase mostrando la cuenta anónima creada.</li>
+            <li><strong>Captura de Firestore:</strong> Mostrando al menos 3 registros guardados desde la app.</li>
+            <li><strong>Video:</strong> Ejecución de la app realizando el flujo completo (Guardar -> Mostrar -> Eliminar).</li>
+            <li><strong>Código:</strong> Archivo <code>.py</code> funcional enviado por la plataforma asignada.</li>
+          </ul>
+
+          <h2 class="section-title">6. Rúbrica de Evaluación</h2>
+          <table class="table-like" aria-label="Rúbrica de evaluación">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Excelente (100%)</th>
+                <th>Suficiente (70%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Autenticación</td>
+                <td>El login anónimo funciona correctamente y recupera el token.</td>
+                <td>Implementado pero con errores de manejo de errores.</td>
+              </tr>
+              <tr>
+                <td>Operaciones CRUD</td>
+                <td>Realiza satisfactoriamente Guardar, Consultar y Eliminar.</td>
+                <td>Falta una de las tres funciones principales.</td>
+              </tr>
+              <tr>
+                <td>REST API</td>
+                <td>Usa correctamente los métodos POST, GET y DELETE con <code>requests</code>.</td>
+                <td>Uso incorrecto de headers o parámetros de URL.</td>
+              </tr>
+              <tr>
+                <td>Interfaz Flet</td>
+                <td>Diseño limpio, usa variables de control y actualiza la UI.</td>
+                <td>La UI no se actualiza tras realizar cambios.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="section-title">7. Notas Técnicas Obligatorias</h2>
+          <div class="callout">
+            <p>Es indispensable cumplir con lo siguiente antes de la revisión:</p>
+            <ul>
+              <li>Verificar versión de Flet instalada: <code>pip show flet</code>.</li>
+              <li>Asegurarse de usar <code>ft.run(main)</code> al final de tu script.</li>
+              <li>Si trabajas en red escolar, verifica que el puerto 8080 esté disponible o usa el modo web.</li>
+            </ul>
+          </div>
+
+          <h2 class="section-title">8. Preguntas de Reflexión</h2>
+          <ul>
+            <li>¿Qué ventajas ofrece la autenticación anónima para una aplicación de recolección de datos rápida?</li>
+            <li>¿Cuál es la principal diferencia entre usar la REST API y el SDK de Firebase (<code>firebase-admin</code>)?</li>
+          </ul>
+
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const escapeHtml = (value) =>
+          value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        const createStash = () => {
+          const items = [];
+          return {
+            save(value) {
+              const key = `__TOKEN_${items.length}__`;
+              items.push(value);
+              return key;
+            },
+            restore(value) {
+              return value.replace(/__TOKEN_(\d+)__/g, (_, index) => items[Number(index)]);
+            },
+          };
+        };
+
+        const highlightPython = (code) => {
+          const stash = createStash();
+          let html = escapeHtml(code);
+
+          html = html.replace(/(#.*$)/gm, (match) =>
+            stash.save(`<span class="token comment">${match}</span>`));
+          html = html.replace(/("""[\s\S]*?"""|'''[\s\S]*?'''|"[^"\n]*"|'[^'\n]*')/g, (match) =>
+            stash.save(`<span class="token string">${match}</span>`));
+          html = html.replace(
+            /\b(import|from|as|def|return|if|elif|else|for|while|in|try|except|finally|with|class|lambda|pass|break|continue|and|or|not|is|None|True|False|nonlocal)\b/g,
+            '<span class="token keyword">$1</span>'
+          );
+          html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="token number">$1</span>');
+          html = html.replace(/\b([A-Z][A-Za-z0-9_]*)\b/g, '<span class="token class-name">$1</span>');
+          html = html.replace(/\b([a-zA-Z_][A-Za-z0-9_]*)(?=\s*\()/g, '<span class="token function">$1</span>');
+
+          return stash.restore(html);
+        };
+
+        const fallbackCopyText = (text) => {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "absolute";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand("copy");
+          document.body.removeChild(textarea);
+          return copied;
+        };
+
+        const copyCode = async (button) => {
+          const code = button.parentElement.querySelector("code");
+          if (!code) return;
+
+          const originalLabel = button.dataset.defaultLabel || "Copiar";
+          const text = code.textContent;
+
+          try {
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(text);
+            } else if (!fallbackCopyText(text)) {
+              throw new Error("Clipboard API no disponible");
+            }
+
+            button.textContent = "Copiado";
+            button.classList.add("is-copied");
+          } catch (error) {
+            button.textContent = "Error";
+            console.error("No se pudo copiar el código:", error);
+          }
+
+          window.setTimeout(() => {
+            button.textContent = originalLabel;
+            button.classList.remove("is-copied");
+          }, 2000);
+        };
+
+        document.querySelectorAll("pre.code-block.language-python code").forEach((block) => {
+          block.innerHTML = highlightPython(block.textContent);
+        });
+
+        document.querySelectorAll("pre code").forEach((block) => {
+          const pre = block.parentElement;
+          if (!pre || pre.querySelector(".copy-btn")) return;
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "copy-btn";
+          button.textContent = "Copiar";
+          button.dataset.defaultLabel = "Copiar";
+          button.setAttribute("aria-label", "Copiar código al portapapeles");
+          button.addEventListener("click", () => {
+            copyCode(button);
+          });
+
+          pre.insertBefore(button, block);
+        });
+      })();
+    </script>
+  </body>
+</html>

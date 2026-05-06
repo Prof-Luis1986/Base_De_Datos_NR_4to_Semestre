@@ -268,6 +268,7 @@ li {
   border: 1px solid #2b2f3a;
   background: #1e1f26;
   overflow: auto;
+  position: relative;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   font-size: 13.5px;
@@ -411,6 +412,44 @@ pre.code-block.editor-block::after {
 
 pre.code-block.editor-block code {
   white-space: pre;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(15, 23, 38, 0.88);
+  color: #eef4ff;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.copy-btn:hover {
+  background: rgba(36, 52, 76, 0.96);
+  border-color: rgba(154, 215, 255, 0.35);
+}
+
+.copy-btn:focus-visible {
+  outline: 2px solid rgba(154, 215, 255, 0.9);
+  outline-offset: 2px;
+}
+
+.copy-btn.is-copied {
+  background: rgba(40, 200, 64, 0.2);
+  border-color: rgba(40, 200, 64, 0.45);
+  color: #d6ffde;
+}
+
+pre.code-block.editor-block .copy-btn {
+  top: 6px;
+  right: 10px;
 }
 
 .code-block .token.comment,
