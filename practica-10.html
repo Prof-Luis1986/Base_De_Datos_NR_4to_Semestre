@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Práctica 10 · Operaciones CRUD Completas en MongoDB</title>
+    <title>Práctica 10 · La ciudad que lo sabe todo sobre ti</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="layout">
       <aside class="sidebar">
-        <h1 class="brand">📘 Bases de Datos<br />No Relacionales
-        </h1>
+        <h1 class="brand">📘 Bases de Datos<br />No Relacionales</h1>
         <div class="nav-title">Menú</div>
-                                        <nav class="nav" aria-label="Navegación principal">
+        <nav class="nav" aria-label="Navegación principal">
           <a href="index.html">Inicio</a>
           <details class="nav-section">
             <summary>Unidad 0 · Contextualización y Evolución de las Bases de Datos</summary>
@@ -38,7 +37,7 @@
               <a href="practica-7.html">Práctica 7 — Pokedex</a>
               <a href="practica-8.html">Práctica 8 — PokeDesk con Python, Flet y Firebase</a>
               <a href="practica-9.html">Práctica 9 — Tutorial del alumno: registro de plantas con Flet</a>
-              <a class="active" href="practica-10.html">Práctica 10 — CRUD Completo con Firebase Firestore</a>
+              <a class="active" href="practica-10.html">Práctica 10 — La ciudad que lo sabe todo sobre ti</a>
               <a href="practica-11.html">Práctica 11 — Consultas y Ordenamientos en Firestore</a>
               <a href="practica-12.html">Práctica 12 — Mini Sistema Comparativo: MongoDB vs Firestore</a>
             </div>
@@ -67,184 +66,543 @@
         <section class="card">
           <div class="unit-label">Unidad II · Modelado Documental y Estructura de Datos con JSON</div>
           <div class="badge">🟦 Práctica 10</div>
-          <h2 class="page-title">Operaciones CRUD Completas en MongoDB</h2>
-          <p class="page-subtitle">Modalidad: Laboratorio · Duración estimada: 2 sesiones</p>
-
-          <h2 class="section-title">🎯 Propósito</h2>
-          <p>
-            Aplicar operaciones CRUD completas (Crear, Leer, Actualizar y Eliminar) en MongoDB utilizando estructuras
-            correctamente diseñadas.
+          <h2 class="page-title">La ciudad que lo sabe todo sobre ti</h2>
+          <p class="page-subtitle">
+            Big Data y ciudades del futuro. Basada en el video
+            <strong>“La ciudad que lo sabe todo sobre ti | Big Data: ciudades del futuro”</strong>.
           </p>
 
-          <h2 class="section-title">🧭 Contexto conceptual</h2>
-          <p>El CRUD completo representa el ciclo real de vida de los datos. Esta práctica integra creación, lectura, actualización y eliminación con criterios profesionales.</p>
-          <h2 class="section-title">🧠 Competencia</h2>
-          <ul class="checklist">
-            <li>Ejecuta correctamente operaciones CRUD.</li>
-            <li>Utiliza filtros adecuados.</li>
-            <li>Evita errores comunes en eliminación y actualización.</li>
-          </ul>
-
-          <h2 class="section-title">📚 Parte 1 — Creación</h2>
-          <p>Crear colección <strong>productos_streaming</strong> e insertar mínimo 6 documentos usando <strong>insertMany()</strong>.</p>
-          <div class="code-block">
-            <pre><code>db.productos_streaming.insertMany([
-  { titulo: "Matrix", categoria: "Ciencia Ficcion", precio: 120, stock: 10 },
-  { titulo: "Titanic", categoria: "Romance", precio: 90, stock: 5 },
-  { titulo: "Avengers", categoria: "Accion", precio: 150, stock: 20 }
-])</code></pre>
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/m5yVHer5SPk"
+              title="La ciudad que lo sabe todo sobre ti | Big Data: ciudades del futuro"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
 
-          <h2 class="section-title">📖 Parte 2 — Lectura</h2>
-          <p>Realizar consultas:</p>
-          <ul class="checklist">
-            <li>Mostrar todos.</li>
-            <li>Mostrar solo categoría “Accion”.</li>
-            <li>Mostrar productos con precio mayor a 100.</li>
-            <li>Proyección mostrando solo título y precio.</li>
-          </ul>
+          <div class="callout">
+            <strong>Objetivo:</strong> Reflexionar sobre el impacto del Big Data y las ciudades inteligentes en la vida cotidiana,
+            identificando beneficios, riesgos y el manejo de datos personales mediante preguntas de análisis e investigación.
+          </div>
 
-          <h2 class="section-title">✏ Parte 3 — Actualización</h2>
-          <ul class="checklist">
-            <li>Aumentar precio de un producto usando <strong>$set</strong>.</li>
-            <li>Incrementar stock usando <strong>$inc</strong>.</li>
-            <li>Actualizar múltiples documentos.</li>
-          </ul>
+          <form id="practice-form" class="response-form">
+            <div class="student-grid">
+              <label>
+                Nombre del alumno
+                <input type="text" name="student_name" data-label="Nombre del alumno" autocomplete="name" />
+              </label>
+              <label>
+                Grupo
+                <input type="text" name="student_group" data-label="Grupo" />
+              </label>
+              <label>
+                Fecha
+                <input type="date" name="student_date" data-label="Fecha" />
+              </label>
+            </div>
 
-          <h2 class="section-title">🗑 Parte 4 — Eliminación</h2>
-          <ul class="checklist">
-            <li>Eliminar un producto específico.</li>
-            <li>Eliminar productos con stock menor a 5.</li>
-            <li>Intentar un deleteMany sin filtro y analizar el riesgo (no ejecutarlo, solo escribirlo).</li>
-          </ul>
+            <div class="form-actions" aria-label="Acciones de la práctica">
+              <button type="button" class="primary-action" id="download-pdf">Descargar PDF con respuestas</button>
+              <button type="button" class="secondary-action" id="clear-answers">Limpiar respuestas</button>
+              <span class="save-status" id="save-status" role="status" aria-live="polite">Respuestas guardadas en este navegador.</span>
+            </div>
 
-          <h2 class="section-title">🧠 Parte 5 — Reflexión Técnica</h2>
-          <p>Responder:</p>
-          <ul class="checklist">
-            <li>¿Cuál operación es más riesgosa?</li>
-            <li>¿Por qué MongoDB permite borrar múltiples documentos?</li>
-            <li>¿Qué buenas prácticas se deben seguir?</li>
-          </ul>
+            <h2 class="section-title">Materiales</h2>
+            <ul class="checklist">
+              <li>Cuaderno.</li>
+              <li>Lápiz o pluma.</li>
+              <li>Video proyectado por el docente.</li>
+              <li>Hojas impresas, opcional.</li>
+            </ul>
 
-          <h2 class="section-title">📦 Entregables</h2>
-          <ul class="checklist">
-            <li>Capturas de cada operación.</li>
-            <li>Código ejecutado.</li>
-            <li>Reflexión escrita.</li>
-          </ul>
+            <h2 class="section-title">Parte 1 — Introducción y reflexión inicial</h2>
+            <p>El docente realizará las siguientes preguntas al grupo. Responde en la página:</p>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>¿Qué aplicaciones usan diariamente?</span>
+                <textarea name="intro_1" data-label="¿Qué aplicaciones usan diariamente?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Creen que las aplicaciones recopilan información sobre ustedes?</span>
+                <textarea name="intro_2" data-label="¿Creen que las aplicaciones recopilan información sobre ustedes?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué datos creen que guarda un celular?</span>
+                <textarea name="intro_3" data-label="¿Qué datos creen que guarda un celular?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Les preocupa que las empresas sepan dónde están o qué hacen?</span>
+                <textarea name="intro_4" data-label="¿Les preocupa que las empresas sepan dónde están o qué hacen?" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">📊 Evaluación</h2>
-          <table class="table-like" aria-label="Criterios de evaluación">
-            <thead>
-              <tr>
-                <th>Criterio</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>CRUD completo funcional</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>Uso correcto de filtros</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <td>Buenas prácticas</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>Reflexión técnica</td>
-                <td>15</td>
-              </tr>
-            </tbody>
-          </table>
+            <h2 class="section-title">Conceptos clave</h2>
+            <div class="callout">
+              <p><strong>Big Data:</strong> es el análisis de grandes cantidades de información generada por personas, dispositivos y aplicaciones.</p>
+              <p><strong>Smart City:</strong> ciudad que utiliza tecnología y datos para mejorar servicios como transporte, seguridad, iluminación y movilidad.</p>
+            </div>
 
-          <h2 class="section-title">🧩 Justificación técnica de los ejercicios</h2>
-          <p>Cada parte del CRUD te obliga a construir filtros y operaciones coherentes, evitando errores típicos en producción.</p>
+            <h2 class="section-title">Parte 2 — Observación del video</h2>
+            <p>Durante el video, toma notas y responde las siguientes preguntas.</p>
 
-          <h2 class="section-title">🌍 Escenarios reales de aplicación</h2>
-          <ul class="checklist">
-            <li>E-commerce: catálogo, carrito y historial de compras.</li>
-            <li>Streaming: perfiles, reproducciones y recomendaciones.</li>
-            <li>Redes sociales: publicaciones, comentarios y reacciones.</li>
-            <li>Sistema escolar: alumnos, materias y evaluaciones.</li>
-            <li>Videojuegos: progreso, logros y sesiones de juego.</li>
-          </ul>
+            <h2 class="section-title">Cuestionario de análisis · Sección A — Comprensión</h2>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>1. ¿Qué es una ciudad inteligente?</span>
+                <textarea name="comprension_1" data-label="¿Qué es una ciudad inteligente?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>2. ¿Qué ejemplos de tecnología aparecen en el video?</span>
+                <textarea name="comprension_2" data-label="¿Qué ejemplos de tecnología aparecen en el video?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>3. ¿Cómo ayudan los datos a mejorar una ciudad?</span>
+                <textarea name="comprension_3" data-label="¿Cómo ayudan los datos a mejorar una ciudad?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>4. ¿Qué información recopilan las ciudades inteligentes?</span>
+                <textarea name="comprension_4" data-label="¿Qué información recopilan las ciudades inteligentes?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>5. ¿Qué ventajas ofrecen estas tecnologías?</span>
+                <textarea name="comprension_5" data-label="¿Qué ventajas ofrecen estas tecnologías?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>6. ¿Qué problemas o riesgos menciona el video?</span>
+                <textarea name="comprension_6" data-label="¿Qué problemas o riesgos menciona el video?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>7. ¿Qué es el reconocimiento facial?</span>
+                <textarea name="comprension_7" data-label="¿Qué es el reconocimiento facial?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>8. ¿Cómo afecta el Big Data la vida cotidiana?</span>
+                <textarea name="comprension_8" data-label="¿Cómo afecta el Big Data la vida cotidiana?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>9. ¿Qué relación existe entre los celulares y el Big Data?</span>
+                <textarea name="comprension_9" data-label="¿Qué relación existe entre los celulares y el Big Data?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>10. ¿Qué ejemplos del video consideras que ya existen en México?</span>
+                <textarea name="comprension_10" data-label="¿Qué ejemplos del video consideras que ya existen en México?" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">🔁 Comparación breve con modelo relacional</h2>
-          <p>En SQL el CRUD se traduce a INSERT, SELECT, UPDATE, DELETE; en MongoDB cada operación usa documentos y operadores específicos.</p>
+            <h2 class="section-title">Parte 3 — Investigación escrita</h2>
 
-          <h2 class="section-title">⚙️ Rendimiento y escalabilidad</h2>
-          <ul class="checklist">
-            <li>Evita escanear colecciones completas cuando un índice puede ayudar.</li>
-            <li>Limita y proyecta campos para reducir transferencia de datos.</li>
-            <li>Cuida el tamaño del documento y el crecimiento de arreglos.</li>
-            <li>Mide consultas críticas y ajusta filtros antes de escalar.</li>
-            <li>Usa paginación o límites en lecturas de alto volumen.</li>
-          </ul>
+            <h3 class="section-title">Tema 1 — Big Data</h3>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>¿Qué significa Big Data?</span>
+                <textarea name="big_data_1" data-label="¿Qué significa Big Data?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué empresas utilizan Big Data?</span>
+                <textarea name="big_data_2" data-label="¿Qué empresas utilizan Big Data?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Cómo usa Netflix, TikTok o Google nuestros datos?</span>
+                <textarea name="big_data_3" data-label="¿Cómo usa Netflix, TikTok o Google nuestros datos?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué ventajas tiene el análisis de datos?</span>
+                <textarea name="big_data_4" data-label="¿Qué ventajas tiene el análisis de datos?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué riesgos existen al compartir demasiada información?</span>
+                <textarea name="big_data_5" data-label="¿Qué riesgos existen al compartir demasiada información?" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">🧪 Qué ocurre internamente en MongoDB</h2>
-          <p>MongoDB registra operaciones en el journal y actualiza índices; las eliminaciones y actualizaciones afectan el rendimiento si no están filtradas.</p>
+            <h3 class="section-title">Tema 2 — Smart Cities</h3>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>¿Qué es una Smart City?</span>
+                <textarea name="smart_city_1" data-label="¿Qué es una Smart City?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>Investiga una ciudad inteligente real del mundo.</span>
+                <textarea name="smart_city_2" data-label="Investiga una ciudad inteligente real del mundo." rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué tecnologías utiliza?</span>
+                <textarea name="smart_city_3" data-label="¿Qué tecnologías utiliza?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Cómo ayuda a sus habitantes?</span>
+                <textarea name="smart_city_4" data-label="¿Cómo ayuda a sus habitantes?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué problemas podría generar?</span>
+                <textarea name="smart_city_5" data-label="¿Qué problemas podría generar?" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">❗ Errores Comunes</h2>
-          <ul class="checklist">
-            <li>Actualizar o eliminar sin filtro específico (o sin _id).</li>
-            <li>Guardar tipos incorrectos (números como texto, fechas sin formato).</li>
-            <li>Diseñar documentos demasiado grandes o con campos duplicados.</li>
-            <li>No documentar la estructura JSON y sus cambios.</li>
-            <li>Confundir colección con documento o arreglo con objeto.</li>
-          </ul>
+            <h3 class="section-title">Tema 3 — Privacidad digital</h3>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>¿Qué son los datos personales?</span>
+                <textarea name="privacidad_1" data-label="¿Qué son los datos personales?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué información compartimos diariamente sin notarlo?</span>
+                <textarea name="privacidad_2" data-label="¿Qué información compartimos diariamente sin notarlo?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué aplicaciones recopilan ubicación?</span>
+                <textarea name="privacidad_3" data-label="¿Qué aplicaciones recopilan ubicación?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Cómo podemos proteger nuestra información?</span>
+                <textarea name="privacidad_4" data-label="¿Cómo podemos proteger nuestra información?" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué harías si una ciudad monitoreara todo lo que haces?</span>
+                <textarea name="privacidad_5" data-label="¿Qué harías si una ciudad monitoreara todo lo que haces?" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">✅ Buenas Prácticas Profesionales</h2>
-          <ul class="checklist">
-            <li>Definir convenciones de nombres y mantenerlas en todo el proyecto.</li>
-            <li>Validar datos antes de guardar (tipo, rango, formato).</li>
-            <li>Usar índices en campos consultados con frecuencia.</li>
-            <li>Probar consultas con datos reales y revisar planes de ejecución.</li>
-            <li>Documentar decisiones de modelado y razones de embebido vs referencia.</li>
-          </ul>
+            <h2 class="section-title">Parte 4 — Reflexión crítica</h2>
+            <p>Responder individualmente:</p>
+            <div class="answer-list">
+              <label class="answer-card">
+                <span>¿Te gustaría vivir en una ciudad completamente inteligente? ¿Por qué?</span>
+                <textarea name="reflexion_1" data-label="¿Te gustaría vivir en una ciudad completamente inteligente? ¿Por qué?" rows="4"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué es más importante: seguridad o privacidad?</span>
+                <textarea name="reflexion_2" data-label="¿Qué es más importante: seguridad o privacidad?" rows="4"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Crees que la tecnología puede controlar demasiado a las personas?</span>
+                <textarea name="reflexion_3" data-label="¿Crees que la tecnología puede controlar demasiado a las personas?" rows="4"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Qué límites deberían existir para proteger nuestros datos?</span>
+                <textarea name="reflexion_4" data-label="¿Qué límites deberían existir para proteger nuestros datos?" rows="4"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>¿Cómo imaginas las ciudades dentro de 20 años?</span>
+                <textarea name="reflexion_5" data-label="¿Cómo imaginas las ciudades dentro de 20 años?" rows="4"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">🧠 Análisis Técnico y Reflexión</h2>
-          <ul class="checklist">
-            <li>¿Qué operación es más riesgosa y por qué?</li>
-            <li>¿Cómo decidirías cuándo usar updateOne vs updateMany?</li>
-            <li>¿Qué filtros previenen errores de eliminación?</li>
-            <li>¿Qué métricas evaluarías para medir la calidad del CRUD?</li>
-          </ul>
+            <h2 class="section-title">Cierre · Discusión grupal</h2>
+            <p>Cada alumno compartirá:</p>
+            <div class="answer-list compact">
+              <label class="answer-card">
+                <span>Una ventaja</span>
+                <textarea name="cierre_1" data-label="Una ventaja" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>Un riesgo</span>
+                <textarea name="cierre_2" data-label="Un riesgo" rows="3"></textarea>
+              </label>
+              <label class="answer-card">
+                <span>Una reflexión personal sobre el tema</span>
+                <textarea name="cierre_3" data-label="Una reflexión personal sobre el tema" rows="3"></textarea>
+              </label>
+            </div>
 
-          <h2 class="section-title">🧭 Retos Aplicados</h2>
-          <ul class="checklist">
-            <li>Asegura que los productos tengan categorías válidas y stock coherente.</li>
-            <li>Crea una consulta con proyección y ordenamiento combinado.</li>
-            <li>Implementa un updateMany con filtro seguro y justificado.</li>
-          </ul>
+            <div class="callout">
+              <p>El docente cerrará enfatizando:</p>
+              <ul>
+                <li>La tecnología puede mejorar la vida.</li>
+                <li>Los datos tienen valor.</li>
+                <li>Debemos aprender a usar la tecnología responsablemente.</li>
+                <li>La privacidad digital es importante.</li>
+              </ul>
+            </div>
 
-          <h2 class="section-title">🚀 Desafío Nivel Experto</h2>
-          <ul class="checklist">
-            <li>Diseña reglas para evitar eliminación accidental y describe cómo aplicarlas.</li>
-            <li>Simula un flujo completo de compra usando CRUD.</li>
-          </ul>
+            <h2 class="section-title">Producto final</h2>
+            <p>Entrega en PDF con:</p>
+            <ul class="checklist">
+              <li>Cuestionario contestado.</li>
+              <li>Investigación.</li>
+              <li>Reflexión personal.</li>
+            </ul>
 
-          <h2 class="section-title">📊 Rúbrica detallada</h2>
-          <table class="table-like" aria-label="Rúbrica detallada">
-            <thead>
-              <tr><th>Nivel</th><th>Descripción</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Excelente</td><td>Aplica el tema con precisión, justifica decisiones y evidencia comprensión profunda.</td></tr>
-              <tr><td>Bueno</td><td>Resuelve los ejercicios con coherencia, con pocas imprecisiones técnicas.</td></tr>
-              <tr><td>Suficiente</td><td>Cumple lo básico pero con justificaciones limitadas o errores menores.</td></tr>
-              <tr><td>Insuficiente</td><td>Presenta errores críticos o faltan evidencias clave de aprendizaje.</td></tr>
-            </tbody>
-          </table>
+            <h2 class="section-title">Evaluación sugerida</h2>
+            <table class="table-like" aria-label="Evaluación sugerida">
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cuestionario</td>
+                  <td>30%</td>
+                </tr>
+                <tr>
+                  <td>Investigación</td>
+                  <td>40%</td>
+                </tr>
+                <tr>
+                  <td>Reflexión crítica</td>
+                  <td>20%</td>
+                </tr>
+                <tr>
+                  <td>Participación</td>
+                  <td>10%</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <h2 class="section-title">🔗 Conexión con la siguiente práctica</h2>
-          <p>En la siguiente práctica se avanza al siguiente paso: Práctica 11. Lleva tus evidencias y conclusiones para conectar el aprendizaje.</p>
-
+            <h2 class="section-title">Conexión con la siguiente práctica</h2>
+            <p>
+              En la práctica 11 se retoma el análisis de datos desde consultas y ordenamientos en Firestore.
+              Lleva tus conclusiones sobre qué datos se recopilan, cómo se organizan y qué límites deberían proteger la privacidad.
+            </p>
+          </form>
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const form = document.querySelector("#practice-form");
+        const saveStatus = document.querySelector("#save-status");
+        const storageKey = "practica-10-big-data-respuestas";
+        const fileName = "practica-10-big-data-respuestas.pdf";
+
+        const fields = [...form.querySelectorAll("input, textarea")];
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+        fields.forEach((field) => {
+          if (saved[field.name]) field.value = saved[field.name];
+        });
+
+        const today = new Date().toISOString().slice(0, 10);
+        const dateField = form.querySelector('input[name="student_date"]');
+        if (dateField && !dateField.value) dateField.value = today;
+
+        function saveAnswers() {
+          const data = {};
+          fields.forEach((field) => {
+            data[field.name] = field.value;
+          });
+          localStorage.setItem(storageKey, JSON.stringify(data));
+          saveStatus.textContent = "Respuestas guardadas en este navegador.";
+        }
+
+        form.addEventListener("input", saveAnswers);
+
+        document.querySelector("#clear-answers").addEventListener("click", () => {
+          const shouldClear = confirm("¿Seguro que quieres borrar todas las respuestas?");
+          if (!shouldClear) return;
+          fields.forEach((field) => {
+            if (field.type === "date") field.value = today;
+            else field.value = "";
+          });
+          saveAnswers();
+          saveStatus.textContent = "Respuestas limpiadas.";
+        });
+
+        function collectPdfLines() {
+          const answers = fields.map((field) => ({
+            label: field.dataset.label || field.name,
+            value: field.value.trim() || "Sin responder"
+          }));
+
+          return [
+            { type: "title", text: "Práctica 10 - La ciudad que lo sabe todo sobre ti" },
+            { type: "subtitle", text: "Big Data y ciudades del futuro" },
+            { type: "spacer" },
+            ...answers.map((answer) => ({ type: "qa", question: answer.label, answer: answer.value }))
+          ];
+        }
+
+        function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight) {
+          const paragraphs = String(text).split(/\n+/);
+          let currentY = y;
+          paragraphs.forEach((paragraph) => {
+            const words = paragraph.split(/\s+/).filter(Boolean);
+            let line = "";
+            if (!words.length) {
+              currentY += lineHeight;
+              return;
+            }
+            words.forEach((word) => {
+              const test = line ? `${line} ${word}` : word;
+              if (ctx.measureText(test).width > maxWidth && line) {
+                ctx.fillText(line, x, currentY);
+                line = word;
+                currentY += lineHeight;
+              } else {
+                line = test;
+              }
+            });
+            ctx.fillText(line, x, currentY);
+            currentY += lineHeight;
+          });
+          return currentY;
+        }
+
+        function renderPages(items) {
+          const width = 612;
+          const height = 792;
+          const margin = 46;
+          const pages = [];
+          let canvas;
+          let ctx;
+          let y;
+
+          function newPage() {
+            canvas = document.createElement("canvas");
+            canvas.width = width * 2;
+            canvas.height = height * 2;
+            ctx = canvas.getContext("2d");
+            ctx.scale(2, 2);
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = "#222222";
+            y = margin;
+            pages.push(canvas);
+          }
+
+          function ensureSpace(space) {
+            if (y + space > height - margin) newPage();
+          }
+
+          newPage();
+          items.forEach((item) => {
+            if (item.type === "spacer") {
+              y += 10;
+              return;
+            }
+
+            if (item.type === "title") {
+              ctx.font = "700 20px Arial, sans-serif";
+              ctx.fillStyle = "#5c162e";
+              y = drawWrappedText(ctx, item.text, margin, y, width - margin * 2, 25);
+              y += 4;
+              return;
+            }
+
+            if (item.type === "subtitle") {
+              ctx.font = "14px Arial, sans-serif";
+              ctx.fillStyle = "#5f5258";
+              y = drawWrappedText(ctx, item.text, margin, y, width - margin * 2, 19);
+              y += 12;
+              return;
+            }
+
+            ensureSpace(74);
+            ctx.font = "700 11.5px Arial, sans-serif";
+            ctx.fillStyle = "#5c162e";
+            y = drawWrappedText(ctx, item.question, margin, y, width - margin * 2, 15);
+            y += 3;
+            ctx.font = "12px Arial, sans-serif";
+            ctx.fillStyle = "#222222";
+            y = drawWrappedText(ctx, item.answer, margin, y, width - margin * 2, 16);
+            y += 10;
+          });
+
+          pages.forEach((page, index) => {
+            const pageCtx = page.getContext("2d");
+            pageCtx.setTransform(2, 0, 0, 2, 0, 0);
+            pageCtx.font = "10px Arial, sans-serif";
+            pageCtx.fillStyle = "#777777";
+            pageCtx.fillText(`Página ${index + 1} de ${pages.length}`, width - margin - 70, height - 24);
+          });
+
+          return pages;
+        }
+
+        function binaryStringToUint8Array(value) {
+          const output = new Uint8Array(value.length);
+          for (let i = 0; i < value.length; i += 1) output[i] = value.charCodeAt(i);
+          return output;
+        }
+
+        function asciiToUint8Array(value) {
+          return new TextEncoder().encode(value);
+        }
+
+        function concatUint8Arrays(parts) {
+          const total = parts.reduce((sum, part) => sum + part.length, 0);
+          const output = new Uint8Array(total);
+          let offset = 0;
+          parts.forEach((part) => {
+            output.set(part, offset);
+            offset += part.length;
+          });
+          return output;
+        }
+
+        function buildPdfFromCanvases(canvases) {
+          const width = 612;
+          const height = 792;
+          const objects = [];
+          const parts = [asciiToUint8Array("%PDF-1.4\n")];
+          const offsets = [0];
+
+          function addObject(body) {
+            objects.push(body);
+            return objects.length;
+          }
+
+          const catalogId = addObject("<< /Type /Catalog /Pages 2 0 R >>");
+          const pagesId = addObject("");
+          const pageIds = [];
+
+          canvases.forEach((canvas) => {
+            const imageData = canvas.toDataURL("image/jpeg", 0.92).split(",")[1];
+            const imageBytes = binaryStringToUint8Array(atob(imageData));
+            const imageId = addObject([
+              asciiToUint8Array(`<< /Type /XObject /Subtype /Image /Width ${canvas.width} /Height ${canvas.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${imageBytes.length} >>\nstream\n`),
+              imageBytes,
+              asciiToUint8Array("\nendstream")
+            ]);
+            const content = `q\n${width} 0 0 ${height} 0 0 cm\n/Im${imageId} Do\nQ`;
+            const contentId = addObject(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`);
+            const pageId = addObject(`<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /XObject << /Im${imageId} ${imageId} 0 R >> >> /Contents ${contentId} 0 R >>`);
+            pageIds.push(pageId);
+          });
+
+          objects[pagesId - 1] = `<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(" ")}] /Count ${pageIds.length} >>`;
+
+          objects.forEach((object, index) => {
+            offsets.push(parts.reduce((sum, part) => sum + part.length, 0));
+            parts.push(asciiToUint8Array(`${index + 1} 0 obj\n`));
+            if (Array.isArray(object)) parts.push(...object);
+            else parts.push(asciiToUint8Array(object));
+            parts.push(asciiToUint8Array("\nendobj\n"));
+          });
+
+          const xrefOffset = parts.reduce((sum, part) => sum + part.length, 0);
+          const xref = [
+            "xref",
+            `0 ${objects.length + 1}`,
+            "0000000000 65535 f ",
+            ...offsets.slice(1).map((offset) => `${String(offset).padStart(10, "0")} 00000 n `),
+            "trailer",
+            `<< /Size ${objects.length + 1} /Root ${catalogId} 0 R >>`,
+            "startxref",
+            String(xrefOffset),
+            "%%EOF"
+          ].join("\n");
+          parts.push(asciiToUint8Array(xref));
+          return new Blob([concatUint8Arrays(parts)], { type: "application/pdf" });
+        }
+
+        document.querySelector("#download-pdf").addEventListener("click", () => {
+          saveAnswers();
+          saveStatus.textContent = "Generando PDF...";
+          requestAnimationFrame(() => {
+            const pages = renderPages(collectPdfLines());
+            const pdfBlob = buildPdfFromCanvases(pages);
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(pdfBlob);
+            link.download = fileName;
+            link.click();
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+            saveStatus.textContent = "PDF descargado.";
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
