@@ -4,7 +4,119 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Práctica 10 · La ciudad que lo sabe todo sobre ti</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20260512-formulario" />
+    <style>
+      .p10-form {
+        margin-top: 16px;
+      }
+
+      .p10-student-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin: 18px 0;
+      }
+
+      .p10-student-grid label,
+      .p10-answer-card {
+        display: grid;
+        gap: 8px;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--guinda-oscuro);
+      }
+
+      .p10-student-grid input,
+      .p10-answer-card textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--borde);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--texto);
+        font: inherit;
+        font-weight: 400;
+        line-height: 1.5;
+        outline: none;
+      }
+
+      .p10-student-grid input {
+        min-height: 44px;
+        padding: 10px 12px;
+      }
+
+      .p10-answer-card textarea {
+        min-height: 96px;
+        padding: 11px 12px;
+        resize: vertical;
+      }
+
+      .p10-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 14px 0 20px;
+        padding: 12px;
+        border: 1px solid var(--borde);
+        border-radius: 12px;
+        background: #fff9fb;
+      }
+
+      .p10-actions button {
+        min-height: 42px;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .p10-primary {
+        border: 1px solid var(--guinda);
+        background: var(--guinda);
+        color: #fff;
+      }
+
+      .p10-secondary {
+        border: 1px solid var(--borde);
+        background: #fff;
+        color: var(--guinda-oscuro);
+      }
+
+      .p10-status {
+        color: var(--texto-suave);
+        font-size: 13px;
+      }
+
+      .p10-answer-list {
+        display: grid;
+        gap: 12px;
+        margin: 0 0 16px;
+      }
+
+      .p10-answer-list.p10-compact {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .p10-answer-card {
+        padding: 12px;
+        border: 1px solid var(--borde);
+        border-radius: 12px;
+        background: #fff9fb;
+      }
+
+      @media (max-width: 720px) {
+        .p10-student-grid,
+        .p10-answer-list.p10-compact {
+          grid-template-columns: 1fr;
+        }
+
+        .p10-actions button {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="layout">
@@ -86,8 +198,8 @@
             identificando beneficios, riesgos y el manejo de datos personales mediante preguntas de análisis e investigación.
           </div>
 
-          <form id="practice-form" class="response-form">
-            <div class="student-grid">
+          <form id="practice-form" class="response-form p10-form">
+            <div class="student-grid p10-student-grid">
               <label>
                 Nombre del alumno
                 <input type="text" name="student_name" data-label="Nombre del alumno" autocomplete="name" />
@@ -102,10 +214,10 @@
               </label>
             </div>
 
-            <div class="form-actions" aria-label="Acciones de la práctica">
-              <button type="button" class="primary-action" id="download-pdf">Descargar PDF con respuestas</button>
-              <button type="button" class="secondary-action" id="clear-answers">Limpiar respuestas</button>
-              <span class="save-status" id="save-status" role="status" aria-live="polite">Respuestas guardadas en este navegador.</span>
+            <div class="form-actions p10-actions" aria-label="Acciones de la práctica">
+              <button type="button" class="primary-action p10-primary" id="download-pdf">Descargar PDF con respuestas</button>
+              <button type="button" class="secondary-action p10-secondary" id="clear-answers">Limpiar respuestas</button>
+              <span class="save-status p10-status" id="save-status" role="status" aria-live="polite">Respuestas guardadas en este navegador.</span>
             </div>
 
             <h2 class="section-title">Materiales</h2>
@@ -118,20 +230,20 @@
 
             <h2 class="section-title">Parte 1 — Introducción y reflexión inicial</h2>
             <p>El docente realizará las siguientes preguntas al grupo. Responde en la página:</p>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué aplicaciones usan diariamente?</span>
                 <textarea name="intro_1" data-label="¿Qué aplicaciones usan diariamente?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Creen que las aplicaciones recopilan información sobre ustedes?</span>
                 <textarea name="intro_2" data-label="¿Creen que las aplicaciones recopilan información sobre ustedes?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué datos creen que guarda un celular?</span>
                 <textarea name="intro_3" data-label="¿Qué datos creen que guarda un celular?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Les preocupa que las empresas sepan dónde están o qué hacen?</span>
                 <textarea name="intro_4" data-label="¿Les preocupa que las empresas sepan dónde están o qué hacen?" rows="3"></textarea>
               </label>
@@ -147,44 +259,44 @@
             <p>Durante el video, toma notas y responde las siguientes preguntas.</p>
 
             <h2 class="section-title">Cuestionario de análisis · Sección A — Comprensión</h2>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>1. ¿Qué es una ciudad inteligente?</span>
                 <textarea name="comprension_1" data-label="¿Qué es una ciudad inteligente?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>2. ¿Qué ejemplos de tecnología aparecen en el video?</span>
                 <textarea name="comprension_2" data-label="¿Qué ejemplos de tecnología aparecen en el video?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>3. ¿Cómo ayudan los datos a mejorar una ciudad?</span>
                 <textarea name="comprension_3" data-label="¿Cómo ayudan los datos a mejorar una ciudad?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>4. ¿Qué información recopilan las ciudades inteligentes?</span>
                 <textarea name="comprension_4" data-label="¿Qué información recopilan las ciudades inteligentes?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>5. ¿Qué ventajas ofrecen estas tecnologías?</span>
                 <textarea name="comprension_5" data-label="¿Qué ventajas ofrecen estas tecnologías?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>6. ¿Qué problemas o riesgos menciona el video?</span>
                 <textarea name="comprension_6" data-label="¿Qué problemas o riesgos menciona el video?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>7. ¿Qué es el reconocimiento facial?</span>
                 <textarea name="comprension_7" data-label="¿Qué es el reconocimiento facial?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>8. ¿Cómo afecta el Big Data la vida cotidiana?</span>
                 <textarea name="comprension_8" data-label="¿Cómo afecta el Big Data la vida cotidiana?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>9. ¿Qué relación existe entre los celulares y el Big Data?</span>
                 <textarea name="comprension_9" data-label="¿Qué relación existe entre los celulares y el Big Data?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>10. ¿Qué ejemplos del video consideras que ya existen en México?</span>
                 <textarea name="comprension_10" data-label="¿Qué ejemplos del video consideras que ya existen en México?" rows="3"></textarea>
               </label>
@@ -193,72 +305,72 @@
             <h2 class="section-title">Parte 3 — Investigación escrita</h2>
 
             <h3 class="section-title">Tema 1 — Big Data</h3>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué significa Big Data?</span>
                 <textarea name="big_data_1" data-label="¿Qué significa Big Data?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué empresas utilizan Big Data?</span>
                 <textarea name="big_data_2" data-label="¿Qué empresas utilizan Big Data?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Cómo usa Netflix, TikTok o Google nuestros datos?</span>
                 <textarea name="big_data_3" data-label="¿Cómo usa Netflix, TikTok o Google nuestros datos?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué ventajas tiene el análisis de datos?</span>
                 <textarea name="big_data_4" data-label="¿Qué ventajas tiene el análisis de datos?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué riesgos existen al compartir demasiada información?</span>
                 <textarea name="big_data_5" data-label="¿Qué riesgos existen al compartir demasiada información?" rows="3"></textarea>
               </label>
             </div>
 
             <h3 class="section-title">Tema 2 — Smart Cities</h3>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué es una Smart City?</span>
                 <textarea name="smart_city_1" data-label="¿Qué es una Smart City?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>Investiga una ciudad inteligente real del mundo.</span>
                 <textarea name="smart_city_2" data-label="Investiga una ciudad inteligente real del mundo." rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué tecnologías utiliza?</span>
                 <textarea name="smart_city_3" data-label="¿Qué tecnologías utiliza?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Cómo ayuda a sus habitantes?</span>
                 <textarea name="smart_city_4" data-label="¿Cómo ayuda a sus habitantes?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué problemas podría generar?</span>
                 <textarea name="smart_city_5" data-label="¿Qué problemas podría generar?" rows="3"></textarea>
               </label>
             </div>
 
             <h3 class="section-title">Tema 3 — Privacidad digital</h3>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué son los datos personales?</span>
                 <textarea name="privacidad_1" data-label="¿Qué son los datos personales?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué información compartimos diariamente sin notarlo?</span>
                 <textarea name="privacidad_2" data-label="¿Qué información compartimos diariamente sin notarlo?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué aplicaciones recopilan ubicación?</span>
                 <textarea name="privacidad_3" data-label="¿Qué aplicaciones recopilan ubicación?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Cómo podemos proteger nuestra información?</span>
                 <textarea name="privacidad_4" data-label="¿Cómo podemos proteger nuestra información?" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué harías si una ciudad monitoreara todo lo que haces?</span>
                 <textarea name="privacidad_5" data-label="¿Qué harías si una ciudad monitoreara todo lo que haces?" rows="3"></textarea>
               </label>
@@ -266,24 +378,24 @@
 
             <h2 class="section-title">Parte 4 — Reflexión crítica</h2>
             <p>Responder individualmente:</p>
-            <div class="answer-list">
-              <label class="answer-card">
+            <div class="answer-list p10-answer-list">
+              <label class="answer-card p10-answer-card">
                 <span>¿Te gustaría vivir en una ciudad completamente inteligente? ¿Por qué?</span>
                 <textarea name="reflexion_1" data-label="¿Te gustaría vivir en una ciudad completamente inteligente? ¿Por qué?" rows="4"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué es más importante: seguridad o privacidad?</span>
                 <textarea name="reflexion_2" data-label="¿Qué es más importante: seguridad o privacidad?" rows="4"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Crees que la tecnología puede controlar demasiado a las personas?</span>
                 <textarea name="reflexion_3" data-label="¿Crees que la tecnología puede controlar demasiado a las personas?" rows="4"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Qué límites deberían existir para proteger nuestros datos?</span>
                 <textarea name="reflexion_4" data-label="¿Qué límites deberían existir para proteger nuestros datos?" rows="4"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>¿Cómo imaginas las ciudades dentro de 20 años?</span>
                 <textarea name="reflexion_5" data-label="¿Cómo imaginas las ciudades dentro de 20 años?" rows="4"></textarea>
               </label>
@@ -291,16 +403,16 @@
 
             <h2 class="section-title">Cierre · Discusión grupal</h2>
             <p>Cada alumno compartirá:</p>
-            <div class="answer-list compact">
-              <label class="answer-card">
+            <div class="answer-list compact p10-answer-list p10-compact">
+              <label class="answer-card p10-answer-card">
                 <span>Una ventaja</span>
                 <textarea name="cierre_1" data-label="Una ventaja" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>Un riesgo</span>
                 <textarea name="cierre_2" data-label="Un riesgo" rows="3"></textarea>
               </label>
-              <label class="answer-card">
+              <label class="answer-card p10-answer-card">
                 <span>Una reflexión personal sobre el tema</span>
                 <textarea name="cierre_3" data-label="Una reflexión personal sobre el tema" rows="3"></textarea>
               </label>
