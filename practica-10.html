@@ -499,7 +499,12 @@
           saveStatus.textContent = "Respuestas guardadas en este navegador.";
         }
 
-        form.addEventListener("input", saveAnswers);
+        let localSaveTimer;
+        form.addEventListener("input", () => {
+          clearTimeout(localSaveTimer);
+          saveStatus.textContent = "Sin guardar";
+          localSaveTimer = setTimeout(saveAnswers, 4000);
+        });
 
         document.querySelector("#clear-answers").addEventListener("click", () => {
           const shouldClear = confirm("¿Seguro que quieres borrar todas las respuestas?");
@@ -716,5 +721,7 @@
         });
       })();
     </script>
+    <script src="apps-script-config.js"></script>
+    <script defer src="educational-platform.js"></script>
   </body>
 </html>
