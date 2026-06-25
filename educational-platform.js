@@ -1,128 +1,128 @@
 const advancedLessons = {
   practica11: {
-    title: "Consultas y ordenamientos en Firestore",
-    purpose: "Construir consultas útiles con filtros, orden y límites, comprendiendo cuándo Firestore solicita un índice.",
+    title: "Consulta visual con Tkinter y Firebase",
+    purpose: "Recuperar documentos de Firestore y representarlos en una tabla de escritorio funcional.",
     reading:
-      "Una aplicación escolar no debe descargar todos sus registros para después buscar en ellos. Firestore permite pedir solamente los documentos necesarios. Puedes filtrar por grupo o estado, ordenar por fecha y limitar resultados. Una consulta bien diseñada reduce lecturas, mejora la velocidad y facilita que la interfaz muestre información relevante.",
-    concepts: ["where()", "orderBy()", "limit()", "índices compuestos", "costo por lectura"],
+      "La conexión a Firebase ya existe. El nuevo aprendizaje consiste en recorrer documentos, conservar su ID y convertir cada diccionario en una fila de Treeview. La interfaz debe comunicar carga, colección vacía y errores sin depender de la consola.",
+    concepts: ["Tkinter", "Treeview", "stream()", "doc.id", "tabla visual"],
     steps: [
-      "Crea o reutiliza una colección de actividades escolares con grupo, estado, fecha y calificación.",
-      "Realiza una consulta por igualdad y otra por rango.",
-      "Ordena los resultados por fecha y limita la salida.",
-      "Documenta el índice solicitado por Firestore, si aparece.",
+      "Reutiliza firebase_service.py y obtener_plantas().",
+      "Construye la ventana y las columnas del Treeview.",
+      "Inserta una fila por cada documento recuperado.",
+      "Prueba el botón Actualizar y documenta el recorrido de datos.",
     ],
     questions: [
-      "Escribe una consulta que filtre actividades pendientes de tu grupo.",
-      "¿Por qué una consulta puede requerir un índice compuesto?",
-      "Describe la evidencia obtenida y el resultado de la consulta.",
+      "¿Qué función cumple doc.id dentro de la tabla?",
+      "¿Por qué se separa la conexión de la interfaz?",
+      "Describe la evidencia obtenida al actualizar la ventana.",
     ],
   },
   practica12: {
-    title: "Mini sistema comparativo: MongoDB vs Firestore",
-    purpose: "Comparar dos bases documentales mediante el mismo caso escolar y justificar una elección técnica.",
+    title: "Registro visual con Flet y Firebase",
+    purpose: "Capturar, validar y guardar registros escolares desde una interfaz Flet.",
     reading:
-      "MongoDB y Firestore almacenan documentos, pero no resuelven todos los problemas de la misma forma. MongoDB ofrece consultas y agregaciones muy flexibles; Firestore facilita aplicaciones web en tiempo real e integración con autenticación. Elegir una tecnología exige analizar consultas, escalabilidad, costos, conexión y experiencia del equipo.",
-    concepts: ["documentos", "colecciones", "consultas", "tiempo real", "criterios de selección"],
+      "Flet permite construir controles visuales con Python. Los valores del formulario se validan, se convierten en un diccionario y se envían al mismo servicio Firebase. El resultado debe confirmarse dentro de la aplicación.",
+    concepts: ["Flet", "TextField", "Dropdown", "validación", "add()"],
     steps: [
-      "Modela el mismo registro escolar en JSON para MongoDB y Firestore.",
-      "Define tres operaciones que el sistema realizará con frecuencia.",
-      "Compara autenticación, consultas, despliegue y costo operativo.",
-      "Elige una plataforma y defiende tu decisión con evidencias.",
+      "Amplía el servicio con crear_planta().",
+      "Construye el formulario Flet.",
+      "Valida nombre, grupo y ubicación.",
+      "Guarda, limpia controles y actualiza la tabla.",
     ],
     questions: [
-      "¿Qué estructura JSON compartirían ambas implementaciones?",
-      "Menciona una ventaja concreta de cada plataforma.",
-      "¿Cuál elegirías para tu caso escolar y por qué?",
+      "¿Qué diferencia existe entre validar y guardar?",
+      "¿Por qué se usan listas controladas en algunos campos?",
+      "¿Cómo compruebas visualmente que el alta funcionó?",
     ],
   },
   practica13: {
-    title: "Sistema con autenticación y roles",
-    purpose: "Proteger información escolar identificando usuarios y diferenciando permisos de alumno y docente.",
+    title: "Buscador visual con NiceGUI",
+    purpose: "Localizar registros por nombre, grupo o ID y mostrar resultados en una tabla web.",
     reading:
-      "Autenticar significa comprobar quién usa la aplicación; autorizar significa decidir qué puede hacer esa persona. Iniciar sesión con Google no vuelve segura una base de datos por sí solo. Las reglas de Firestore deben verificar el identificador del usuario y, cuando sea necesario, su rol antes de permitir una lectura o escritura.",
-    concepts: ["Authentication", "UID", "autenticación", "autorización", "reglas de seguridad"],
+      "NiceGUI representa controles web mediante Python. La búsqueda por ID usa una referencia directa; las búsquedas por nombre o grupo comparan los campos de los documentos y actualizan las filas visibles.",
+    concepts: ["NiceGUI", "ui.table", "ui.select", "casefold()", "document ID"],
     steps: [
-      "Habilita Google como proveedor en Firebase Authentication.",
-      "Registra el perfil mínimo del usuario sin guardar datos innecesarios.",
-      "Define acciones permitidas para alumno y docente.",
-      "Prueba al menos un acceso permitido y uno rechazado.",
+      "Crea selector, entrada y tabla.",
+      "Implementa búsqueda por ID.",
+      "Filtra nombre y grupo sin distinguir mayúsculas.",
+      "Prueba resultados existentes, múltiples y vacíos.",
     ],
     questions: [
-      "Explica la diferencia entre autenticación y autorización.",
-      "¿Qué dato usarías para identificar al propietario de un documento?",
-      "Describe una prueba de seguridad realizada.",
+      "¿Por qué la búsqueda por ID es distinta?",
+      "¿Qué representa una lista vacía?",
+      "Describe una prueba realizada con cada criterio.",
     ],
   },
   practica14: {
-    title: "Arquitectura modular y separación por capas",
-    purpose: "Organizar una aplicación escolar separando interfaz, autenticación y acceso a datos.",
+    title: "Actualización visual con Flet",
+    purpose: "Seleccionar, editar y actualizar un documento conservando su identificador.",
     reading:
-      "Cuando toda la lógica vive en un solo archivo, corregir un error puede afectar funciones que parecían independientes. Separar responsabilidades permite que la interfaz muestre datos, un servicio gestione Firebase y un módulo de validación revise entradas. Esta organización facilita las pruebas y evita duplicar código.",
-    concepts: ["módulos ES", "responsabilidad única", "servicios", "validación", "mantenibilidad"],
+      "El formulario de la práctica 12 se reutiliza. Una selección carga el documento, conserva su ID y cambia el botón al modo Actualizar. Firestore modifica campos con update() sin generar un documento nuevo.",
+    concepts: ["selección", "update()", "ID", "modo edición", "cancelación"],
     steps: [
-      "Dibuja la arquitectura actual de tu aplicación.",
-      "Separa configuración, autenticación, datos e interfaz.",
-      "Mueve una operación de Firestore a una función reutilizable.",
-      "Comprueba que las rutas y funciones existentes continúan operando.",
+      "Agrega actualizar_planta() al servicio.",
+      "Incluye un botón Editar por fila.",
+      "Carga los datos en el formulario.",
+      "Actualiza, cancela y verifica el mismo ID.",
     ],
     questions: [
-      "¿Qué responsabilidad tiene cada módulo propuesto?",
-      "¿Qué problema evita separar la configuración de Firebase?",
-      "Describe la mejora aplicada y cómo la verificaste.",
+      "¿Por qué update() no crea un ID nuevo?",
+      "¿Cómo se distingue Crear de Editar?",
+      "Describe cómo verificaste la actualización.",
     ],
   },
   practica15: {
-    title: "Paginación y optimización de consultas",
-    purpose: "Cargar información por bloques para evitar lecturas innecesarias y mejorar la experiencia de uso.",
+    title: "Eliminación segura con Tkinter",
+    purpose: "Eliminar el documento seleccionado solo después de una confirmación explícita.",
     reading:
-      "Una colección puede crecer hasta contener miles de documentos. Mostrar todo de una vez aumenta el tiempo de espera y el número de lecturas. Firestore pagina usando un documento como cursor. La siguiente consulta comienza después del último documento mostrado, lo cual es más estable que intentar saltar posiciones.",
-    concepts: ["limit()", "startAfter()", "cursor", "índice", "lecturas"],
+      "La eliminación usa el ID guardado detrás de la fila Treeview. Antes de llamar delete(), messagebox pregunta al usuario. No seleccionar, cancelar y recibir un error son estados que la aplicación debe controlar.",
+    concepts: ["selection()", "iid", "messagebox", "delete()", "confirmación"],
     steps: [
-      "Crea suficientes registros para observar varias páginas.",
-      "Consulta la primera página con un orden estable y un límite.",
-      "Guarda el último documento como cursor.",
-      "Carga la página siguiente y registra el número de lecturas.",
+      "Amplía el servicio con eliminar_planta().",
+      "Comprueba que exista una selección.",
+      "Solicita confirmación con el nombre visible.",
+      "Elimina, recarga y prueba también Cancelar.",
     ],
     questions: [
-      "¿Por qué Firestore usa cursores para paginar?",
-      "¿Qué campo elegirías para mantener un orden estable?",
-      "Compara las lecturas antes y después de paginar.",
+      "¿Por qué se elimina por ID?",
+      "¿Qué debe ocurrir al cancelar?",
+      "Describe las pruebas de eliminación segura.",
     ],
   },
   practica16: {
-    title: "Dashboard con métricas en tiempo real",
-    purpose: "Transformar documentos en indicadores claros y actualizar la interfaz cuando cambian los datos.",
+    title: "Panel administrativo con NiceGUI",
+    purpose: "Transformar documentos en una tabla, conteos e indicadores visuales verificables.",
     reading:
-      "Un dashboard escolar resume información para tomar decisiones: actividades terminadas, pendientes, promedios o registros recientes. Las actualizaciones en tiempo real son útiles cuando varias personas colaboran, pero mantener listeners innecesarios también consume recursos. Cada métrica debe responder una pregunta concreta.",
-    concepts: ["onSnapshot()", "métricas", "listeners", "visualización", "estado de interfaz"],
+      "El panel usa una sola lectura para calcular total, grupos, activos y tipos. set, sum y Counter convierten la lista en métricas; NiceGUI las representa con tarjetas, tabla y barras.",
+    concepts: ["ui.card", "set", "Counter", "indicadores", "barra de progreso"],
     steps: [
-      "Define tres preguntas que responderá el dashboard.",
-      "Asocia cada pregunta con los datos necesarios.",
-      "Construye tarjetas de métricas y una lista reciente.",
-      "Activa y después libera correctamente un listener en tiempo real.",
+      "Define las métricas.",
+      "Construye tarjetas y tabla.",
+      "Calcula desde una sola lista.",
+      "Actualiza el panel después de modificar datos.",
     ],
     questions: [
-      "¿Qué decisión permite tomar cada métrica?",
-      "¿Cuándo conviene usar tiempo real y cuándo una lectura única?",
-      "Describe una actualización observada en el dashboard.",
+      "¿Por qué se utiliza una sola lectura?",
+      "¿Qué indicador necesita un conjunto?",
+      "Describe un cambio observado en el panel.",
     ],
   },
   practica17: {
-    title: "Referencias y subcolecciones en Firestore",
-    purpose: "Modelar relaciones escolares sin copiar información de manera descontrolada.",
+    title: "Proyecto integrador CRUD visual",
+    purpose: "Reunir registro, consulta, búsqueda, actualización, eliminación y panel en una aplicación NiceGUI.",
     reading:
-      "Aunque Firestore es NoSQL, los datos siguen relacionados. Un curso tiene actividades y cada actividad puede tener entregas. Puedes guardar datos embebidos, identificadores de referencia o subcolecciones. La decisión depende de cómo se leerán, actualizarán y protegerán los datos.",
-    concepts: ["referencias", "subcolecciones", "datos embebidos", "desnormalización", "reglas"],
+      "El producto final conserva el servicio Firebase y unifica las interfaces anteriores. Un solo refresco mantiene tabla e indicadores sincronizados y el formulario decide entre crear o actualizar según exista un ID seleccionado.",
+    concepts: ["CRUD", "NiceGUI", "servicio", "validación", "pruebas"],
     steps: [
-      "Modela cursos, actividades y entregas.",
-      "Compara una estructura embebida con una basada en subcolecciones.",
-      "Elige la opción adecuada según las consultas previstas.",
-      "Escribe la ruta completa de dos documentos relacionados.",
+      "Organiza servicio e interfaz.",
+      "Integra formulario, búsqueda y tabla.",
+      "Agrega actualización y eliminación confirmada.",
+      "Ejecuta una matriz de pruebas del flujo completo.",
     ],
     questions: [
-      "¿Cuándo usarías una subcolección?",
-      "¿Qué riesgo tiene duplicar demasiados datos?",
-      "Justifica tu modelo final con una consulta frecuente.",
+      "¿Qué lógica se conservó entre interfaces?",
+      "¿Qué operación presenta mayor riesgo?",
+      "¿Qué evidencia demuestra que el CRUD funciona?",
     ],
   },
   practica18: {
@@ -144,6 +144,47 @@ const advancedLessons = {
     ],
   },
 };
+
+Object.assign(advancedLessons.practica11, {
+  title: "Consulta visual con Flet y Firebase",
+  purpose: "Recuperar documentos de Firestore y mostrarlos en la DataTable del mismo proyecto Flet.",
+  reading: "PlantApp conserva Flet durante toda la etapa. La primera ampliación recupera documentos, conserva sus IDs y construye filas visuales que después servirán para buscar, editar y eliminar.",
+  concepts: ["Flet", "DataTable", "DataRow", "stream()", "doc.id"],
+  steps: ["Reutiliza firebase_service.py y main.py.", "Construye la DataTable Flet.", "Genera un DataRow por documento.", "Prueba el botón Actualizar."],
+  questions: ["¿Qué función cumple DataRow.data?", "¿Por qué se conserva Flet?", "Describe la evidencia obtenida al actualizar la tabla."],
+});
+Object.assign(advancedLessons.practica13, {
+  title: "Buscador de registros con Flet",
+  purpose: "Agregar búsqueda por nombre, grupo o ID sin cambiar de aplicación ni framework.",
+  reading: "El buscador se coloca encima de la DataTable existente. Los resultados se muestran con los mismos controles Flet y reutilizan la función que construye filas.",
+  concepts: ["TextField", "Dropdown", "casefold()", "ID", "filtro visual"],
+  steps: ["Conserva formulario y tabla.", "Agrega controles de búsqueda Flet.", "Implementa Nombre, Grupo e ID.", "Prueba resultados existentes y vacíos."],
+  questions: ["¿Por qué se reutiliza la DataTable?", "¿Cuándo conviene buscar por ID?", "Describe una prueba por cada criterio."],
+});
+Object.assign(advancedLessons.practica15, {
+  title: "Eliminación segura con Flet",
+  purpose: "Eliminar desde la tabla Flet únicamente después de una confirmación.",
+  reading: "La eliminación amplía la columna de acciones creada para editar. AlertDialog confirma el documento y conserva toda la interacción dentro de PlantApp.",
+  concepts: ["IconButton", "AlertDialog", "delete()", "ID", "confirmación"],
+  steps: ["Agrega Eliminar junto a Editar.", "Abre AlertDialog con el nombre.", "Prueba Cancelar.", "Confirma con un documento preparado."],
+  questions: ["¿Por qué se elimina por ID?", "¿Qué ocurre al cancelar?", "Describe la prueba de eliminación segura."],
+});
+Object.assign(advancedLessons.practica16, {
+  title: "Panel administrativo con Flet",
+  purpose: "Agregar tarjetas e indicadores encima del CRUD existente.",
+  reading: "El panel forma parte de la misma página Flet. Una sola lectura alimenta la tabla, los conteos y las barras para mantener resultados sincronizados.",
+  concepts: ["Container", "ResponsiveRow", "Counter", "ProgressBar", "métricas"],
+  steps: ["Define métricas.", "Crea tarjetas Flet.", "Calcula desde una sola lista.", "Sincroniza panel y tabla."],
+  questions: ["¿Por qué se usa una sola lectura?", "¿Qué indicador utiliza set?", "Describe una actualización observada."],
+});
+Object.assign(advancedLessons.practica17, {
+  title: "Proyecto integrador CRUD con Flet",
+  purpose: "Presentar la versión acumulada de PlantApp con todas las operaciones CRUD.",
+  reading: "El proyecto final no comienza de nuevo. Integra las funciones construidas desde la práctica 11 dentro de main.py y firebase_service.py.",
+  concepts: ["Flet", "CRUD", "servicio Firebase", "validación", "pruebas"],
+  steps: ["Conserva los dos archivos.", "Integra todas las operaciones.", "Unifica el refresco.", "Ejecuta la matriz de pruebas."],
+  questions: ["¿Qué código se conservó desde la práctica 11?", "¿Qué operación presenta mayor riesgo?", "¿Qué evidencia demuestra que el CRUD funciona?"],
+});
 
 const genericQuestions = [
   "Resume con tus palabras la idea principal de esta práctica.",
@@ -190,17 +231,17 @@ const coursePhases = [
     description: "Diseña registros escolares, colecciones y documentos que una aplicación pueda utilizar.",
     objective: "Modelar y persistir información real mediante estructuras documentales.",
     color: "#278b78",
-    practices: ["practica9", "practica10", "practica11", "practica12"],
+    practices: ["practica9", "practica10"],
   },
   {
     id: "fase4",
     number: 4,
-    icon: "🔎",
-    title: "Consulta y transforma",
-    description: "Filtra, pagina, actualiza y relaciona datos para resolver necesidades de una aplicación.",
-    objective: "Crear operaciones eficientes y justificar decisiones de arquitectura.",
+    icon: "🖥️",
+    title: "Construye aplicaciones visuales",
+    description: "Consulta, registra, busca, actualiza y elimina datos de Firebase con interfaces gráficas en Python.",
+    objective: "Construir un proyecto Flet incremental conectado a Firebase hasta completar un CRUD escolar.",
     color: "#3380c4",
-    practices: ["practica13", "practica14", "practica15", "practica16", "practica17"],
+    practices: ["practica11", "practica12", "practica13", "practica14", "practica15", "practica16", "practica17"],
   },
   {
     id: "fase5",
@@ -227,13 +268,13 @@ const practiceCatalog = {
   practica8: ["Práctica 8", "PokeDesk", "practica-8.html"],
   practica9: ["Práctica 9", "Registro de plantas", "practica-9.html"],
   practica10: ["Práctica 10", "Datos y ciudad inteligente", "practica-10.html"],
-  practica11: ["Práctica 11", "Consultas en Firestore", "practica-11.html"],
-  practica12: ["Práctica 12", "MongoDB vs Firestore", "practica-12.html"],
-  practica13: ["Práctica 13", "Autenticación y roles", "practica-13.html"],
-  practica14: ["Práctica 14", "Arquitectura modular", "practica-14.html"],
-  practica15: ["Práctica 15", "Paginación y optimización", "practica-15.html"],
-  practica16: ["Práctica 16", "Dashboard en tiempo real", "practica-16.html"],
-  practica17: ["Práctica 17", "Referencias y subcolecciones", "practica-17.html"],
+  practica11: ["Práctica 11", "Consulta con Flet", "practica-11.html"],
+  practica12: ["Práctica 12", "Registro con Flet", "practica-12.html"],
+  practica13: ["Práctica 13", "Buscador con Flet", "practica-13.html"],
+  practica14: ["Práctica 14", "Actualización con Flet", "practica-14.html"],
+  practica15: ["Práctica 15", "Eliminación con Flet", "practica-15.html"],
+  practica16: ["Práctica 16", "Panel con Flet", "practica-16.html"],
+  practica17: ["Práctica 17", "CRUD integrador con Flet", "practica-17.html"],
   practica18: ["Práctica 18", "Aplicación final", "practica-18.html"],
   practicaabp: ["Proyecto ABP", "Reto escolar integrador", "practica-abp.html"],
 };
@@ -251,13 +292,13 @@ const practiceReadingTopics = {
   practica8: `Cuando una aplicación combina Python, una interfaz y Firebase aparecen varias responsabilidades. La interfaz captura acciones; un servicio consulta o guarda datos; la autenticación aporta identidad; el modelo define la forma de los documentos. Si estas piezas se mezclan en una sola función, cada cambio se vuelve riesgoso. Una arquitectura sencilla ayuda a localizar problemas y reutilizar operaciones.`,
   practica9: `Registrar plantas del patio transforma observaciones reales en documentos. Antes de programar es necesario acordar nombres de campos, unidades y valores permitidos. La altura debe conservar un tipo numérico, la fecha necesita un formato consistente y las características repetibles pueden almacenarse en arreglos. Un modelo flexible no significa capturar cada registro de manera diferente.`,
   practica10: `Las ciudades inteligentes reciben datos de sensores, teléfonos, transporte y servicios. El valor no está en acumular información, sino en responder preguntas que beneficien a la comunidad. También existen riesgos: rastreo excesivo, datos incorrectos y decisiones automatizadas sin explicación. Diseñar una base de datos implica elegir qué guardar, durante cuánto tiempo y quién podrá consultarlo.`,
-  practica11: `Una consulta es una pregunta expresada con campos y operadores. Pedir todos los documentos para filtrarlos después desperdicia lecturas y tiempo. Firestore permite combinar condiciones, ordenar resultados y establecer límites. Algunas combinaciones necesitan índices compuestos porque el sistema requiere una estructura preparada para localizar y ordenar datos sin revisar la colección completa.`,
-  practica12: `MongoDB y Firestore comparten documentos y colecciones, pero sus decisiones de diseño son distintas. MongoDB ofrece una consulta documental amplia y herramientas de agregación; Firestore integra sincronización, autenticación y reglas para aplicaciones cliente. Compararlos exige usar el mismo problema, las mismas operaciones esperadas y criterios como costo, despliegue, seguridad y experiencia del equipo.`,
-  practica13: `Autenticar y autorizar son procesos diferentes. Una persona puede demostrar su identidad y aun así no tener permiso para modificar calificaciones o consultar datos de otro grupo. Los roles describen responsabilidades, pero deben verificarse en reglas o servicios confiables. Ocultar un botón en la interfaz mejora la experiencia; no constituye una barrera de seguridad.`,
-  practica14: `La separación por capas asigna una responsabilidad clara a cada módulo. La vista muestra controles y mensajes; la validación revisa datos; el servicio de autenticación administra sesiones; el servicio de datos ejecuta lecturas y escrituras. Esta organización permite sustituir una interfaz o una consulta sin reescribir todo el sistema y facilita probar cada parte de forma independiente.`,
-  practica15: `Las consultas suelen devolver cursores o referencias que permiten recorrer resultados gradualmente. La paginación protege a la aplicación de descargar colecciones completas. En Firestore, comenzar después del último documento mantiene un orden estable; en MongoDB, los cursores, límites e índices colaboran para controlar el recorrido. Paginar no solo mejora la pantalla: reduce transferencia y costo.`,
-  practica16: `Un dashboard transforma documentos en señales para decidir. Una tarjeta de “actividades pendientes” debe derivarse de una consulta o métrica definida, no de un número decorativo. Las actualizaciones en tiempo real son útiles cuando los cambios deben aparecer inmediatamente, pero un listener permanente consume recursos. La frecuencia de actualización debe corresponder con la necesidad escolar.`,
-  practica17: `Los documentos pueden incluir datos embebidos o relacionarse mediante identificadores y subcolecciones. Embebido favorece leer una unidad completa; una referencia evita duplicar información compartida; una subcolección permite que un conjunto relacionado crezca de manera independiente. No existe una estructura universal: la elección depende de las lecturas, actualizaciones, reglas y tamaño esperado.`,
+  practica11: `Flet transforma la lectura de Firestore en una DataTable dentro de PlantApp. El servicio recupera documentos y la interfaz convierte cada diccionario en DataRow sin cambiar de proyecto.`,
+  practica12: `Flet construye interfaces visuales con controles de Python. El formulario captura y valida datos antes de enviarlos al servicio Firebase. Crear un documento no termina con add(): la aplicación también debe comunicar el resultado, limpiar controles y actualizar la lista visible.`,
+  practica13: `El buscador se agrega a la misma interfaz Flet y reutiliza la DataTable. Localiza documentos por nombre, grupo o ID sin reconstruir la aplicación.`,
+  practica14: `Actualizar significa modificar un documento existente y conservar su ID. La tabla Flet permite seleccionar una fila, cargarla en el formulario y guardar cambios. Una variable de selección distingue el modo Crear del modo Editar y evita generar duplicados.`,
+  practica15: `Eliminar es la operación con mayor riesgo. La DataTable Flet conserva el ID y AlertDialog solicita confirmación antes de llamar delete().`,
+  practica16: `Un panel convierte registros en indicadores. Flet presenta tarjetas, tabla y proporciones calculadas desde una misma lectura.`,
+  practica17: `El CRUD integrador reúne crear, leer, buscar, actualizar y eliminar en una sola aplicación visual. La interfaz puede cambiar, pero la colección, el modelo y el servicio Firebase se conservan. Centralizar validación y refresco evita inconsistencias entre formulario, tabla y panel.`,
   practica18: `La aplicación final debe demostrar un recorrido completo: identificar al usuario, validar datos, guardar documentos, consultar información y mostrar resultados. También debe contemplar errores, permisos y evidencia de prueba. Una demostración convincente explica la relación entre el problema escolar y cada decisión técnica, no solamente enseña pantallas.`,
   practicaabp: `El aprendizaje basado en proyectos conecta la tecnología con una necesidad observable. El equipo debe investigar a las personas usuarias, delimitar el problema, proponer una colección inicial y construir una versión mínima que pueda probarse. Las mejoras se priorizan mediante evidencias. Un proyecto pequeño que resuelve bien una necesidad es más valioso que una lista extensa de funciones sin integración.`,
 };
@@ -275,13 +316,13 @@ const practiceReadingApplications = {
   practica8: `PokeDesk agrega una dificultad: distintos componentes deben coordinarse sin convertirse en un archivo inmanejable. Conviene definir funciones para obtener datos externos, validar selecciones, administrar sesión y guardar favoritos. Cada función debe retornar información o errores claros para que la interfaz pueda responder. Esta separación prepara el sistema para cambiar de proveedor, agregar pruebas o reutilizar servicios sin rediseñar todas las pantallas.`,
   practica9: `Durante el trabajo de campo pueden aparecer datos desconocidos. En vez de inventarlos, el modelo debe permitir estados como “por identificar” y notas de observación. También conviene distinguir nombre común, nombre científico, ubicación y evidencia fotográfica. Cuando los estudiantes capturan con los mismos criterios, la colección se vuelve comparable. El objetivo no es llenar campos, sino transformar observaciones honestas en registros que otra persona pueda interpretar.`,
   practica10: `Antes de guardar datos de movilidad, rostros o ubicaciones, una ciudad debe justificar su utilidad y reducir riesgos. La minimización propone conservar solamente lo necesario; el control de acceso limita quién consulta; la retención define cuándo eliminar; la transparencia explica el propósito. Al responder las preguntas del video, conecta cada beneficio con una responsabilidad. Un sistema puede ser técnicamente avanzado y aun así resultar inadecuado si ignora privacidad y contexto.`,
-  practica11: `Supón una colección de actividades con grupo, estado, fecha y calificación. Una pantalla de pendientes no necesita todos los registros: puede filtrar por grupo y estado, ordenar por fecha y limitar el resultado. Cuando se combinan filtros y ordenamientos, Firestore puede solicitar un índice. Ese mensaje no es un error arbitrario; indica que la consulta necesita una estructura de acceso específica. Documentar el índice forma parte del diseño de la solución.`,
-  practica12: `Para comparar plataformas debes evitar conclusiones generales como “una es mejor”. En un tablero escolar, Firestore puede simplificar sincronización y reglas para clientes web; MongoDB puede ofrecer consultas documentales y agregaciones adecuadas para un servicio propio. La respuesta depende de quién ejecuta la lógica, qué consultas existen, cuánto control requiere el equipo y cómo crecerá el sistema. La comparación debe terminar en una decisión justificada para un caso concreto.`,
-  practica13: `Un rol de alumno puede entregar actividades y consultar su progreso; un docente puede revisar grupos; un administrador puede gestionar catálogos. Estos permisos deben representarse de forma verificable y aplicarse en cada operación sensible. También debes considerar cambios de rol y datos obsoletos. Una prueba completa inicia sesión con perfiles diferentes y confirma que cada uno ve y modifica únicamente lo autorizado. La seguridad se demuestra con resultados permitidos y rechazados.`,
-  practica14: `Una estructura modular puede incluir firebase-config, auth-service, data-service, validators y ui. La configuración inicializa servicios; autenticación expone sesión; datos encapsula consultas; validadores protegen entradas; la interfaz coordina mensajes. Los nombres pueden variar, pero las responsabilidades no deberían confundirse. En esta práctica el reto es mover una operación real a su capa correcta y demostrar que el comportamiento permanece estable.`,
-  practica15: `Una página de resultados necesita un orden determinista. Si varios documentos comparten fecha, puede añadirse otro campo para evitar posiciones ambiguas. La primera consulta conserva el último documento y la siguiente comienza después de él. Este cursor no es el cursor clásico de MongoDB, pero cumple una función relacionada: recorrer resultados sin traer todo de inmediato. Debes medir cuántos documentos aparecen y comprobar que no existan repeticiones ni saltos.`,
-  practica16: `Antes de dibujar una gráfica define la pregunta. “¿Cuántas actividades están pendientes por grupo?” requiere campos y consultas diferentes a “¿Cómo cambia el promedio por semana?”. Después decide si el dato debe actualizarse en tiempo real. Un listener es apropiado cuando la pantalla permanece abierta y los cambios importan inmediatamente; una lectura única puede ser mejor para reportes ocasionales. El dashboard debe priorizar comprensión y acción, no cantidad de gráficos.`,
-  practica17: `En un curso escolar, las actividades pueden vivir en una subcolección porque crecen de manera independiente. Una entrega puede guardar el UID del alumno y una referencia a la actividad. Los nombres del curso podrían duplicarse para acelerar vistas, pero esa copia exige una estrategia cuando cambian. Dibuja rutas, consultas y reglas antes de elegir. El mejor modelo es el que mantiene simples las operaciones más importantes sin crear inconsistencias difíciles de corregir.`,
+  practica11: `El Treeview no conoce Firebase. Recibe valores ya transformados por obtener_plantas() y los presenta. Guardar el ID como iid permite seleccionar después el documento correcto sin mostrar identificadores largos en todas las columnas. La evidencia debe relacionar una fila con su documento original.`,
+  practica12: `Un formulario visual debe guiar y limitar la captura. Los campos obligatorios se comprueban antes de llamar Firebase; los mensajes se muestran en Flet y el alta se confirma al recargar la tabla. Así la práctica incorpora Crear sin perder la consulta construida previamente.`,
+  practica13: `Nombre y grupo pueden producir varias coincidencias; el ID representa un documento exacto. La interfaz debe explicar ambos comportamientos. Probar una búsqueda existente, una múltiple y una vacía permite comprobar que NiceGUI actualiza correctamente la tabla.`,
+  practica14: `El modo edición reutiliza los controles de alta. La diferencia está en conservar registro_seleccionado_id y llamar update() en vez de add(). Después de guardar o cancelar, la selección se limpia para impedir que una captura posterior modifique accidentalmente el documento anterior.`,
+  practica15: `El nombre visible ayuda al usuario a confirmar, pero el borrado se ejecuta con el ID. Primero se prueba Cancelar y luego Aceptar usando un documento preparado. En sistemas donde recuperar información es importante, archivar puede ser preferible a borrar físicamente.`,
+  practica16: `Total, grupos únicos y activos se calculan desde la misma lista para que no representen momentos diferentes. Una barra expresa cantidad entre total y debe controlar el caso total igual a cero. La claridad de un panel depende de métricas definidas, no de añadir muchos gráficos.`,
+  practica17: `El integrador reúne las piezas sin copiar la conexión en cada pestaña. Crear y actualizar comparten formulario; buscar filtra la lista visible; eliminar abre confirmación; refrescar vuelve a cargar tabla y métricas. La matriz de pruebas demuestra el funcionamiento mejor que una captura aislada.`,
   practica18: `La presentación final debe recorrer una historia verificable. Comienza con el problema y las personas usuarias; enseña el modelo de datos; inicia sesión; crea o actualiza un documento; ejecuta una consulta; demuestra una regla de seguridad; muestra una evidencia guardada. Después explica limitaciones y siguiente mejora. Esta secuencia permite evaluar arquitectura, funcionamiento y criterio, no solo apariencia. El enlace de demostración debe estar accesible para revisión.`,
   practicaabp: `El proyecto ABP avanza mediante ciclos: observar, definir, diseñar, construir, probar y mejorar. Cada ciclo debe producir una evidencia: entrevista, diagrama, documento JSON, regla, consulta, captura o video. El equipo debe distribuir responsabilidades sin fragmentar el producto. La entrega final conecta los Objetivos de Desarrollo Sostenible con una solución concreta y explica cómo los datos ayudan a comprender o atender el problema elegido.`,
 };
@@ -742,7 +783,10 @@ function addInteractivePractice() {
   marker.insertAdjacentHTML("afterend", buildLearningPanel(lesson));
   state.form = document.querySelector("#cloud-practice-form");
 
-  if (advancedLessons[state.practiceId]) {
+  // Las prácticas visuales 11–17 incluyen tutorial, código incremental y
+  // programas completos. Deben permanecer visibles, no dentro de un bloque
+  // plegable de profundización.
+  if (advancedLessons[state.practiceId] && !card.matches("[data-crud-practice]")) {
     const panel = document.querySelector(".learning-panel");
     const legacyNodes = [];
     let node = panel.nextElementSibling;
@@ -1487,6 +1531,31 @@ async function loadDashboard() {
   }
 }
 
+function refreshVisualPracticeLinks() {
+  const labels = {
+    "practica-11.html": "Práctica 11 — Consulta de datos con Flet y Firebase",
+    "practica-12.html": "Práctica 12 — Registro de datos con Flet",
+    "practica-13.html": "Práctica 13 — Buscador de registros con Flet",
+    "practica-14.html": "Práctica 14 — Actualización de registros con Flet",
+    "practica-15.html": "Práctica 15 — Eliminación segura con Flet",
+    "practica-16.html": "Práctica 16 — Panel administrativo con Flet",
+    "practica-17.html": "Práctica 17 — Proyecto integrador CRUD con Flet",
+  };
+
+  Object.entries(labels).forEach(([href, label]) => {
+    document.querySelectorAll(`a[href="${href}"]`).forEach((anchor) => {
+      anchor.textContent = label;
+    });
+  });
+
+  document.querySelectorAll(".nav-section summary").forEach((summary) => {
+    if (summary.textContent.includes("Unidad III")) {
+      summary.textContent = "Unidad III · Aplicaciones visuales con Python y Firebase";
+    }
+  });
+}
+
+refreshVisualPracticeLinks();
 state.practiceId = getPracticeId();
 createAuthBar();
 addPhaseNavigation();

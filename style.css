@@ -1878,6 +1878,278 @@ body.protect-screen .screen-guard {
   background: rgba(255, 255, 255, 0.92);
 }
 
+/* Prácticas 11–17: secuencia visual incremental con Python y Firebase */
+.project-thread {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(110px, 1fr));
+  gap: 8px;
+  margin: 22px 0 28px;
+}
+
+.project-thread span {
+  min-height: 72px;
+  padding: 12px 10px;
+  border: 1px solid #c8ddc4;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f7fbf5, #e8f3e4);
+  color: #31572c;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.project-thread strong {
+  display: inline-block;
+  margin-top: 3px;
+  color: #1b4332;
+  font-size: 13px;
+}
+
+.continuity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0 28px;
+}
+
+.continuity-grid article {
+  padding: 18px;
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  background: #fbfdf9;
+}
+
+.continuity-grid h3 {
+  margin: 0 0 10px;
+  color: #31572c;
+  font-size: 17px;
+}
+
+.continuity-grid .checklist {
+  margin-bottom: 0;
+}
+
+.lesson-steps {
+  display: grid;
+  gap: 12px;
+  counter-reset: visual-step;
+}
+
+.lesson-step {
+  position: relative;
+  padding: 17px 18px 17px 64px;
+  border: 1px solid #d7e5d3;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.lesson-step::before {
+  counter-increment: visual-step;
+  content: counter(visual-step);
+  position: absolute;
+  top: 16px;
+  left: 17px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #4f772d;
+  color: #fff;
+  font-weight: 800;
+}
+
+.lesson-step h3 {
+  margin: 0 0 5px;
+  color: #1b4332;
+  font-size: 16px;
+}
+
+.lesson-step p {
+  margin: 0;
+}
+
+.code-explanation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.code-explanation article {
+  padding: 15px;
+  border-left: 4px solid #4f772d;
+  border-radius: 0 12px 12px 0;
+  background: #f4f8f1;
+}
+
+.code-explanation code {
+  color: #31572c;
+  font-weight: 800;
+}
+
+.code-explanation p {
+  margin: 7px 0 0;
+  font-size: 14px;
+}
+
+.increment-note {
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #fff8e7;
+  color: #695516;
+}
+
+.programming-route {
+  margin: 26px 0;
+  padding: 22px;
+  border: 1px solid #a9c6a4;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #f8fcf6, #edf6e9);
+}
+
+.programming-route h2 {
+  margin: 5px 0 8px;
+  color: #1b4332;
+  font-size: 22px;
+}
+
+.programming-route > div > p {
+  margin-top: 0;
+}
+
+.file-route {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.file-route span {
+  display: grid;
+  gap: 4px;
+  padding: 11px 14px;
+  border: 1px solid #c8ddc4;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.file-route small {
+  color: #647b65;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.file-route code {
+  color: #1b4332;
+  font-weight: 800;
+}
+
+.file-route b {
+  color: #4f772d;
+  font-size: 22px;
+}
+
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.command-grid article {
+  min-width: 0;
+}
+
+.command-grid strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #31572c;
+}
+
+.command-grid .code-block {
+  margin: 0;
+}
+
+.run-note {
+  margin: 15px 0 0;
+  color: #31572c;
+}
+
+.guided-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 24px;
+}
+
+.guided-list li {
+  padding-left: 6px;
+}
+
+.challenge-card,
+.evidence-card {
+  padding: 18px 20px;
+  border-radius: 16px;
+}
+
+.challenge-card {
+  border: 1px solid #e5c768;
+  background: #fff9e9;
+  color: #5d4a0a;
+}
+
+.evidence-card {
+  border: 1px solid #b9d8c0;
+  background: #f2faf3;
+}
+
+.practice-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid var(--borde);
+}
+
+.practice-navigation a {
+  padding: 10px 14px;
+  border: 1px solid #4f772d;
+  border-radius: 10px;
+  color: #31572c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.practice-navigation a:hover {
+  background: #4f772d;
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .project-thread {
+    grid-template-columns: repeat(4, minmax(110px, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .project-thread,
+  .continuity-grid,
+  .code-explanation,
+  .command-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-step {
+    padding-left: 58px;
+  }
+
+  .practice-navigation {
+    flex-direction: column;
+  }
+}
+
 .inline-question {
   padding: 14px !important;
 }
