@@ -120,6 +120,237 @@
             <li>Corrección de al menos 2 comandos mal estructurados.</li>
           </ul>
 
+          <h2 class="section-title">🔄 Comparación entre SQL, MongoDB y App Lab</h2>
+          <p>
+            App Lab de Code.org permite comprender la transición entre el pensamiento relacional de SQL y
+            el trabajo con objetos propio de MongoDB. La siguiente tabla funciona como material de consulta
+            para relacionar conceptos, comandos y formas de manipular datos.
+          </p>
+          <table class="table-like" aria-label="Comparación entre SQL, MongoDB y App Lab">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>SQL</th>
+                <th>MongoDB (NoSQL)</th>
+                <th>App Lab (Code.org)</th>
+                <th>Explicación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Base de datos</td>
+                <td>Database</td>
+                <td>Database</td>
+                <td>Data Tables del proyecto</td>
+                <td>Es el espacio donde se guarda la información de una aplicación.</td>
+              </tr>
+              <tr>
+                <td>Tabla / Colección</td>
+                <td>Tabla</td>
+                <td>Colección</td>
+                <td>Tabla</td>
+                <td>Agrupa registros relacionados, como alumnos, productos o pedidos.</td>
+              </tr>
+              <tr>
+                <td>Registro / Documento</td>
+                <td>Fila o registro</td>
+                <td>Documento BSON/JSON</td>
+                <td>Registro</td>
+                <td>Representa un elemento individual dentro de una tabla o colección.</td>
+              </tr>
+              <tr>
+                <td>Columna / Campo</td>
+                <td>Columna</td>
+                <td>Campo</td>
+                <td>Columna o propiedad del objeto</td>
+                <td>Describe un dato específico, por ejemplo nombre, edad o grupo.</td>
+              </tr>
+              <tr>
+                <td>Identificador</td>
+                <td>PRIMARY KEY / id</td>
+                <td><code>_id</code></td>
+                <td><code>id</code></td>
+                <td>Permite reconocer un registro de forma única.</td>
+              </tr>
+              <tr>
+                <td>Insertar</td>
+                <td><code>INSERT INTO</code></td>
+                <td><code>insertOne()</code></td>
+                <td><code>createRecord()</code></td>
+                <td>Crea un nuevo registro o documento.</td>
+              </tr>
+              <tr>
+                <td>Consultar</td>
+                <td><code>SELECT *</code></td>
+                <td><code>find()</code></td>
+                <td><code>readRecords()</code></td>
+                <td>Obtiene varios registros que cumplen una condición o todos los disponibles.</td>
+              </tr>
+              <tr>
+                <td>Consultar uno</td>
+                <td><code>SELECT ... LIMIT 1</code></td>
+                <td><code>findOne()</code></td>
+                <td><code>readRecords()</code> y primer resultado</td>
+                <td>Recupera un solo registro cuando se necesita una coincidencia específica.</td>
+              </tr>
+              <tr>
+                <td>Actualizar</td>
+                <td><code>UPDATE</code></td>
+                <td><code>updateOne()</code></td>
+                <td><code>updateRecord()</code></td>
+                <td>Modifica campos de un registro existente.</td>
+              </tr>
+              <tr>
+                <td>Eliminar</td>
+                <td><code>DELETE</code></td>
+                <td><code>deleteOne()</code></td>
+                <td><code>deleteRecord()</code></td>
+                <td>Borra un registro seleccionado mediante un identificador o condición.</td>
+              </tr>
+              <tr>
+                <td>Buscar por condición</td>
+                <td><code>WHERE</code></td>
+                <td>Filtro JSON</td>
+                <td>Objeto de consulta en <code>readRecords()</code></td>
+                <td>Limita los resultados a los datos que cumplen una regla.</td>
+              </tr>
+              <tr>
+                <td>Obtener una columna</td>
+                <td><code>SELECT columna</code></td>
+                <td>Proyección</td>
+                <td><code>getColumn()</code></td>
+                <td>Recupera únicamente un campo específico de varios registros.</td>
+              </tr>
+              <tr>
+                <td>Contar registros</td>
+                <td><code>COUNT()</code></td>
+                <td><code>countDocuments()</code></td>
+                <td><code>records.length</code></td>
+                <td>Calcula cuántos registros existen o cuántos cumplen una condición.</td>
+              </tr>
+              <tr>
+                <td>Ordenar</td>
+                <td><code>ORDER BY</code></td>
+                <td><code>sort()</code></td>
+                <td>Ordenar arreglo en JavaScript</td>
+                <td>Organiza los resultados por un campo, como fecha, nombre o puntaje.</td>
+              </tr>
+              <tr>
+                <td>Relaciones</td>
+                <td>Llaves foráneas y JOIN</td>
+                <td>Referencias o documentos embebidos</td>
+                <td>Tablas relacionadas por <code>id</code></td>
+                <td>Conecta datos de diferentes grupos cuando una sola tabla no basta.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="section-title">🧾 Equivalencia de comandos</h3>
+          <table class="table-like" aria-label="Equivalencia de comandos SQL MongoDB App Lab">
+            <thead>
+              <tr>
+                <th>Acción</th>
+                <th>SQL</th>
+                <th>MongoDB</th>
+                <th>App Lab</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Insertar</td>
+                <td><code>INSERT</code></td>
+                <td><code>insertOne()</code></td>
+                <td><code>createRecord()</code></td>
+              </tr>
+              <tr>
+                <td>Consultar</td>
+                <td><code>SELECT</code></td>
+                <td><code>find()</code></td>
+                <td><code>readRecords()</code></td>
+              </tr>
+              <tr>
+                <td>Actualizar</td>
+                <td><code>UPDATE</code></td>
+                <td><code>updateOne()</code></td>
+                <td><code>updateRecord()</code></td>
+              </tr>
+              <tr>
+                <td>Eliminar</td>
+                <td><code>DELETE</code></td>
+                <td><code>deleteOne()</code></td>
+                <td><code>deleteRecord()</code></td>
+              </tr>
+              <tr>
+                <td>Contar</td>
+                <td><code>COUNT</code></td>
+                <td><code>countDocuments()</code></td>
+                <td><code>records.length</code></td>
+              </tr>
+              <tr>
+                <td>Seleccionar columna</td>
+                <td><code>SELECT columna</code></td>
+                <td>Proyección</td>
+                <td><code>getColumn()</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="section-title">🧠 ¿Por qué App Lab es un modelo híbrido?</h2>
+          <table class="table-like" aria-label="App Lab como modelo híbrido entre SQL y MongoDB">
+            <thead>
+              <tr>
+                <th>Se parece a SQL porque...</th>
+                <th>Se parece a MongoDB porque...</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Utiliza tablas.</td>
+                <td>Los registros se crean mediante objetos de JavaScript.</td>
+              </tr>
+              <tr>
+                <td>Organiza información en filas y columnas.</td>
+                <td>Se manipulan usando funciones.</td>
+              </tr>
+              <tr>
+                <td>Cada registro posee un identificador.</td>
+                <td>No utiliza sentencias SQL.</td>
+              </tr>
+              <tr>
+                <td>La información puede visualizarse en una tabla.</td>
+                <td>Los datos se trabajan como objetos desde JavaScript.</td>
+              </tr>
+              <tr>
+                <td>Permite consultar registros almacenados por tabla.</td>
+                <td>Facilita el aprendizaje de conceptos NoSQL.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <p>
+              ℹ️ <strong>App Lab no utiliza MongoDB internamente.</strong> Su sistema de almacenamiento es propio;
+              sin embargo, desde un punto de vista educativo puede entenderse como un modelo híbrido entre SQL
+              y NoSQL. Conserva la organización en tablas característica de las bases de datos relacionales,
+              mientras que la programación se realiza mediante objetos de JavaScript y funciones como
+              <code>createRecord()</code>, <code>readRecords()</code>, <code>updateRecord()</code> y
+              <code>deleteRecord()</code>, similares al trabajo con documentos en MongoDB. Gracias a ello,
+              App Lab constituye una excelente herramienta para comprender los conceptos fundamentales antes
+              de utilizar MongoDB Atlas.
+            </p>
+          </div>
+
+          <div class="callout">
+            <p><strong>🎓 ¿Qué aprenderás con esta comparación?</strong></p>
+            <ul class="checklist">
+              <li>Comprender las diferencias entre SQL y NoSQL.</li>
+              <li>Identificar las equivalencias entre MongoDB y App Lab.</li>
+              <li>Reconocer cómo se almacenan los datos en diferentes tecnologías.</li>
+              <li>Prepararse para utilizar MongoDB Atlas en prácticas posteriores.</li>
+              <li>Entender por qué App Lab facilita la transición hacia bases de datos NoSQL.</li>
+            </ul>
+          </div>
+
           <h2 class="section-title">📦 Entregables</h2>
           <p><strong>Importante:</strong> Todo debe adjuntarse en su Google Sites.</p>
           <ul class="checklist">
